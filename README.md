@@ -6,15 +6,21 @@ A Ruby port of KangaModeling, a text-to-graphics converter for UML-like visualiz
 
 Add this line to your application's Gemfile:
 
-    gem 'kangaruby'
+```ruby
+gem 'kangaruby'
+```
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install kangaruby
+```bash
+$ gem install kangaruby
+```
 
 ## Usage
 
