@@ -18,4 +18,8 @@ describe Participant do
   it 'will raise an error on a nil name' do
     expect { Participant.new(nil) }.to raise_error(ArgumentError)
   end
+
+  it 'will be equal to another participant with the same name' do
+    expect(participant).to eq(Participant.new('A'))
+  end
 end

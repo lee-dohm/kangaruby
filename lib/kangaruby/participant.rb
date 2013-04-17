@@ -16,5 +16,13 @@ module KangaRuby
 
       @name = name
     end
+
+    # Determines if this participant is equivalent to `other`.
+    #
+    # @param other Participant to compare to.
+    # @return [Boolean] `true` if they are equal; `false` otherwise.
+    def ==(other)
+      @name == other.name
+    end
   end
 end

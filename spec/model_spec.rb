@@ -23,9 +23,11 @@ describe Model do
     expect(model.participants[0].name).to eq('A')
   end
 
-  # it 'will not accept two participants with the same name' do
-  #   model.participants << Participant.new('A')
+  it 'will not add a second participant with the same name' do
+    model.participants << Participant.new('A')
+    model.participants << Participant.new('A')
 
-  #   expect { model.participants << Participant.new('A') }.to raise_error(DuplicateParticipantError)
-  # end
+    expect(model.participants.count).to eq(1)
+    expect(model.participants[0].name).to eq('A')
+  end
 end

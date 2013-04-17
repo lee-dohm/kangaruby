@@ -17,8 +17,8 @@ module KangaRuby
 
     # Initializes an empty model.
     def initialize
-      @activities = []
-      @participants = []
+      @activities = OrderedSet.new
+      @participants = OrderedSet.new
     end
   end
 end
