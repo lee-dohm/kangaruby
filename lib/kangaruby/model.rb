@@ -3,10 +3,6 @@
 #
 
 module KangaRuby
-  # Represents the error that occurs when adding two participants with the same name.
-  class DuplicateParticipantError < StandardError
-  end
-
   # Represents the set of participants and activities.
   class Model
     # Set of activities in the model.
@@ -17,7 +13,7 @@ module KangaRuby
 
     # Initializes an empty model.
     def initialize
-      @activities = OrderedSet.new
+      @activities = []
       @participants = OrderedSet.new
     end
   end

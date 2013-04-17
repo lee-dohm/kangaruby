@@ -30,4 +30,23 @@ describe Model do
     expect(model.participants.count).to eq(1)
     expect(model.participants[0].name).to eq('Alice')
   end
+
+  it 'will accept new activities' do
+    model.activities << Activity.new('Alice', 'Bob')
+
+    expect(model.activities.count).to eq(1)
+    expect(model.activities[0].from).to eq('Alice')
+    expect(model.activities[0].to).to eq('Bob')
+  end
+
+  it 'will accept two identical activities' do
+    model.activities << Activity.new('Alice', 'Bob')
+    model.activities << Activity.new('Alice', 'Bob')
+
+    expect(model.activities.count).to eq(2)
+    expect(model.activities[0].from).to eq('Alice')
+    expect(model.activities[0].to).to eq('Bob')
+    expect(model.activities[1].from).to eq('Alice')
+    expect(model.activities[1].to).to eq('Bob')
+  end
 end
