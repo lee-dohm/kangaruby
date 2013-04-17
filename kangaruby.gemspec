@@ -5,7 +5,7 @@ require 'kangaruby/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "kangaruby"
-  spec.version       = Kangaruby::VERSION
+  spec.version       = KangaRuby::VERSION
   spec.authors       = ["Lee Dohm"]
   spec.email         = ["lee@liftedstudios.com"]
   spec.description   = %q{A Ruby port of KangaModeling, a text-to-graphics converter for UML-like visualizations.}
