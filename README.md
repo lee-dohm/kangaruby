@@ -1,6 +1,6 @@
 # KangaRuby
 
-A Ruby port of KangaModeling, a text-to-graphics converter for UML-like visualizations.
+A Ruby port of [KangaModeling](http://www.kangamodeling.org), a text-to-graphics converter for UML-like visualizations.
 
 ## Installation
 
