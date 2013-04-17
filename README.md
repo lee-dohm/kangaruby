@@ -1,4 +1,4 @@
-# Kangaruby
+# KangaRuby
 
 A Ruby port of KangaModeling, a text-to-graphics converter for UML-like visualizations.
 
@@ -28,7 +28,7 @@ TODO: Write usage instructions here
 
 ## Development
 
-To see what has changed in recent versions of PROJECT NAME, see the [CHANGELOG](CHANGELOG.md)
+To see what has changed in recent versions of KangaRuby, see the [CHANGELOG](CHANGELOG.md)
 
 ## Core Team Members
 
