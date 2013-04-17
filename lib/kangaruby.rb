@@ -1,5 +1,5 @@
-require "kangaruby/version"
+#
+# Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
+#
 
-module Kangaruby
-  # Your code goes here...
-end
+require 'kangaruby/version'
