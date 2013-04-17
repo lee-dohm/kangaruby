@@ -1,0 +1,4 @@
+
+LineLength:
+    Enabled: true
+    Max: 132
