@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lee-dohm/kangaruby.png?branch=master)](https://travis-ci.org/lee-dohm/kangaruby)
+
 # KangaRuby
 
 A Ruby port of [KangaModeling](http://www.kangamodeling.org), a text-to-graphics converter for UML-like visualizations.
