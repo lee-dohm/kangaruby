@@ -9,10 +9,10 @@ require 'kangaruby'
 include KangaRuby
 
 describe Participant do
-  let(:participant) { Participant.new 'A' }
+  let(:participant) { Participant.new 'Alice' }
 
   it 'will have a name' do
-    expect(participant.name).to eq('A')
+    expect(participant.name).to eq('Alice')
   end
 
   it 'will raise an error on a nil name' do
@@ -20,6 +20,6 @@ describe Participant do
   end
 
   it 'will be equal to another participant with the same name' do
-    expect(participant).to eq(Participant.new('A'))
+    expect(participant).to eq(Participant.new('Alice'))
   end
 end

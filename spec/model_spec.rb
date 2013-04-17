@@ -17,17 +17,17 @@ describe Model do
   end
 
   it 'will accept new participants' do
-    model.participants << Participant.new('A')
+    model.participants << Participant.new('Alice')
 
     expect(model.participants.count).to eq(1)
-    expect(model.participants[0].name).to eq('A')
+    expect(model.participants[0].name).to eq('Alice')
   end
 
   it 'will not add a second participant with the same name' do
-    model.participants << Participant.new('A')
-    model.participants << Participant.new('A')
+    model.participants << Participant.new('Alice')
+    model.participants << Participant.new('Alice')
 
     expect(model.participants.count).to eq(1)
-    expect(model.participants[0].name).to eq('A')
+    expect(model.participants[0].name).to eq('Alice')
   end
 end
