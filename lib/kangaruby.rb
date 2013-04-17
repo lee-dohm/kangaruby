@@ -3,5 +3,7 @@
 #
 
 require 'kangaruby/model'
+require 'kangaruby/ordered_set'
 require 'kangaruby/parser'
+require 'kangaruby/participant'
 require 'kangaruby/version'
