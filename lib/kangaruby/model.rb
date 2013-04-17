@@ -3,18 +3,18 @@
 #
 
 module KangaRuby
-  # Represents the set of participants and activities as a matrix of columns and rows.
+  # Represents the set of participants and activities.
   class Model
-    # Set of participants in the model.
-    attr_reader :columns
-
     # Set of activities in the model.
-    attr_reader :rows
+    attr_reader :activities
+
+    # Set of participants in the model.
+    attr_reader :participants
 
     # Initializes an empty model.
     def initialize
-      @columns = []
-      @rows = []
+      @activities = []
+      @participants = []
     end
   end
 end
