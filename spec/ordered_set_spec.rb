@@ -3,6 +3,8 @@
 #
 
 describe OrderedSet do
+  let(:set) { OrderedSet.new(1, 2, 3) }
+
   it 'starts empty' do
     set = OrderedSet.new
 
@@ -10,8 +12,6 @@ describe OrderedSet do
   end
 
   it 'adds objects during construction' do
-    set = OrderedSet.new(1, 2, 3)
-
     expect(set.count).to eq(3)
     expect(set[0]).to eq(1)
     expect(set[1]).to eq(2)
@@ -49,22 +49,18 @@ describe OrderedSet do
   end
 
   it 'is equivalent to another enumerable with the same items' do
-    set = OrderedSet.new(1, 2, 3)
     other = [1, 2, 3]
 
     expect(set).to eq(other)
   end
 
   it 'is not equivalent to another enumerable with different items' do
-    set = OrderedSet.new(1, 2, 3)
     other = [1, 2, 1]
 
     expect(set).to_not eq(other)
   end
 
   it 'looks like an array when inspected' do
-    set = OrderedSet.new(1, 2, 3)
-
     expect(set.inspect).to eq('[1, 2, 3]')
   end
 end
