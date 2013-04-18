@@ -3,7 +3,7 @@
 #
 
 module KangaRuby
-  # Represents an ordered set of unique objects.
+  # Represents an ordered list of unique objects.
   class OrderedSet
     # Initializes the set.
     #
