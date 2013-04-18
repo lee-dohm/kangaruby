@@ -13,14 +13,14 @@ CLOBBER.include('doc', 'pkg')
 task :default => [:tt, :rubocop, :test, :yard]
 
 task :tt do
-  sh 'tt grammar/sequence.treetop -o lib/kangaruby/sequence_parser.rb'
+  sh 'tt grammar/sequence.treetop -o grammar/sequence_parser.rb'
 end
 
 desc "Execute all tests"
 task :test => [:spec]
 
 task :rubocop do
-  sh 'rubocop'
+  sh 'rubocop lib spec'
 end
 
 RSpec::Core::RakeTask.new(:spec)

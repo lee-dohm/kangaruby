@@ -3,7 +3,9 @@
 #
 
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter 'grammar/'
+end
 
 require 'rspec'
 
