@@ -19,6 +19,6 @@ describe Parser do
   #   expect(model.participants[1].name).to eq('Bob')
   #   expect(model.activity.count).to eq(1)
   #   expect(model.activity[0].from).to eq('Alice')
-  #   expect(model.activity[1].to).to eq('Bob')
+  #   expect(model.activity[0].to).to eq('Bob')
   # end
 end

@@ -3,13 +3,13 @@
 #
 
 describe OrderedSet do
-  it 'will be empty at first' do
+  it 'starts empty' do
     set = OrderedSet.new
 
     expect(set.count).to eq(0)
   end
 
-  it 'will add objects during construction' do
+  it 'adds objects during construction' do
     set = OrderedSet.new(1, 2, 3)
 
     expect(set.count).to eq(3)
@@ -18,7 +18,7 @@ describe OrderedSet do
     expect(set[2]).to eq(3)
   end
 
-  it 'will only add unique objects during construction' do
+  it 'only adds unique objects during construction' do
     set = OrderedSet.new(1, 2, 1)
 
     expect(set.count).to eq(2)
@@ -26,7 +26,7 @@ describe OrderedSet do
     expect(set[1]).to eq(2)
   end
 
-  it 'will accept new objects' do
+  it 'accepts new objects' do
     set = OrderedSet.new
 
     new_set = set << 1
@@ -37,7 +37,7 @@ describe OrderedSet do
     expect(new_set).to be_an_instance_of(OrderedSet)
   end
 
-  it 'will quietly reject objects already in the set' do
+  it 'rejects objects already in the set quietly' do
     set = OrderedSet.new(1)
 
     new_set = set << 1
