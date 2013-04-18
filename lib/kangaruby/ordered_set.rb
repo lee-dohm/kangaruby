@@ -30,11 +30,30 @@ module KangaRuby
       self
     end
 
+    # Determines if `other` is equal to this set.
+    #
+    # @param [Enumerable] other A list of items.
+    # @return [Boolean] `true` if they are equivalent; `false` otherwise.
+    def ==(other)
+      return false unless count == other.count
+
+      other.each_with_index { |v, i| return false unless v == self[i] }
+
+      true
+    end
+
     # Returns the number of items in the set.
     #
     # @return [Fixnum] Number of items in the set.
     def count
       @array.count
+    end
+
+    # Outputs a debug view of the set.
+    #
+    # @return [String] A view of the set most useful for debugging.
+    def inspect
+      @array.inspect
     end
   end
 end
