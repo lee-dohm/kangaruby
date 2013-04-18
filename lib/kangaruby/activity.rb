@@ -22,6 +22,8 @@ module KangaRuby
     # @param from Name of the participant the activity is coming from.
     # @param to Name of the participant the activity is going to.
     # @param style Line style for the activity.
+    # @raise [ArgumentError] When `from` or `to` are `nil`.
+    # @raise [ArgumentError] When `style` is not a recognized line style.
     def initialize(from, to, style = :solid)
       raise ArgumentError, 'Requires a from participant' if from.nil?
       raise ArgumentError, 'Requires a to participant' if to.nil?

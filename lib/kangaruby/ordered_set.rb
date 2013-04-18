@@ -23,7 +23,7 @@ module KangaRuby
     # Appends a new item to the set if it does not already exist in the set.
     #
     # @param item Item to be added.
-    # @return The updated set.
+    # @return [OrderedSet] The updated set.
     def <<(item)
       @array << item unless @array.include? item
 
@@ -31,6 +31,8 @@ module KangaRuby
     end
 
     # Returns the number of items in the set.
+    #
+    # @return [Fixnum] Number of items in the set.
     def count
       @array.count
     end
