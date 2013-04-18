@@ -1,0 +1,51 @@
+#
+# Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
+#
+
+require 'treetop'
+
+module KangaRuby
+  grammar SequenceDiagram
+    rule diagram
+      activity*
+      {
+        def activities
+          elements
+        end
+      }
+    end
+
+    rule activity
+      participant arrow participant "\n"
+      {
+        def from
+          elements[0].name
+        end
+
+        def style
+          case elements[1].text_value
+          when '->' then :solid
+          when '-->' then :dotted
+          end
+        end
+
+        def to
+          elements[2].name
+        end
+      }
+    end
+
+    rule participant
+      [^-\n]+
+      {
+        def name
+          text_value.strip
+        end
+      }
+    end
+
+    rule arrow
+      '->' / '-->'
+    end
+  end
+end

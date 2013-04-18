@@ -10,7 +10,11 @@ require 'yard'
 CLEAN.include('.yardoc')
 CLOBBER.include('doc', 'pkg')
 
-task :default => [:rubocop, :test, :yard]
+task :default => [:tt, :rubocop, :test, :yard]
+
+task :tt do
+  sh 'tt grammar/sequence.treetop -o lib/kangaruby/sequence_parser.rb'
+end
 
 desc "Execute all tests"
 task :test => [:spec]
