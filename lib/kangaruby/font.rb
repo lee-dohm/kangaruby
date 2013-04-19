@@ -16,7 +16,7 @@ module KangaRuby
 
     # Gets the name of the font.
     #
-    # @return [String] Name of the font family.
+    # @return [String] Name of the font.
     def name
       @font.name.postscript_name
     end
