@@ -26,4 +26,11 @@ describe Activity do
   it 'raises an error if it does not recognize the style' do
     expect { Activity.new('Alice', 'Bob', :foo) }.to raise_error(ArgumentError)
   end
+
+  it 'is equivalent to another activity with the same attributes' do
+    expect(activity).to eq(Activity.new('Alice', 'Bob', :solid))
+    expect(activity).to_not eq(Activity.new('Alice', 'Bob', :dotted))
+    expect(activity).to_not eq(Activity.new('A', 'Bob', :solid))
+    expect(activity).to eq(Activity.new('Alice', 'B', :solid))
+  end
 end
