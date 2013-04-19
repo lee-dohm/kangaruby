@@ -17,4 +17,15 @@ describe Parser do
     expect(model.participants).to eq(['Alice', 'Bob'])
     expect(model.activities).to eq([Activity.new('Alice', 'Bob')])
   end
+
+  it 'creates a model with two participants and two activities' do
+    model = parser.parse(TestData::TWO_ACTIVITIES)
+
+    expect(model.participants).to eq(['Alice', 'Bob'])
+    expect(model.activities).to eq([Activity.new('Alice', 'Bob', :solid), Activity.new('Bob', 'Alice', :dotted)])
+  end
+
+  it 'raises an exception on syntax errors' do
+    expect { parser.parse(TestData::SYNTAX_ERROR) }.to raise_error(ParseError)
+  end
 end
