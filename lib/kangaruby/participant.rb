@@ -11,6 +11,7 @@ module KangaRuby
     # Initializes the participant.
     #
     # @param name Name for the participant.
+    # @raise [ArgumentError] When `name` is `nil`.
     def initialize(name)
       raise ArgumentError, 'Participant must have a name' if name.nil?
 

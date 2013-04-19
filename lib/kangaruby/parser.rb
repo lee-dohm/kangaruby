@@ -11,8 +11,9 @@ module KangaRuby
 
     # Parses the diagram source and returns the in-memory model.
     #
-    # @param source A String or an IO object containing the source to parse.
-    # @return In-memory model representing the source document.
+    # @param [String] source Diagram source to parse.
+    # @return [Model] In-memory model representing the source document.
+    # @raise [ArgumentError] When `source` is `nil`.
     def parse(source)
       raise ArgumentError, 'source cannot be nil' if source.nil?
 
