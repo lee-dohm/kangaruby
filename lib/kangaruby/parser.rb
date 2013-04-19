@@ -31,8 +31,8 @@ module KangaRuby
       model = Model.new
 
       tree.activities.each do |activity|
-        model.participants << activity.from
-        model.participants << activity.to
+        model.participants << Participant.new(activity.from)
+        model.participants << Participant.new(activity.to)
 
         model.activities << Activity.new(activity.from, activity.to, activity.style)
       end

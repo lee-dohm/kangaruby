@@ -5,6 +5,8 @@
 module KangaRuby
   # Represents an ordered list of unique objects.
   class OrderedSet
+    include Enumerable
+
     # Initializes the set.
     #
     # @param items List of items to add to the set.
@@ -44,9 +46,16 @@ module KangaRuby
 
     # Returns the number of items in the set.
     #
-    # @return [Fixnum] Number of items in the set.
+    # @return [Integer] Number of items in the set.
     def count
       @array.count
+    end
+
+    # Calls the given block once for each item in the set, passing that element as a parameter.
+    #
+    # @yieldparam item Item in the set.
+    def each
+      @array.each { |item| yield item }
     end
 
     # Outputs a debug view of the set.

@@ -14,14 +14,16 @@ describe Parser do
   it 'creates a model with two participants and one activity' do
     model = parser.parse(TestData::ONE_ACTIVITY)
 
-    expect(model.participants).to eq(['Alice', 'Bob'])
+    expect(model.participants.all? { |p| p.instance_of? Participant }).to be_true
+    expect(model.participants).to eq([Participant.new('Alice'), Participant.new('Bob')])
     expect(model.activities).to eq([Activity.new('Alice', 'Bob')])
   end
 
   it 'creates a model with two participants and two activities' do
     model = parser.parse(TestData::TWO_ACTIVITIES)
 
-    expect(model.participants).to eq(['Alice', 'Bob'])
+    expect(model.participants.all? { |p| p.instance_of? Participant }).to be_true
+    expect(model.participants).to eq([Participant.new('Alice'), Participant.new('Bob')])
     expect(model.activities).to eq([Activity.new('Alice', 'Bob', :solid), Activity.new('Bob', 'Alice', :dotted)])
   end
 

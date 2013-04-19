@@ -23,7 +23,10 @@ module KangaRuby
     # @param other Participant to compare to.
     # @return [Boolean] `true` if they are equal; `false` otherwise.
     def ==(other)
-      @name == other.name
+      case other
+      when String then @name == other
+      when Participant then @name == other.name
+      end
     end
   end
 end

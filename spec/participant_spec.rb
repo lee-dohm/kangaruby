@@ -16,4 +16,8 @@ describe Participant do
   it 'is equivalent to another participant with the same name' do
     expect(participant).to eq(Participant.new('Alice'))
   end
+
+  it 'is equivalent to a string containing the participants name' do
+    expect(participant).to eq('Alice')
+  end
 end
