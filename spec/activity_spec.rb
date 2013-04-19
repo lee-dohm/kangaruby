@@ -31,6 +31,6 @@ describe Activity do
     expect(activity).to eq(Activity.new('Alice', 'Bob', :solid))
     expect(activity).to_not eq(Activity.new('Alice', 'Bob', :dotted))
     expect(activity).to_not eq(Activity.new('A', 'Bob', :solid))
-    expect(activity).to eq(Activity.new('Alice', 'B', :solid))
+    expect(activity).to_not eq(Activity.new('Alice', 'B', :solid))
   end
 end
