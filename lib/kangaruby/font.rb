@@ -11,10 +11,6 @@ module KangaRuby
 
   # Embodies a TrueType font, allowing for calculation of visual sizes of strings.
   #
-  # Sources
-  # * [FreeType Glyph Conventions](http://freetype.sourceforge.net/freetype2/docs/glyphs/index.html)
-  # * [TrueType Fundamentals](http://www.microsoft.com/typography/otspec/TTCH01.htm)
-  #
   # All measurements for the font have been normalized to 1,000 units per em.  Because
   # each font can have drastically differing scales (from 16 to 16,384 units per em),
   # this allows for a unified set of math to be used for conversions to pixels or inches.
@@ -23,6 +19,12 @@ module KangaRuby
   # or pixels per inch) because that makes the math easy.  This means that 1 point (using
   # the typographic term) is equal to 1 pixel, so a 12 point font would be approximately
   # 12 pixels high.
+  #
+  # ## Sources
+  #
+  # * [FreeType Glyph Conventions](http://freetype.sourceforge.net/freetype2/docs/glyphs/index.html)
+  # * [TrueType Fundamentals](http://www.microsoft.com/typography/otspec/TTCH01.htm)
+  #
   class Font
     # Opens the given font.
     #
