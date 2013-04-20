@@ -44,7 +44,7 @@ module KangaRuby
     # Visual height of one line of text.
     #
     # @param [Float] size Size of the text in points.
-    # @return [Float] Height of a line of text from baseline to baseline.
+    # @return [Integer] Height of a line of text from baseline to baseline.
     def text_height(size)
       ((ascender - descender + line_gap) * size / 1_000.0).to_i
     end
@@ -53,7 +53,7 @@ module KangaRuby
     #
     # @param [String] text Text to get the width for.
     # @param [Float] size Size of the text in points.
-    # @return [Float] Total width of the characters in pixels.
+    # @return [Integer] Total width of the characters in pixels.
     def text_width(text, size)
       base_width = text.codepoints.reduce(0) do |width, code|
         width + character_width(code)
