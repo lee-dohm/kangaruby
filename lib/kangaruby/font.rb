@@ -5,7 +5,7 @@
 require 'ttfunk'
 
 module KangaRuby
-  # Represents error that occurs when a font does not contain a Unicode map.
+  # Represents error that occurs when a font does not contain a Unicode character map.
   class MissingUnicodeMapError < StandardError
   end
 
@@ -44,7 +44,7 @@ module KangaRuby
     # Visual height of one line of text.
     #
     # @param [Float] size Size of the text in points.
-    # @return [Integer] Height of a line of text from baseline to baseline.
+    # @return [Integer] Height of a line of text in pixels.
     def text_height(size)
       ((ascender - descender + line_gap) * size / 1_000.0).to_i
     end
