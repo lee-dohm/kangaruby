@@ -9,7 +9,9 @@ describe Font do
     expect(font.name).to eq('Abscissa')
   end
 
-  it 'will have a scale factor'
+  it 'will have a scale factor' do
+    expect(font.scale_factor).to eq(1.0)
+  end
 
   it 'can calculate the width and height of a given string of text'
 end

@@ -18,7 +18,14 @@ module KangaRuby
     #
     # @return [String] Name of the font.
     def name
-      @font.name.postscript_name
+      @name ||= @font.name.postscript_name
+    end
+
+    # Gets the scale factor for the font.
+    #
+    # @return [Float] Scale factor for the font.
+    def scale_factor
+      @scale ||= 1000.0 / @font.header.units_per_em
     end
   end
 end
