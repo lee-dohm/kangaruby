@@ -88,9 +88,8 @@ module KangaRuby
       @cmap ||= @font.cmap.unicode.first or raise MissingUnicodeMapError
     end
 
-    # Gets the distance from the baseline to the bottomost point of the em-box.
-    #
-    # This is expressed as a negative number.
+    # Gets the distance from the baseline to the bottomost point of the em-box.  This
+    # is expressed as a negative number.
     #
     # @return [Integer] Descent distance.
     def descender
