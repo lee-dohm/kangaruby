@@ -45,6 +45,7 @@ module KangaRuby
     # Gets the width of the given string of text.
     #
     # @param [String] text Text to get the width for.
+    # @return [Float] Total visual width of the characters.
     def text_width(text)
       base_width = text.codepoints.reduce(0) do |width, code|
         width + character_width(code)
@@ -73,7 +74,7 @@ module KangaRuby
       # Work around these by always returning a zero width.
       return 0.0 if code == 10
 
-      @char_widths[code] ||= Integer(horizontal_metrics.widths[cmap[code]] * scale_factor)
+      @char_widths[code] ||= Integer(hmtx.widths[cmap[code]] * scale_factor)
     end
 
     # Gets the Unicode character map for the font.
@@ -93,8 +94,8 @@ module KangaRuby
     # Gets the horizontal metrics table for the font.
     #
     # @return [Array] Table of horizontal metrics.
-    def horizontal_metrics
-      @horizontal_metrics ||= @font.horizontal_metrics
+    def hmtx
+      @hmtx ||= @font.horizontal_metrics
     end
 
     # Gets the scaled line gap.
