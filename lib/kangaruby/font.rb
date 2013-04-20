@@ -11,10 +11,6 @@ module KangaRuby
 
   # Embodies a TrueType font, allowing for calculation of visual sizes of strings.
   #
-  # All measurements for the font have been normalized to 1,000 units per em.  Because
-  # each font can have drastically differing scales (from 16 to 16,384 units per em),
-  # this allows for a unified set of math to be used for conversions to pixels or inches.
-  #
   # All conversions to pixels or inches have been based off of an assumption of 72 DPI (dots
   # or pixels per inch) because that makes the math easy.  This means that 1 point (using
   # the typographic term) is equal to 1 pixel, so a 12 point font would be approximately
@@ -43,46 +39,46 @@ module KangaRuby
 
     # Visual height of one line of text.
     #
-    # @param [Float] size Size of the text in points.
+    # @param [Integer] size Size of the text in points.
     # @return [Integer] Height of a line of text in pixels.
     def text_height(size)
-      ((ascender - descender + line_gap) * size / 1_000.0).to_i
+      ((ascender - descender + line_gap) * size / ppem).to_i
     end
 
     # Gets the width of the given string of text.
     #
     # @param [String] text Text to get the width for.
-    # @param [Float] size Size of the text in points.
+    # @param [Integer] size Size of the text in points.
     # @return [Integer] Total width of the characters in pixels.
     def text_width(text, size)
       base_width = text.codepoints.reduce(0) do |width, code|
         width + character_width(code)
       end
 
-      (base_width * size / 1_000.0).to_i
+      (base_width * size / ppem).to_i
     end
 
     private
 
     # Gets the distance from the baseline to the highest point of the em-box.
     #
-    # @return [Float] The ascent distance.
+    # @return [Integer] The ascent distance.
     def ascender
-      @ascender ||= @font.ascent * scale_factor
+      @ascender ||= @font.ascent
     end
 
     # Gets the width for a given UTF-8 character.
     #
     # @param [Fixnum] code Number representing a UTF-8 character code.
-    # @return [Float] Width of the character.
+    # @return [Integer] Width of the character.
     def character_width(code)
-      return 0.0 unless cmap[code]
+      return 0 unless cmap[code]
 
       # Some fonts return a non-zero width for the newline character (UTF-8/ASCII code 10).
       # Work around these by always returning a zero width.
-      return 0.0 if code == 10
+      return 0 if code == 10
 
-      @char_widths[code] ||= hmtx.widths[cmap[code]] * scale_factor
+      @char_widths[code] ||= hmtx.widths[cmap[code]]
     end
 
     # Gets the Unicode character map for the font.
@@ -96,9 +92,9 @@ module KangaRuby
     #
     # This is expressed as a negative number.
     #
-    # @return [Float] Descent distance.
+    # @return [Integer] Descent distance.
     def descender
-      @descender ||= @font.descent * scale_factor
+      @descender ||= @font.descent
     end
 
     # Gets the horizontal metrics table for the font.
@@ -110,16 +106,18 @@ module KangaRuby
 
     # Gets the recommended gap to place between lines of text.
     #
-    # @return [Float] Line gap.
+    # @return [Integer] Line gap.
     def line_gap
-      @line_gap ||= @font.line_gap * scale_factor
+      @line_gap ||= @font.line_gap
     end
 
-    # Gets the scale factor for the font.
+    # Gets the number of font scale units per `em`, defined as the distance from the bottom
+    # to the top of the maximum-size bounding box.  Different glyphs may have different
+    # size bounding boxes, but there is one "maximum" size per font.
     #
-    # @return [Float] Ratio of the size of this font to the standard size.
-    def scale_factor
-      @scale ||= 1_000.0 / @font.header.units_per_em
+    # @return [Integer] Units per `em`.
+    def ppem
+      @ppem ||= @font.header.units_per_em
     end
   end
 end
