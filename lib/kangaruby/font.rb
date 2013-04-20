@@ -69,6 +69,8 @@ module KangaRuby
     def character_width(code)
       return 0 unless cmap[code]
 
+      # Some fonts return a non-zero width for the newline character (UTF-8/ASCII code 10).
+      # Work around these by always returning a zero width.
       return 0.0 if code == 10
 
       @char_widths[code] ||= Integer(horizontal_metrics.widths[cmap[code]] * scale_factor)
