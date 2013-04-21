@@ -5,7 +5,9 @@
 require 'sequence_parser'
 
 require 'kangaruby/activity'
+require 'kangaruby/diagram'
 require 'kangaruby/font'
+require 'kangaruby/lifeline_start'
 require 'kangaruby/model'
 require 'kangaruby/ordered_set'
 require 'kangaruby/parser'
