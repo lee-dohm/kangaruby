@@ -11,8 +11,11 @@ describe Font do
     expect(font.name).to eq('Abscissa')
   end
 
-  it 'can calculate the width and height of a given string of text in pixels' do
+  it 'can calculate the width of a given string of text in pixels' do
     expect(font.text_width(text, points)).to eq(336)
+  end
+
+  it 'can calculate the height of a line of text in pixels' do
     expect(font.text_height(points)).to eq(24)
   end
 end
