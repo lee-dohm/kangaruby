@@ -9,7 +9,7 @@ describe Diagram do
     expect(diagram.lifelines).to eq([])
   end
 
-  it 'has a collection of actions' do
-    expect(diagram.actions).to eq([])
+  it 'has a collection of arrows' do
+    expect(diagram.arrows).to eq([])
   end
 end
