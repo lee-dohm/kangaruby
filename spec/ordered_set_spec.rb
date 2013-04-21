@@ -16,18 +16,13 @@ describe OrderedSet do
   end
 
   it 'adds objects during construction' do
-    expect(set.count).to eq(3)
-    expect(set[0]).to eq(1)
-    expect(set[1]).to eq(2)
-    expect(set[2]).to eq(3)
+    expect(set).to eq([1, 2, 3])
   end
 
   it 'only adds unique objects during construction' do
     set = OrderedSet.new(1, 2, 1)
 
-    expect(set.count).to eq(2)
-    expect(set[0]).to eq(1)
-    expect(set[1]).to eq(2)
+    expect(set).to eq([1, 2])
   end
 
   it 'accepts new objects' do
@@ -35,8 +30,7 @@ describe OrderedSet do
 
     new_set = set << 1
 
-    expect(set.count).to eq(1)
-    expect(set[0]).to eq(1)
+    expect(set).to eq([1])
     expect(new_set).to be(set)
     expect(new_set).to be_an_instance_of(OrderedSet)
   end
@@ -46,8 +40,7 @@ describe OrderedSet do
 
     new_set = set << 1
 
-    expect(set.count).to eq(1)
-    expect(set[0]).to eq(1)
+    expect(set).to eq([1])
     expect(new_set).to be(set)
     expect(new_set).to be_an_instance_of(OrderedSet)
   end

@@ -17,6 +17,10 @@ describe Participant do
     expect(participant).to eq(Participant.new('Alice'))
   end
 
+  it 'is not equivalent to another participant with a different name' do
+    expect(participant).to_not eq(Participant.new('Bob'))
+  end
+
   it 'is equivalent to a string containing the participants name' do
     expect(participant).to eq('Alice')
   end
