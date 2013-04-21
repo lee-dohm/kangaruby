@@ -9,6 +9,7 @@ module KangaRuby
 
   # Parses the diagram source and creates the in-memory model.
   class Parser
+    # Initializes the parser.
     def initialize
       @parser = SequenceDiagramParser.new
     end
