@@ -4,7 +4,7 @@
 
 require 'sequence_parser'
 
-require 'kangaruby/activity'
+require 'kangaruby/action'
 require 'kangaruby/diagram'
 require 'kangaruby/font'
 require 'kangaruby/lifeline_start'

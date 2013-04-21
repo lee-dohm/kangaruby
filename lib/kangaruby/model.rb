@@ -3,17 +3,17 @@
 #
 
 module KangaRuby
-  # Represents the set of participants and activities.
+  # Represents the set of participants and actions.
   class Model
-    # Set of activities in the model.
-    attr_reader :activities
+    # Set of actions in the model.
+    attr_reader :actions
 
     # Set of participants in the model.
     attr_reader :participants
 
     # Initializes an empty model.
     def initialize
-      @activities = []
+      @actions = []
       @participants = OrderedSet.new
     end
   end

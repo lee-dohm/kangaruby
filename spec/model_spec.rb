@@ -5,9 +5,9 @@
 describe Model do
   let(:model) { Model.new }
 
-  it 'starts with no participants or activities' do
+  it 'starts with no participants or actions' do
     expect(model.participants.count).to eq(0)
-    expect(model.activities.count).to eq(0)
+    expect(model.actions.count).to eq(0)
   end
 
   it 'accepts new participants' do
@@ -23,16 +23,16 @@ describe Model do
     expect(model.participants).to eq(participants('Alice'))
   end
 
-  it 'accepts new activities' do
-    model.activities << Activity.new('Alice', 'Bob')
+  it 'accepts new actions' do
+    model.actions << Action.new('Alice', 'Bob')
 
-    expect(model.activities).to eq(activities(['Alice', 'Bob']))
+    expect(model.actions).to eq(actions(['Alice', 'Bob']))
   end
 
-  it 'accepts two identical activities' do
-    model.activities << Activity.new('Alice', 'Bob')
-    model.activities << Activity.new('Alice', 'Bob')
+  it 'accepts two identical actions' do
+    model.actions << Action.new('Alice', 'Bob')
+    model.actions << Action.new('Alice', 'Bob')
 
-    expect(model.activities).to eq(activities(['Alice', 'Bob'], ['Alice', 'Bob']))
+    expect(model.actions).to eq(actions(['Alice', 'Bob'], ['Alice', 'Bob']))
   end
 end

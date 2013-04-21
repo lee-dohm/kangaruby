@@ -3,11 +3,11 @@
 #
 
 module TestData
-  ONE_ACTIVITY = <<-EOS
+  ONE_ACTION = <<-EOS
 Alice->Bob
 EOS
 
-  TWO_ACTIVITIES = <<-EOS
+  TWO_ACTIONS = <<-EOS
 Alice->Bob
 Bob-->Alice
 EOS

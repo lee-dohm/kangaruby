@@ -16,7 +16,7 @@ module KangaRuby
     end
 
     module Diagram0
-      def activities
+      def actions
         elements
       end
     end
@@ -34,7 +34,7 @@ module KangaRuby
 
       s0, i0 = [], index
       loop do
-        r1 = _nt_activity
+        r1 = _nt_action
         if r1
           s0 << r1
         else
@@ -49,7 +49,7 @@ module KangaRuby
       r0
     end
 
-    module Activity0
+    module Action0
       def participant1
         elements[0]
       end
@@ -64,7 +64,7 @@ module KangaRuby
 
     end
 
-    module Activity1
+    module Action1
       def from
         elements[0].name
       end
@@ -81,10 +81,10 @@ module KangaRuby
       end
     end
 
-    def _nt_activity
+    def _nt_action
       start_index = index
-      if node_cache[:activity].has_key?(index)
-        cached = node_cache[:activity][index]
+      if node_cache[:action].has_key?(index)
+        cached = node_cache[:action][index]
         if cached
           cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
           @index = cached.interval.end
@@ -115,14 +115,14 @@ module KangaRuby
       end
       if s0.last
         r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
-        r0.extend(Activity0)
-        r0.extend(Activity1)
+        r0.extend(Action0)
+        r0.extend(Action1)
       else
         @index = i0
         r0 = nil
       end
 
-      node_cache[:activity][start_index] = r0
+      node_cache[:action][start_index] = r0
 
       r0
     end

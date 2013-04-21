@@ -6,22 +6,22 @@ module KangaRuby
   # Acceptable list of line styles.
   STYLES = [:solid, :dotted]
 
-  # Represents one activity in the sequence of activities.
-  class Activity
-    # Name of the participant the activity is coming from.
+  # Represents one action in the sequence of actions.
+  class Action
+    # Name of the participant the action is coming from.
     attr_reader :from
 
-    # Style of the line representing the activity.
+    # Style of the line representing the action.
     attr_reader :style
 
-    # Name of the participant the activity is going to.
+    # Name of the participant the action is going to.
     attr_reader :to
 
-    # Initializes the activity with the given attributes.
+    # Initializes the action with the given attributes.
     #
-    # @param from Name of the participant the activity is coming from.
-    # @param to Name of the participant the activity is going to.
-    # @param style Line style for the activity.
+    # @param from Name of the participant the action is coming from.
+    # @param to Name of the participant the action is going to.
+    # @param style Line style for the action.
     # @raise [ArgumentError] When `from` or `to` are `nil`.
     # @raise [ArgumentError] When `style` is not a recognized line style.
     def initialize(from, to, style = :solid)

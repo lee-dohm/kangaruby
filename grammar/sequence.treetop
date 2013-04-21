@@ -7,15 +7,15 @@ require 'treetop'
 module KangaRuby
   grammar SequenceDiagram
     rule diagram
-      activity*
+      action*
       {
-        def activities
+        def actions
           elements
         end
       }
     end
 
-    rule activity
+    rule action
       participant arrow participant "\n"
       {
         def from
