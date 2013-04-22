@@ -5,9 +5,12 @@
 require 'sequence_parser'
 
 require 'kangaruby/action'
+require 'kangaruby/arrow'
 require 'kangaruby/diagram'
 require 'kangaruby/font'
-require 'kangaruby/lifeline_start'
+require 'kangaruby/lifeline'
+require 'kangaruby/lifeline_head'
+require 'kangaruby/lifeline_tail'
 require 'kangaruby/model'
 require 'kangaruby/ordered_set'
 require 'kangaruby/parser'

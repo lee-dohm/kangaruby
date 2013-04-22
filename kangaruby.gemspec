@@ -31,4 +31,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'yard'
+
+  if RUBY_PLATFORM.downcase.include?('darwin')
+    spec.add_development_dependency 'growl'
+    spec.add_development_dependency 'rb-fsevent'
+  end
 end

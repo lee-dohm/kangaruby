@@ -12,4 +12,8 @@ describe Diagram do
   it 'has a collection of arrows' do
     expect(diagram.arrows).to eq([])
   end
+
+  it 'can describe its minimum size'
+
+  it 'can draw itself'
 end
