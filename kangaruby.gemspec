@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'simplecov'
   spec.add_development_dependency 'yard'
 
+  # For users of OS X, include the proper requirements for file system events and notifications
   if RUBY_PLATFORM.downcase.include?('darwin')
     spec.add_development_dependency 'growl'
     spec.add_development_dependency 'rb-fsevent'
