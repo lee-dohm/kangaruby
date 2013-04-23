@@ -2,6 +2,8 @@
 # Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
 #
 
+require 'nokogiri'
+
 require 'sequence_parser'
 require 'kangaruby/module'
 
