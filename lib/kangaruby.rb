@@ -3,6 +3,7 @@
 #
 
 require 'sequence_parser'
+require 'kangaruby/module'
 
 require 'kangaruby/action'
 require 'kangaruby/arrow'
@@ -15,4 +16,5 @@ require 'kangaruby/model'
 require 'kangaruby/ordered_set'
 require 'kangaruby/parser'
 require 'kangaruby/participant'
+require 'kangaruby/rect'
 require 'kangaruby/version'
