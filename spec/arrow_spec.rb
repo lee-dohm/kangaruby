@@ -3,9 +3,15 @@
 #
 
 describe Arrow do
-  it 'has a line style'
+  let(:arrow) { Arrow.new }
 
-  it 'can describe its minimum size'
+  it 'has a line style' do
+    expect(arrow.style).to eq(:solid)
+  end
+
+  it 'can describe its minimum size' do
+    expect(arrow.minimum_size).to eq([10, 10])
+  end
 
   it 'can draw itself'
 end

@@ -3,7 +3,11 @@
 #
 
 describe LifelineTail do
-  it 'can describe its minimum size'
+  let(:tail) { LifelineTail.new }
+
+  it 'can describe its minimum size' do
+    expect(tail.minimum_size).to eq([10, 10])
+  end
 
   it 'can draw itself'
 end
