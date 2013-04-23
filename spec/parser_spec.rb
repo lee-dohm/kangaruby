@@ -28,6 +28,6 @@ describe Parser do
   end
 
   it 'raises an exception on syntax errors' do
-    expect { parser.parse(TestData::SYNTAX_ERROR) }.to raise_error(ParseError)
+    expect { parser.parse(TestData::SYNTAX_ERROR) }.to raise_error(KangaRuby::ParseError)
   end
 end
