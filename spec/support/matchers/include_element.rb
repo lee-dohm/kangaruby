@@ -5,6 +5,11 @@
 require 'nokogiri'
 
 RSpec::Matchers.define :include_element do |name, attrs|
+  # Matches if any of the nodes in the nodeset satisfy all the following criteria:
+  #
+  # 1. Name of the node is equal to `name`
+  # 2. The number of attributes is equal to the number of keys in the `attrs` hash.
+  # 3. All of the keys and values in the `attrs` hash match attributes on the node.
   match do |actual|
     actual.any? do |node|
       node.name == name &&
