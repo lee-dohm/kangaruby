@@ -3,14 +3,15 @@
 #
 
 describe LifelineHead do
-  let(:name) { 'Alice' }
-  let(:default_point_size) { 12 }
+  let(:default_border_thickness) { 1 }
   let(:default_margin) { 0 }
   let(:default_padding) { 0 }
-  let(:default_border_thickness) { 1 }
-
+  let(:default_point_size) { 12 }
+  let(:doc) { svg }
   let(:font) { Font.new('./fonts/Abscissa.ttf') }
   let(:head) { LifelineHead.new(name, font) }
+  let(:name) { 'Alice' }
+  let(:rect) { Rect.new [100] * 4 }
 
   it 'has a name' do
     expect(head.name).to eq('Alice')

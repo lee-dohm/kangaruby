@@ -42,6 +42,14 @@ module KangaRuby
       @padding = opts[:padding] || 0
     end
 
+    # Draws the symbol centered in `rect`.
+    #
+    # @param [Rect] rect Bounding box to draw within.
+    # @param [Nokogiri::XML::Document] doc Document to use to generate elements.
+    # @return [Nokogiri::XML::Element] SVG group element containing the drawing instructions for the symbol.
+    def draw(rect, doc)
+    end
+
     # Gets the minimum size that the element can be drawn with the given parameters.
     def minimum_size
       width = @font.text_width(@name, @font_size)

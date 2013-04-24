@@ -5,6 +5,8 @@
 module KangaRuby
   # Represents the symbol ending a lifeline.
   class LifelineTail
+    include GraphicsUtilities
+
     # Draws the tail symbol centered in the given rectangle and returns the node.
     #
     # @note This method does not add the node to the supplied document.  The document is given only to use to create elements.
@@ -22,9 +24,9 @@ module KangaRuby
 
     # Returns the minimum size of the tail symbol.
     #
-    # @return [Array] Minimum width and height of the tail symbol.
+    # @return [Size] Minimum width and height of the tail symbol.
     def minimum_size
-      [10, 10]
+      Size.new 10, 10
     end
 
     private
@@ -34,23 +36,11 @@ module KangaRuby
     # @param [Nokogiri::XML::Element] g Group element within which to insert the symbol.
     # @param [Rect] rect Bounding box within which to draw.
     def add_symbol(g, rect)
-      rect = center(rect, 10, 10)
+      size = minimum_size
+      rect = center(rect, size.width, size.height)
 
       g.add_child(g.document.create_element 'line', x1: rect.left, y1: rect.top, x2: rect.right, y2: rect.bottom)
       g.add_child(g.document.create_element 'line', x1: rect.right, y1: rect.top, x2: rect.left, y2: rect.bottom)
-    end
-
-    # Creates a new rectangle of the given `width` and `height` centered within `rect`.
-    #
-    # @param [Rect] Bounding box within which to center the new rectangle.
-    # @param width Width of the new rectangle.
-    # @param height Height of the new rectangle.
-    # @return [Rect] New bounding box.
-    def center(rect, width, height)
-      x = (rect.right - rect.left - width) / 2 + rect.left
-      y = (rect.bottom - rect.top - height) / 2 + rect.top
-
-      Rect.new x, y, width, height
     end
 
     # Creates a new SVG `g` element from the document.
