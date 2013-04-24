@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/lee-dohm/kangaruby.png?branch=master)](https://travis-ci.org/lee-dohm/kangaruby)
+[![Coverage Status](https://coveralls.io/repos/lee-dohm/kangaruby/badge.png?branch=master)](https://coveralls.io/r/lee-dohm/kangaruby)
 [![Code Climate](https://codeclimate.com/github/lee-dohm/kangaruby.png)](https://codeclimate.com/github/lee-dohm/kangaruby)
 
 # KangaRuby
