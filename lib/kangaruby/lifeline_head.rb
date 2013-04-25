@@ -60,7 +60,7 @@ module KangaRuby
     # @param [Nokogiri::XML::Document] doc Document to use to generate elements.
     # @return [Nokogiri::XML::Element] SVG group element containing the drawing instructions for the symbol.
     def draw(rect, doc)
-      text_pos = center_text(rect)
+      text_pos = center_text(rect, text_width, @font_size)
 
       g = doc.create_element 'g', stroke: 'black'
 
@@ -87,13 +87,6 @@ module KangaRuby
 
     def add_new_child(element, *args)
       element.add_child(element.document.create_element(*args))
-    end
-
-    def center_text(rect)
-      x = (rect.right - rect.left - text_width) / 2 + rect.left
-      y = (rect.bottom - rect.top) / 2 + rect.top + @font_size / 2
-
-      [x, y]
     end
 
     def text_height
