@@ -8,14 +8,19 @@ RSpec::Matchers.define :include_element do |name, attrs|
   # Matches if any of the nodes in the nodeset satisfy all the following criteria:
   #
   # 1. Name of the node is equal to `name`
-  # 2. The number of attributes is equal to the number of keys in the `attrs` hash.
-  # 3. All of the keys and values in the `attrs` hash match attributes on the node.
+  # 2. All of the keys and values in the `attrs` hash match attributes on the node.
+  #
+  # Note: This means that additional attributes can be present other than the ones specified in `attrs` and they *will not*
+  # be validated.
   match do |actual|
     actual.any? do |node|
-      node.name == name &&
-      node.attributes.count == attrs.keys.count &&
-      attrs.all? do |k, v|
-        node.attributes[k.to_s].value == v.to_s
+      if attrs.nil?
+        node.name == name
+      else
+        node.name == name &&
+        attrs.all? do |k, v|
+          node.attributes[k.to_s].value == v.to_s
+        end
       end
     end
   end

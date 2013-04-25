@@ -5,6 +5,8 @@
 module KangaRuby
   # Represents the symbol at the start of the lifeline.
   class LifelineHead
+    include GraphicsUtilities
+
     # Defaults for various values.
     DEFAULTS = {
       border:     1,
@@ -58,19 +60,37 @@ module KangaRuby
     # @param [Nokogiri::XML::Document] doc Document to use to generate elements.
     # @return [Nokogiri::XML::Element] SVG group element containing the drawing instructions for the symbol.
     def draw(rect, doc)
+      text_rect = center(rect, text_width, text_height)
+
+      g = doc.create_element 'g', stroke: 'black'
+
+      g.add_child(g.document.create_element 'rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
+      g.add_child(g.document.create_element 'text', @name, x: text_rect.x, y: text_rect.y, 'font-family' => 'Abscissa', 'font-size' => '12')
+
+      g
     end
 
     # Gets the minimum size that the element can be drawn with the given parameters.
     #
     # @return [Size] Minimum width and height to properly draw the symbol.
     def minimum_size
-      width = @font.text_width(@name, @font_size)
-      height = @font.text_height(@font_size)
+      width = text_width
+      height = text_height
 
       width += 2 * @border + 2 * @margin + 2 * padding
       height += 2 * @border + 2 * @margin + 2 * padding
 
       Size.new width, height
+    end
+
+    private
+
+    def text_height
+      @font.text_height(@font_size)
+    end
+
+    def text_width
+      @font.text_width(@name, @font_size)
     end
   end
 end

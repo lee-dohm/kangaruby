@@ -51,5 +51,12 @@ describe LifelineHead do
     expect(head.minimum_size).to be_an_instance_of(Size)
   end
 
-  it 'can draw itself'
+  it 'can draw itself' do
+    node = head.draw(rect, doc)
+
+    expect(node.name).to eq('g')
+    expect(node.attributes['stroke'].value).to eq('black')
+    expect(node.children).to include_element('rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
+    expect(node.children).to include_element('text')
+  end
 end
