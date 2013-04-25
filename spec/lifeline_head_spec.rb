@@ -47,5 +47,9 @@ describe LifelineHead do
     expect(head.minimum_size).to eq([expected_width, expected_height])
   end
 
+  it 'returns a Size object from #minimum_size' do
+    expect(head.minimum_size).to be_an_instance_of(Size)
+  end
+
   it 'can draw itself'
 end

@@ -5,6 +5,14 @@
 module KangaRuby
   # Represents the symbol at the start of the lifeline.
   class LifelineHead
+    # Defaults for various values.
+    DEFAULTS = {
+      border:     1,
+      font_size: 12,
+      margin:     0,
+      padding:    0
+    }
+
     # Box border width in pixels.
     attr_reader :border
 
@@ -36,10 +44,12 @@ module KangaRuby
       @name = name
       @font = font
 
-      @border = opts[:border] || 1
-      @font_size = opts[:font_size] || 12
-      @margin = opts[:margin] || 0
-      @padding = opts[:padding] || 0
+      opts = DEFAULTS.merge opts
+
+      @border = opts[:border]
+      @font_size = opts[:font_size]
+      @margin = opts[:margin]
+      @padding = opts[:padding]
     end
 
     # Draws the symbol centered in `rect`.
@@ -51,6 +61,8 @@ module KangaRuby
     end
 
     # Gets the minimum size that the element can be drawn with the given parameters.
+    #
+    # @return [Size] Minimum width and height to properly draw the symbol.
     def minimum_size
       width = @font.text_width(@name, @font_size)
       height = @font.text_height(@font_size)
@@ -58,7 +70,7 @@ module KangaRuby
       width += 2 * @border + 2 * @margin + 2 * padding
       height += 2 * @border + 2 * @margin + 2 * padding
 
-      [width, height]
+      Size.new width, height
     end
   end
 end
