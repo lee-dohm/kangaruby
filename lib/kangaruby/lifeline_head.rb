@@ -60,12 +60,12 @@ module KangaRuby
     # @param [Nokogiri::XML::Document] doc Document to use to generate elements.
     # @return [Nokogiri::XML::Element] SVG group element containing the drawing instructions for the symbol.
     def draw(rect, doc)
-      text_rect = center(rect, text_width, text_height)
+      text_pos = center_text(rect)
 
       g = doc.create_element 'g', stroke: 'black'
 
-      g.add_child(g.document.create_element 'rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
-      g.add_child(g.document.create_element 'text', @name, x: text_rect.x, y: text_rect.y, 'font-family' => 'Abscissa', 'font-size' => '12')
+      add_new_child(g, 'rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
+      add_new_child(g, 'text', @name, x: text_pos[0], y: text_pos[1], 'font-family' => @font.name, 'font-size' => @font_size)
 
       g
     end
@@ -84,6 +84,17 @@ module KangaRuby
     end
 
     private
+
+    def add_new_child(element, *args)
+      element.add_child(element.document.create_element(*args))
+    end
+
+    def center_text(rect)
+      x = (rect.right - rect.left - text_width) / 2 + rect.left
+      y = (rect.bottom - rect.top) / 2 + rect.top + @font_size / 2
+
+      [x, y]
+    end
 
     def text_height
       @font.text_height(@font_size)
