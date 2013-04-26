@@ -10,6 +10,7 @@ describe Arrow do
   end
 
   it 'can describe its minimum size' do
+    expect(arrow.minimum_size).to be_an_instance_of(Size)
     expect(arrow.minimum_size).to eq([10, 10])
   end
 

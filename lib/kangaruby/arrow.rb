@@ -17,7 +17,7 @@ module KangaRuby
     #
     # @return [Array] Minimum width and height of the arrow.
     def minimum_size
-      [10, 10]
+      Size.new 10, 10
     end
   end
 end
