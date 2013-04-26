@@ -8,6 +8,8 @@ A Ruby implementation of [KangaModeling](http://www.kangamodeling.org), a text-t
 
 KangaRuby defines a text language that can be used to easily create UML-like [sequence diagrams](http://en.wikipedia.org/wiki/Sequence_diagram).  It is meant to make modeling a process very simple and to easily turn the text into a professional-quality image without the need for a large and/or expensive piece of software.
 
+KangaRuby writes all of its output in [SVG](http://en.wikipedia.org/wiki/Scalable_Vector_Graphics) format.  The kind of images that KangaRuby creates is exactly the kind of image for which SVG was created.  This allows the image to be easily scaled to any size and still maintain fidelity.  If one wishes to have a raster image, such as a [PNG](http://en.wikipedia.org/wiki/Portable_Network_Graphics) or [JPG](http://en.wikipedia.org/wiki/JPEG), there are tools available that can perform the conversion after the fact.
+
 ## Installation
 
 Add this line to your application's Gemfile:
