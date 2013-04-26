@@ -53,7 +53,7 @@ This describes two participants, [Alice and Bob](http://en.wikipedia.org/wiki/Al
 
 ## Development
 
-To see what has changed in recent versions of KangaRuby, see the [CHANGELOG](CHANGELOG.md)
+To see what has changed in recent versions of KangaRuby, see the [CHANGELOG](CHANGELOG.md).
 
 ## Core Team Members
 
