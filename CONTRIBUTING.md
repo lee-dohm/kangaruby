@@ -32,12 +32,10 @@ Don’t get discouraged! We estimate that the response time from the maintainers
 
 * You can help report bugs by filing them here: [New issue](https://github.com/lee-dohm/kangaruby/issues/new)
 * You can look through the existing bugs here: [Issues list](https://github.com/lee-dohm/kangaruby/issues)
-
 * Look at existing bugs and help us understand if
     * The bug is reproducible?
     * Is it reproducible in other environments?
     * What are the steps to reproduce?
-
 * You can close fixed bugs by testing old issues to see if they are still reproducible
 * You can remove duplicate bug reports
 
