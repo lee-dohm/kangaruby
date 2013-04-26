@@ -7,10 +7,10 @@ class GraphicsUtilitiesTest
 end
 
 describe GraphicsUtilities do
-  context '#center' do
-    let(:rect) { Rect.new [100] * 4 }
-    let(:test) { GraphicsUtilitiesTest.new }
+  let(:rect) { Rect.new [100] * 4 }
+  let(:test) { GraphicsUtilitiesTest.new }
 
+  context '#center' do
     it 'raises an ArgumentError when rect, width or height is nil' do
       expect { test.center(nil, 10, 20) }.to raise_error(ArgumentError)
       expect { test.center(rect, nil, 20) }.to raise_error(ArgumentError)
@@ -40,6 +40,33 @@ describe GraphicsUtilities do
       expect(new_rect.height).to eq(200)
       expect(new_rect.x).to eq(75)
       expect(new_rect.y).to eq(50)
+    end
+  end
+
+  context '#center_text' do
+    it 'raises an ArgumentError when rect, text_width or font_size is nil' do
+      expect { test.center_text(nil, 50, 12) }.to raise_error(ArgumentError)
+      expect { test.center_text(rect, nil, 12) }.to raise_error(ArgumentError)
+      expect { test.center_text(rect, 50, nil) }.to raise_error(ArgumentError)
+    end
+
+    it 'returns a two-element array' do
+      pos = test.center_text(rect, 50, 12)
+
+      expect(pos).to be_an_instance_of(Array)
+      expect(pos.count).to eq(2)
+    end
+
+    it 'gives an x that centers the text_width within the rectangle' do
+      pos = test.center_text(rect, 50, 12)
+
+      expect(pos[0]).to eq(125)
+    end
+
+    it 'gives a y that is the centerpoint plus half the font_size' do
+      pos = test.center_text(rect, 50, 12)
+
+      expect(pos[1]).to eq(156)
     end
   end
 end

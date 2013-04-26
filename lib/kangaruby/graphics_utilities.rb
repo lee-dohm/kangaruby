@@ -34,6 +34,10 @@ module KangaRuby
     # @param font_size Size of the font in pixels.
     # @return [Array] `x` and `y` coordinates to use for the `text` element.
     def center_text(rect, text_width, font_size)
+      raise ArgumentError, 'rect cannot be nil' if rect.nil?
+      raise ArgumentError, 'text_width cannot be nil' if text_width.nil?
+      raise ArgumentError, 'font_size cannot be nil' if font_size.nil?
+
       x = (rect.right - rect.left - text_width) / 2 + rect.left
       y = (rect.bottom - rect.top) / 2 + rect.top + font_size / 2
 
