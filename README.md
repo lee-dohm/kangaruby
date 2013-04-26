@@ -34,15 +34,15 @@ $ gem install kangaruby
 
 ## Usage
 
-Once you have the gem installed, you should be able to take a valid KangaRuby language text file and perform the following actions to turn it into an image:
+Once you have the gem installed, you should be able to take a valid KangaRuby language text file and perform the following actions to turn it into an SVG image:
 
 ```ruby
 require 'kangaruby'
 
-KangaRuby.convert(path_to_text, path_to_image)
+svg = KangaRuby.convert(path_to_text)
 ```
 
-If `path_to_image` does not end with a `.svg` extension, one will be appended to the supplied path.
+`convert` will simply return a `String` containing the SVG XML.
 
 ### Language
 
