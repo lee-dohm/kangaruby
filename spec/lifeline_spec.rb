@@ -3,8 +3,10 @@
 #
 
 describe Lifeline do
-  let(:font) { Font.new('fonts/Abscissa.ttf') }
+  let(:doc)      { Nokogiri::XML::Document.new }
+  let(:font)     { Font.new('fonts/Abscissa.ttf') }
   let(:lifeline) { Lifeline.new('Alice', font) }
+  let(:rect)     { Rect.new [100] * 4 }
 
   it 'has a name' do
     expect(lifeline.name).to eq('Alice')
@@ -20,7 +22,7 @@ describe Lifeline do
     expect(lifeline.tail).to_not be_nil
   end
 
-  it 'can describe its minimum size' do
+  it 'describes its minimum size' do
     head_width = lifeline.head.minimum_size[0]
     tail_width = lifeline.tail.minimum_size[0]
     expected_width = [head_width, tail_width].max
@@ -32,5 +34,12 @@ describe Lifeline do
     expect(lifeline.minimum_size).to eq([expected_width, expected_height])
   end
 
-  it 'can draw itself'
+  it 'draws itself' do
+    node = lifeline.draw(rect, doc)
+
+    expect(node.name).to eq('g')
+    expect(node.children[0].name).to eq('line')
+    expect(node.children[1].name).to eq('g')
+    expect(node.children[2].name).to eq('g')
+  end
 end

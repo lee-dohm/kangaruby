@@ -17,10 +17,22 @@ module KangaRuby
       raise ArgumentError, 'width cannot be nil' if width.nil?
       raise ArgumentError, 'height cannot be nil' if height.nil?
 
-      x = (rect.right - rect.left - width) / 2 + rect.left
-      y = (rect.bottom - rect.top - height) / 2 + rect.top
+      x, y = center_point(rect, width, height)
 
       Rect.new x, y, width, height
+    end
+
+    # Determines the `x` and `y` coordinates to use to center something of the given width and height.
+    #
+    # @param [Rect] rect Area within which to center the object.
+    # @param width Width of the object to center.
+    # @param height Height of the object to center.
+    # @return [Array] `x` and `y` coordinates to use for the object.
+    def center_point(rect, width = 0, height = 0)
+      x = center_x(rect, width)
+      y = center_y(rect, height)
+
+      [x, y]
     end
 
     # Determines the `x` and `y` coordinates to use for an SVG `text` element to center some text within the given rectangle.
@@ -38,10 +50,28 @@ module KangaRuby
       raise ArgumentError, 'text_width cannot be nil' if text_width.nil?
       raise ArgumentError, 'font_size cannot be nil' if font_size.nil?
 
-      x = (rect.right - rect.left - text_width) / 2 + rect.left
-      y = (rect.bottom - rect.top) / 2 + rect.top + font_size / 2
+      x = center_x(rect, text_width)
+      y = center_y(rect) + font_size / 2
 
       [x, y]
+    end
+
+    # Determines the `x` coordinate to use to center something of the given `width` horizontally within `rect`.
+    #
+    # @param [Rect] rect Area within which to center the object.
+    # @param width Width of the object to center.
+    # @return `x` coodinate to use.
+    def center_x(rect, width = 0)
+      (rect.right - rect.left - width) / 2 + rect.left
+    end
+
+    # Determines the `y` coodinate to use to center something of the given `height` vertically within `rect`.
+    #
+    # @param [Rect] rect Area within which to center the object.
+    # @param height Height of the object to center.
+    # @return `y` coordinate to use.
+    def center_y(rect, height = 0)
+      (rect.bottom - rect.top - height) / 2 + rect.top
     end
   end
 end
