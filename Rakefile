@@ -31,7 +31,7 @@ file 'grammar/sequence_parser.rb' => 'grammar/sequence.treetop' do
 end
 
 file '.yardopts' => DOCS do
-  puts yellow(bold('Rewriting .yardopts'))
+  puts yellow('Rewriting .yardopts')
 
   opts = []
   opts << '--markup markdown'
