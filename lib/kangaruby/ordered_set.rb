@@ -7,15 +7,11 @@ module KangaRuby
   class OrderedSet
     include Enumerable
 
-    # Initializes the set.
-    #
     # @param items List of items to add to the set.
     def initialize(*items)
       @array = items.uniq
     end
 
-    # Retrieves the object at the given index.
-    #
     # @param index Index of the object to retrieve.
     # @return Object at the given index.
     def [](index)
@@ -44,8 +40,6 @@ module KangaRuby
       true
     end
 
-    # Returns the number of items in the set.
-    #
     # @return [Integer] Number of items in the set.
     def count
       @array.count
@@ -53,14 +47,12 @@ module KangaRuby
 
     # Calls the given block once for each item in the set, passing that element as a parameter.
     #
-    # @yieldparam item Item in the set.
+    # @yieldparam item Item from the set.
     def each
       @array.each { |item| yield item }
     end
 
-    # Outputs a debug view of the set.
-    #
-    # @return [String] A view of the set most useful for debugging.
+    # @return [String] A debug view of the set.
     def inspect
       @array.inspect
     end
