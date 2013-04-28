@@ -21,10 +21,12 @@ DOCS = Dir['*.md', 'documentation/**/*'].reject { |f| f == 'README.md' }
 
 # Standard tasks
 task :default => [:compile, :test, :yard]
+
+task :ci => [:compile, :test]
 task :compile => 'grammar/sequence_parser.rb'
+task :static => :rubocop
 desc 'Execute all tests'
 task :test => [:static, :spec]
-task :static => :rubocop
 
 # File tasks
 file 'grammar/sequence_parser.rb' => 'grammar/sequence.treetop' do
