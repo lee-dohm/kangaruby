@@ -19,6 +19,7 @@ end
 group :test do
   gem 'bundler', '~> 1.3'
   gem 'coveralls'
+  gem 'equivalent-xml'
   gem 'fuubar'
   gem 'rake'
   gem 'rspec'

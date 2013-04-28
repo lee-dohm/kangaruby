@@ -17,6 +17,7 @@ end
 
 require 'rspec'
 
+require 'equivalent-xml'
 require 'kangaruby'
 
 include KangaRuby

@@ -13,6 +13,17 @@ describe LifelineHead do
   let(:name) { 'Alice' }
   let(:rect) { Rect.new [100] * 4 }
 
+  let(:drawn_node) do
+    text = <<-EOS
+<g stroke='black'>
+  <rect x='#{rect.x}' y='#{rect.y}' width='#{rect.width}' height='#{rect.height}' fill='white' />
+  <text x='140' y='156' font-family='Abscissa' font-size='12'>#{name}</text>
+</g>
+EOS
+
+    Nokogiri::XML.fragment(text) % 'g'
+  end
+
   it 'has a name' do
     expect(head.name).to eq('Alice')
   end
@@ -54,9 +65,6 @@ describe LifelineHead do
   it 'can draw itself' do
     node = head.draw(rect, doc)
 
-    expect(node.name).to eq('g')
-    expect(node.attributes['stroke'].value).to eq('black')
-    expect(node.children).to include_element('rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
-    expect(node.children).to include_element('text')
+    expect(node).to be_equivalent_to(drawn_node)
   end
 end
