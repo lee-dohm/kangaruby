@@ -13,6 +13,7 @@ describe OrderedSet do
     set = OrderedSet.new
 
     expect(set.count).to eq(0)
+    expect(set[0]).to be_nil
   end
 
   it 'adds objects during construction' do
@@ -57,7 +58,33 @@ describe OrderedSet do
     expect(set).to_not eq(other)
   end
 
+  it 'is not equivalent to another enumerable with the same, but more items' do
+    other = [1, 2, 3, 4]
+
+    expect(set).to_not eq(other)
+  end
+
+  it 'is not equivalent to something that is not an Enumerable' do
+    other = 'foo'
+
+    expect(set).to_not eq(other)
+  end
+
   it 'looks like an array when inspected' do
     expect(set.inspect).to eq('[1, 2, 3]')
+  end
+
+  it 'looks like an array when converted to String' do
+    expect(set.to_s).to eq('[1, 2, 3]')
+  end
+
+  it 'can be enumerated' do
+    list = []
+
+    set.each do |item|
+      list << item
+    end
+
+    expect(list).to eq([1, 2, 3])
   end
 end
