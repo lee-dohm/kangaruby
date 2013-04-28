@@ -55,6 +55,10 @@ Bob-->Alice
 
 This describes two participants, [Alice and Bob](http://en.wikipedia.org/wiki/Alice_and_Bob), and two actions, one from Alice to Bob and the other from Bob to Alice.
 
+TODO: Add image link
+
+For a full description of the KangaRuby language, see the [language documentation](documentation/Language.md).
+
 ## Development
 
 To see what has changed in recent versions of KangaRuby, see the [CHANGELOG](CHANGELOG.md).
