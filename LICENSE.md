@@ -1,4 +1,4 @@
-Copyright (c) 2013 Lee Dohm
+Copyright &copy; 2013 Lee Dohm, Lifted Studios
 
 MIT License
 
