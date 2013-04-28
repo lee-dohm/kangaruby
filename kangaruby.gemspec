@@ -24,19 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'treetop', '~> 1.4'
   spec.add_dependency 'ttfunk', '~> 1.0'
 
-  spec.add_development_dependency 'bundler', '~> 1.3'
-  spec.add_development_dependency 'coveralls'
-  spec.add_development_dependency 'fuubar'
-  spec.add_development_dependency 'guard'
-  spec.add_development_dependency 'guard-rspec'
-  spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'redcarpet'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'simplecov'
-  spec.add_development_dependency 'term-ansicolor'
-  spec.add_development_dependency 'yard'
-
   # For users of OS X, include the proper requirements for file system events and notifications
   if RUBY_PLATFORM.downcase.include?('darwin')
     spec.add_development_dependency 'growl'

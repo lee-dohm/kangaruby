@@ -1,4 +1,21 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in kangaruby.gemspec
 gemspec
+
+group :development do
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'redcarpet'
+  gem 'yard'
+end
+
+group :test do
+  gem 'bundler', '~> 1.3'
+  gem 'coveralls'
+  gem 'fuubar'
+  gem 'rake'
+  gem 'rspec'
+  gem 'rubocop'
+  gem 'simplecov'
+  gem 'term-ansicolor'
+end
