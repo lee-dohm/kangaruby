@@ -19,17 +19,14 @@ CLOBBER.include('doc', 'pkg')
 
 DOCS = Dir['*.md', 'documentation/**/*'].reject { |f| f == 'README.md' }
 
+# Standard tasks
 task :default => [:compile, :test, :yard]
-
 task :compile => 'grammar/sequence_parser.rb'
-
 desc 'Execute all tests'
 task :test => [:static, :spec]
-
 task :static => :rubocop
 
-task :yard => '.yardopts'
-
+# File tasks
 file 'grammar/sequence_parser.rb' => 'grammar/sequence.treetop' do
   sh 'tt grammar/sequence.treetop -o grammar/sequence_parser.rb'
 end
@@ -50,6 +47,7 @@ file '.yardopts' => DOCS + ['Rakefile'] do
   end
 end
 
+# Library tasks
 task :rubocop do
   sh 'rubocop lib spec'
 end
@@ -57,3 +55,4 @@ end
 RSpec::Core::RakeTask.new
 
 YARD::Rake::YardocTask.new
+task :yard => '.yardopts'
