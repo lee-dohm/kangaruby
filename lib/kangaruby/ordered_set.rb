@@ -7,8 +7,12 @@ module KangaRuby
   class OrderedSet
     include Enumerable
 
-    # Creates a new instance of `OrderedSet`.  If given an array of items that contain duplicates, only relative ordering is
-    # maintained.
+    # Creates a new instance of `OrderedSet`.  If given an array of items that contain duplicates, relative ordering is maintained
+    # after duplicates are removed.
+    #
+    # @example Relative ordering
+    #   set = OrderedSet.new 1, 2, 3, 2, 4, 1, 5
+    #   puts set.to_s    # Outputs [1, 2, 3, 4, 5]
     #
     # @param items List of items to add to the set.
     def initialize(*items)
