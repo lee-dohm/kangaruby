@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
+# Gems only used for interactive development
 group :development do
   gem 'guard'
   gem 'guard-rspec'
@@ -14,6 +15,7 @@ group :development do
   end
 end
 
+# Gems used for both interactive development and the CI environment
 group :test do
   gem 'bundler', '~> 1.3'
   gem 'coveralls'
