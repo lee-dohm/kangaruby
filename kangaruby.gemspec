@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'term-ansicolor'
   spec.add_development_dependency 'yard'
 
   # For users of OS X, include the proper requirements for file system events and notifications
