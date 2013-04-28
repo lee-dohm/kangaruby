@@ -60,8 +60,8 @@ module KangaRuby
     # Determines the `x` coordinate to use to center something of the given `width` horizontally within `rect`.
     #
     # @param [Rect] rect Area within which to center the object.
-    # @param width Width of the object to center.
-    # @return `x` coodinate to use.
+    # @param [Integer] width Width of the object to center.
+    # @return [Integer] `x` coodinate to use.
     def center_x(rect, width = 0)
       (rect.right - rect.left - width) / 2 + rect.left
     end
@@ -69,8 +69,8 @@ module KangaRuby
     # Determines the `y` coodinate to use to center something of the given `height` vertically within `rect`.
     #
     # @param [Rect] rect Area within which to center the object.
-    # @param height Height of the object to center.
-    # @return `y` coordinate to use.
+    # @param [Integer] height Height of the object to center.
+    # @return [Integer] `y` coordinate to use.
     def center_y(rect, height = 0)
       (rect.bottom - rect.top - height) / 2 + rect.top
     end
