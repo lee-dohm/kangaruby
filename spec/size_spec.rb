@@ -38,4 +38,8 @@ describe Size do
     expect(size).to eq(Size.new 10, 20)
     expect(size).to_not eq(Size.new)
   end
+
+  it 'is not equivalent to other objects' do
+    expect(size).to_not eq('foo')
+  end
 end
