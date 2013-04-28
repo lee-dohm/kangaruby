@@ -1,5 +1,6 @@
 --markup markdown
 --query '@api.text != "monkeypatch"'
+--title 'KangaRuby 0.0.1 Documentation'
 -
 CHANGELOG.md
 CONTRIBUTING.md

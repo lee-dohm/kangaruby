@@ -8,6 +8,10 @@ require 'rspec/core/rake_task'
 require 'term/ansicolor'
 require 'yard'
 
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'kangaruby/version'
+
 include Term::ANSIColor
 
 CLEAN.include('.yardoc')
@@ -30,12 +34,13 @@ file 'grammar/sequence_parser.rb' => 'grammar/sequence.treetop' do
   sh 'tt grammar/sequence.treetop -o grammar/sequence_parser.rb'
 end
 
-file '.yardopts' => DOCS do
+file '.yardopts' => DOCS + ['Rakefile'] do
   puts yellow('Rewriting .yardopts')
 
   opts = []
   opts << '--markup markdown'
   opts << %Q(--query '@api.text != "monkeypatch"')
+  opts << "--title 'KangaRuby #{KangaRuby::VERSION} Documentation'"
   opts << '-'
   opts << DOCS
   opts.flatten!
