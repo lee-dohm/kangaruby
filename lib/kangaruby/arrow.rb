@@ -5,11 +5,12 @@
 module KangaRuby
   # Represents an action in the diagram.
   class Arrow
-    # Line style to use for drawing the arrow.
+    # @return [Symbol] Line style to use for drawing the arrow.
     attr_reader :style
 
-    def initialize
-      @style = :solid
+    # @param [Symbol] style Line style to use.
+    def initialize(style = :solid)
+      @style = style
     end
 
     # Returns the minimum size of the arrow.
