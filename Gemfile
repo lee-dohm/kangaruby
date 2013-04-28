@@ -6,7 +6,6 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'redcarpet'
-  gem 'yard'
 end
 
 group :test do
@@ -18,4 +17,5 @@ group :test do
   gem 'rubocop'
   gem 'simplecov'
   gem 'term-ansicolor'
+  gem 'yard'
 end
