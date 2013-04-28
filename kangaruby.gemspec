@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = KangaRuby::VERSION
   spec.authors       = ['Lee Dohm']
   spec.email         = ['lee@liftedstudios.com']
-  spec.description   = %q{A Ruby port of KangaModeling, a text-to-graphics converter for UML-like visualizations.}
-  spec.summary       = %q{A Ruby port of KangaModeling.}
+  spec.description   = %q{A Ruby implementation of KangaModeling, a text-to-graphics converter for UML-like visualizations.}
+  spec.summary       = %q{A Ruby implementation of KangaModeling.}
   spec.homepage      = 'https://github.com/lee-dohm/kangaruby'
   spec.license       = 'MIT'
 
