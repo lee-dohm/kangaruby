@@ -6,6 +6,12 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'redcarpet'
+
+  # For users of OS X, include the proper requirements for file system events and notifications
+  if RUBY_PLATFORM.downcase.include?('darwin')
+    gem 'growl'
+    gem 'rb-fsevent'
+  end
 end
 
 group :test do

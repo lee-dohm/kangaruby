@@ -23,10 +23,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'nokogiri', '~> 1.5'
   spec.add_dependency 'treetop', '~> 1.4'
   spec.add_dependency 'ttfunk', '~> 1.0'
-
-  # For users of OS X, include the proper requirements for file system events and notifications
-  if RUBY_PLATFORM.downcase.include?('darwin')
-    spec.add_development_dependency 'growl'
-    spec.add_development_dependency 'rb-fsevent'
-  end
 end
