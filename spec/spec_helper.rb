@@ -41,6 +41,14 @@ def actions(*params)
   end
 end
 
+# Creates a `Nokogiri::XML::Node` from the given text.
+#
+# @param [String] text Text representation to convert.
+# @return [Nokogiri::XML::Node] Nokogiri representation of the text.
+def create_node(text)
+  Nokogiri::XML.parse(text).children.first
+end
+
 # Creates a blank SVG document.
 #
 # @return [Nokogiri::XML::Document] New SVG document.

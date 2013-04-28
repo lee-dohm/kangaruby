@@ -7,14 +7,12 @@ describe LifelineTail do
   let(:rect) { Rect.new [100] * 4 }
   let(:tail) { LifelineTail.new }
   let(:drawn_node) do
-    text = <<-EOS
-<g stroke='black' stroke-width='1'>
-  <line x1='145' y1='145' x2='155' y2='155' />
-  <line x1='155' y1='145' x2='145' y2='155' />
-</g>
+    create_node <<-EOS
+      <g stroke='black' stroke-width='1'>
+        <line x1='145' y1='145' x2='155' y2='155' />
+        <line x1='155' y1='145' x2='145' y2='155' />
+      </g>
 EOS
-
-    Nokogiri::XML.fragment(text) % 'g'
   end
 
   it 'can describe its minimum size' do
