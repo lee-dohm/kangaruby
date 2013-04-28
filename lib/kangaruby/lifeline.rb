@@ -7,10 +7,10 @@ module KangaRuby
   class Lifeline
     include GraphicsUtilities
 
-    # Reference to the head symbol.
+    # @return [LifelineHead] Reference to the head symbol.
     attr_reader :head
 
-    # Reference to the tail symbol.
+    # @return [LifelineTail] Reference to the tail symbol.
     attr_reader :tail
 
     # Creates a new lifeline.
@@ -67,13 +67,14 @@ module KangaRuby
     end
 
     # rubocop:disable ParameterLists
+
     # Creates a line element between the two points.
     #
     # @param [Nokogiri::XML::Document] doc Document object to use to create elements.
-    # @param x1 `x` coordinate of the first point.
-    # @param y1 `y` coordinate of the first point.
-    # @param x2 `x` coordinate of the second point.
-    # @param y2 `y` coordinate of the second point.
+    # @param [Integer] x1 `x` coordinate of the first point.
+    # @param [Integer] y1 `y` coordinate of the first point.
+    # @param [Integer] x2 `x` coordinate of the second point.
+    # @param [Integer] y2 `y` coordinate of the second point.
     # @return [Nokogiri::XML::Element] SVG `line` element.
     def create_line(doc, x1, y1, x2, y2)
       doc.create_element('line', x1: x1, y1: y1, x2: x2, y2: y2, stroke: 'black', 'stroke-width' => '1')
@@ -84,7 +85,8 @@ module KangaRuby
     #
     # @param [Rect] rect Area in which to draw the symbols.
     # @param [Nokogiri::XML::Document] doc Document object with which to create elements.
-    # @return [Array] The `line`, `head` and `tail` symbols.
+    # @return [Array<(Nokogiri::XML::Element, Nokogiri::XML::Element, Nokogiri::XML::Element)>]
+    #     The `line`, `head` and `tail` symbols.
     def create_symbols(rect, doc)
       head_rect = head_pos(rect)
       tail_rect = tail_pos(rect)
