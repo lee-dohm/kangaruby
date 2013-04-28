@@ -5,15 +5,19 @@
 module KangaRuby
   # Describes the width and height of a graphical object.
   class Size
-    # Height of the object.
+    # @return [Integer] Height of the object.
     attr_reader :height
 
-    # Width of the object.
+    # @return [Integer] Width of the object.
     attr_reader :width
 
     # Creates a size description of a graphical object.
     #
-    # @param [Array] args Variable number of arguments.
+    # @overload initialize(width = 0, height = 0)
+    #   @param [Integer] width Width of the object.
+    #   @param [Integer] height Height of the object.
+    # @overload initialize(array)
+    #   @param [Array<(Integer, Integer)>] array Width and height of the object.
     def initialize(*args)
       args = args.flatten
 
@@ -23,8 +27,8 @@ module KangaRuby
 
     # Gets the width or height as an index.
     #
-    # @param index `0` for width or `1` for height.  Any other index returns `nil`.
-    # @return Requested dimension or `nil`.
+    # @param [Integer] index `0` for width or `1` for height.  Any other index returns `nil`.
+    # @return [Integer, nil] Requested dimension or `nil` if the index is out of range.
     def [](index)
       case index
       when 0 then @width
@@ -36,7 +40,7 @@ module KangaRuby
     # Determines if `other` is equivalent to this object.
     #
     # @param other Object to compare this one to.
-    # @return `true` if they are equivalent, `false` if they are not or `nil` if the comparison is invalid.
+    # @return [Boolean] `true` if they are equivalent, `false` if they are not.
     def ==(other)
       case other
       when Size
@@ -44,7 +48,7 @@ module KangaRuby
       when Array
         other.count == 2 && @width == other[0] && @height == other[1]
       else
-        nil
+        false
       end
     end
   end
