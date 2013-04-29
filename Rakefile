@@ -17,6 +17,7 @@ include Term::ANSIColor
 CLEAN.include('.yardoc')
 CLOBBER.include('doc', 'pkg')
 
+# YARD automatically includes README.md, so remove it from the list of documents.
 DOCS = Dir['*.md', 'documentation/**/*'].reject { |f| f == 'README.md' }
 
 # Standard tasks
@@ -33,6 +34,10 @@ file 'grammar/sequence_parser.rb' => 'grammar/sequence.treetop' do
   sh 'tt grammar/sequence.treetop -o grammar/sequence_parser.rb'
 end
 
+# Add the Rakefile to the list of dependencies so that if the Rakefile
+# changes (potentially changing the yardopts task), the .yardopts file
+# is updated.  But it shouldn't be one of the files that YARD adds to
+# the documentation.
 file '.yardopts' => DOCS + ['Rakefile'] do
   puts yellow('Rewriting .yardopts')
 
