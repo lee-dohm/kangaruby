@@ -24,7 +24,7 @@ task :ci => [:compile, :test]
 task :compile => 'grammar/sequence_parser.rb'
 
 desc 'Execute all tests'
-task :test => ['test:rubocop', 'test:spec']
+task :test => ['test:rubocop', 'test:coverage']
 
 desc 'Generate documentation'
 task :doc => ['doc:yard']
@@ -37,6 +37,12 @@ namespace 'test' do
   desc 'Run style checks'
   task :rubocop do
     sh 'rubocop lib spec'
+  end
+
+  desc 'Execute specs with code coverage'
+  task :coverage do
+    ENV['COVERAGE'] = 'true'
+    Rake::Task['test:spec'].execute
   end
 
   RSpec::Core::RakeTask.new
