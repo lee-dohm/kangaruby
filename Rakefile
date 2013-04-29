@@ -19,8 +19,8 @@ CLOBBER.include('doc', 'pkg')
 
 # Standard tasks
 task :default => [:compile, :test, :doc]
-
 task :ci => [:compile, :test]
+
 task :compile => 'grammar/sequence_parser.rb'
 
 desc 'Execute all tests'
@@ -34,6 +34,7 @@ file 'grammar/sequence_parser.rb' => 'grammar/sequence.treetop' do
 end
 
 namespace 'test' do
+  desc 'Run style checks'
   task :rubocop do
     sh 'rubocop lib spec'
   end
