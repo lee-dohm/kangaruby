@@ -26,13 +26,13 @@ describe Model do
   it 'accepts new actions' do
     model.actions << Action.new('Alice', 'Bob')
 
-    expect(model.actions).to eq(actions(['Alice', 'Bob']))
+    expect(model.actions).to eq(actions(%w(Alice Bob)))
   end
 
   it 'accepts two identical actions' do
     model.actions << Action.new('Alice', 'Bob')
     model.actions << Action.new('Alice', 'Bob')
 
-    expect(model.actions).to eq(actions(['Alice', 'Bob'], ['Alice', 'Bob']))
+    expect(model.actions).to eq(actions(%w(Alice Bob), %w(Alice Bob)))
   end
 end

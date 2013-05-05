@@ -36,7 +36,7 @@ end
 namespace 'test' do
   desc 'Run style checks'
   task :rubocop do
-    sh 'rubocop lib spec'
+    sh 'rubocop'
   end
 
   desc 'Execute specs with code coverage'

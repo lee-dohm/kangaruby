@@ -1,7 +1,14 @@
 
+AllCops:
+  Excludes:
+    - grammar/**
+
 Encoding:
-    Enabled: false
+  Enabled: false
 
 LineLength:
-    Enabled: true
-    Max: 132
+  Enabled: true
+  Max: 132
+
+SymbolArray:
+  Enabled: false

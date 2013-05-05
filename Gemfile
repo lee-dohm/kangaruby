@@ -23,7 +23,7 @@ group :test do
   gem 'fuubar'
   gem 'rake'
   gem 'rspec'
-  gem 'rubocop'
+  gem 'rubocop', git: 'git://github.com/bbatsov/rubocop.git'
   gem 'simplecov'
   gem 'term-ansicolor'
   gem 'yard'

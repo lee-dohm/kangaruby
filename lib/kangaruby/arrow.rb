@@ -19,5 +19,16 @@ module KangaRuby
     def minimum_size
       Size.new 10, 10
     end
+
+    # Draws the arrow.
+    #
+    # @param [Rect] rect Area within which to draw the arrow.
+    # @param [Nokogiri::XML::Document] doc Document used to create elements.
+    # @return [Nokogiri::XML::Node] Instructions for drawing the arrow.
+    def draw(rect, doc)
+      g = doc.create_element 'g', stroke: 'black', 'stroke-width' => '1'
+
+      g
+    end
   end
 end

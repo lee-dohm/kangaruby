@@ -16,7 +16,7 @@ describe Parser do
 
     expect(model.participants.all? { |p| p.instance_of? Participant }).to be_true
     expect(model.participants).to eq(participants('Alice', 'Bob'))
-    expect(model.actions).to eq(actions(['Alice', 'Bob']))
+    expect(model.actions).to eq(actions(%w(Alice Bob)))
   end
 
   it 'creates a model with two participants and two actions' do
