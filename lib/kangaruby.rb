@@ -6,12 +6,12 @@ require 'nokogiri'
 
 require 'sequence_parser'
 require 'kangaruby/module'
+require 'kangaruby/graphics_utilities'
 
 require 'kangaruby/action'
 require 'kangaruby/arrow'
 require 'kangaruby/diagram'
 require 'kangaruby/font'
-require 'kangaruby/graphics_utilities'
 require 'kangaruby/lifeline'
 require 'kangaruby/lifeline_head'
 require 'kangaruby/lifeline_tail'
