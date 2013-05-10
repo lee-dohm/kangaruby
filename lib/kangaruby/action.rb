@@ -36,9 +36,11 @@ module KangaRuby
 
     # Determines if `other` is equivalent to this object.
     #
-    # @param other Object to compare.
+    # @param [#from,#style,#to] other Object to compare.
     # @return [Boolean] `true` if `other` is equivalent; `false` otherwise.
     def ==(other)
+      return false unless other.respond_to?(:from) && other.respond_to?(:to) && other.respond_to?(:style)
+
       @from == other.from && @to == other.to && @style == other.style
     end
   end
