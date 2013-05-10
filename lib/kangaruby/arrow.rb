@@ -3,6 +3,7 @@
 #
 
 module KangaRuby
+  # Acceptable list of arrow directions.
   DIRECTIONS = [:left, :right]
 
   # Represents an action in the diagram.
@@ -41,13 +42,9 @@ module KangaRuby
       g = doc.create_element 'g', stroke: 'black', 'stroke-width' => '1'
 
       if @direction == :right
-        add_child(g, 'line', x1: rect.right - 5, y1: center_y(rect) - 5, x2: rect.right, y2: center_y(rect))
-        add_child(g, 'line', x1: rect.right - 5, y1: center_y(rect) + 5, x2: rect.right, y2: center_y(rect))
-        add_child(g, 'line', x1: rect.left, y1: center_y(rect), x2: rect.right, y2: center_y(rect))
+        draw_right(g, rect)
       else
-        add_child(g, 'line', x1: rect.left + 5, y1: center_y(rect) - 5, x2: rect.left, y2: center_y(rect))
-        add_child(g, 'line', x1: rect.left + 5, y1: center_y(rect) + 5, x2: rect.left, y2: center_y(rect))
-        add_child(g, 'line', x1: rect.right, y1: center_y(rect), x2: rect.left, y2: center_y(rect))
+        draw_left(g, rect)
       end
 
       g
@@ -57,6 +54,18 @@ module KangaRuby
 
     def add_child(element, *args)
       element.add_child(element.document.create_element(*args))
+    end
+
+    def draw_left(g, rect)
+      add_child(g, 'line', x1: rect.left + 5, y1: center_y(rect) - 5, x2: rect.left, y2: center_y(rect))
+      add_child(g, 'line', x1: rect.left + 5, y1: center_y(rect) + 5, x2: rect.left, y2: center_y(rect))
+      add_child(g, 'line', x1: rect.right, y1: center_y(rect), x2: rect.left, y2: center_y(rect))
+    end
+
+    def draw_right(g, rect)
+      add_child(g, 'line', x1: rect.right - 5, y1: center_y(rect) - 5, x2: rect.right, y2: center_y(rect))
+      add_child(g, 'line', x1: rect.right - 5, y1: center_y(rect) + 5, x2: rect.right, y2: center_y(rect))
+      add_child(g, 'line', x1: rect.left, y1: center_y(rect), x2: rect.right, y2: center_y(rect))
     end
   end
 end
