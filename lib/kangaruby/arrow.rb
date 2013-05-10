@@ -3,15 +3,25 @@
 #
 
 module KangaRuby
+  DIRECTIONS = [:left, :right]
+
   # Represents an action in the diagram.
   class Arrow
     include GraphicsUtilities
 
+    # @return [Symbol] Direction the arrow is pointing.
+    attr_reader :direction
+
     # @return [Symbol] Line style to use for drawing the arrow.
     attr_reader :style
 
+    # @param [Symbol] direction Direction for the arrow to point.
     # @param [Symbol] style Line style to use.
-    def initialize(style = :solid)
+    def initialize(direction, style = :solid)
+      raise ArgumentError, 'Direction must be either :left or :right' unless DIRECTIONS.include? direction
+      raise ArgumentError, 'Style must be either :solid or :dotted' unless STYLES.include? style
+
+      @direction = direction
       @style = style
     end
 
@@ -30,9 +40,15 @@ module KangaRuby
     def draw(rect, doc)
       g = doc.create_element 'g', stroke: 'black', 'stroke-width' => '1'
 
-      add_child(g, 'line', x1: rect.right - 5, y1: center_y(rect) - 5, x2: rect.right, y2: center_y(rect))
-      add_child(g, 'line', x1: rect.right - 5, y1: center_y(rect) + 5, x2: rect.right, y2: center_y(rect))
-      add_child(g, 'line', x1: rect.left, y1: center_y(rect), x2: rect.right, y2: center_y(rect))
+      if @direction == :right
+        add_child(g, 'line', x1: rect.right - 5, y1: center_y(rect) - 5, x2: rect.right, y2: center_y(rect))
+        add_child(g, 'line', x1: rect.right - 5, y1: center_y(rect) + 5, x2: rect.right, y2: center_y(rect))
+        add_child(g, 'line', x1: rect.left, y1: center_y(rect), x2: rect.right, y2: center_y(rect))
+      else
+        add_child(g, 'line', x1: rect.left + 5, y1: center_y(rect) - 5, x2: rect.left, y2: center_y(rect))
+        add_child(g, 'line', x1: rect.left + 5, y1: center_y(rect) + 5, x2: rect.left, y2: center_y(rect))
+        add_child(g, 'line', x1: rect.right, y1: center_y(rect), x2: rect.left, y2: center_y(rect))
+      end
 
       g
     end
