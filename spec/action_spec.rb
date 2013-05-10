@@ -33,4 +33,8 @@ describe Action do
     expect(action).to_not eq(Action.new('A', 'Bob', :solid))
     expect(action).to_not eq(Action.new('Alice', 'B', :solid))
   end
+
+  it 'is not equivalent to another Action with different attributes'
+
+  it 'is not equivalent to another object that does not respond to from, to or style'
 end
