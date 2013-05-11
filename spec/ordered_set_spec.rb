@@ -5,10 +5,6 @@
 describe OrderedSet do
   let(:set) { OrderedSet.new(1, 2, 3) }
 
-  it 'is Enumerable' do
-    expect(set).to be_a_kind_of(Enumerable)
-  end
-
   it 'starts empty' do
     set = OrderedSet.new
 
