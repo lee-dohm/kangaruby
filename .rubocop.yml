@@ -9,6 +9,3 @@ Encoding:
 LineLength:
   Enabled: true
   Max: 132
-
-SymbolArray:
-  Enabled: false
