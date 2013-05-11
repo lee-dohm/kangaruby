@@ -5,7 +5,10 @@
 require 'delegate'
 
 module KangaRuby
-  # `OrderedSet` represents an ordered list of unique objects.
+  # `OrderedSet` represents an ordered list of unique objects. It is simply an `Array` that enforces uniqueness of the items it
+  # contains and supports all of the same methods.
+  #
+  # @see http://rubydoc.info/stdlib/core/Array Array
   class OrderedSet < DelegateClass(Array)
     # Creates a new instance of `OrderedSet`.  If given an array of items that contain duplicates, relative ordering is maintained
     # after duplicates are removed.
