@@ -2,10 +2,13 @@
 # Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
 #
 
+require 'kangaruby/xml_utilities'
+
 module KangaRuby
   # Represents the symbol at the start of the lifeline.
   class LifelineHead
     include GraphicsUtilities
+    include XmlUtilities
 
     # Defaults for various values.
     DEFAULTS = {
@@ -64,8 +67,8 @@ module KangaRuby
 
       g = doc.create_element 'g', stroke: 'black'
 
-      add_new_child(g, 'rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
-      add_new_child(g, 'text', @name, x: text_pos[0], y: text_pos[1], 'font-family' => @font.name, 'font-size' => @font_size)
+      add_child(g, 'rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
+      add_child(g, 'text', @name, x: text_pos[0], y: text_pos[1], 'font-family' => @font.name, 'font-size' => @font_size)
 
       g
     end
@@ -84,10 +87,6 @@ module KangaRuby
     end
 
     private
-
-    def add_new_child(element, *args)
-      element.add_child(element.document.create_element(*args))
-    end
 
     def text_height
       @font.text_height(@font_size)

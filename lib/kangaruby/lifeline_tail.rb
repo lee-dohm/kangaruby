@@ -2,10 +2,13 @@
 # Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
 #
 
+require 'kangaruby/xml_utilities'
+
 module KangaRuby
   # Represents the symbol ending a lifeline.
   class LifelineTail
     include GraphicsUtilities
+    include XmlUtilities
 
     # Draws the tail symbol centered in the given rectangle and returns the node.
     #
@@ -39,8 +42,8 @@ module KangaRuby
       size = minimum_size
       rect = center(rect, size.width, size.height)
 
-      g.add_child(g.document.create_element 'line', x1: rect.left, y1: rect.top, x2: rect.right, y2: rect.bottom)
-      g.add_child(g.document.create_element 'line', x1: rect.right, y1: rect.top, x2: rect.left, y2: rect.bottom)
+      add_child(g, 'line', x1: rect.left, y1: rect.top, x2: rect.right, y2: rect.bottom)
+      add_child(g, 'line', x1: rect.right, y1: rect.top, x2: rect.left, y2: rect.bottom)
     end
 
     # Creates a new SVG `g` element from the document.

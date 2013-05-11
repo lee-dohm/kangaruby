@@ -3,6 +3,7 @@
 #
 
 require 'kangaruby/graphics_utilities'
+require 'kangaruby/xml_utilities'
 
 module KangaRuby
   # Acceptable list of arrow directions.
@@ -11,6 +12,7 @@ module KangaRuby
   # Represents an action in the diagram.
   class Arrow
     include GraphicsUtilities
+    include XmlUtilities
 
     # @return [Symbol] Direction the arrow is pointing.
     attr_reader :direction
@@ -53,10 +55,6 @@ module KangaRuby
     end
 
     private
-
-    def add_child(element, *args)
-      element.add_child(element.document.create_element(*args))
-    end
 
     def draw_left(g, rect)
       add_child(g, 'line', x1: rect.left + 5, y1: center_y(rect) - 5, x2: rect.left, y2: center_y(rect))
