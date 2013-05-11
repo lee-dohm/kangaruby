@@ -20,6 +20,8 @@ When adding new features it is important for you to follow the standard Github c
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+For more detailed instructions, read [this article on Github Help](https://help.github.com/articles/creating-a-pull-request).
+
 ### Coding Style
 
 * We use [rubocop](http://batsov.com/rubocop/) to enforce style.  Follow the guidelines it prescribes.
