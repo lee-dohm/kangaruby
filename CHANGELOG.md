@@ -1,6 +1,7 @@
 
 # CHANGELOG
 
-## 0.0.1 - *Initial version*
+## 0.0.1
 
-* Created the project structure
+* Can parse a very simplistic diagram
+* Can output diagram to SVG
