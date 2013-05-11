@@ -2,6 +2,8 @@
 # Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
 #
 
+require 'kangaruby/graphics_utilities'
+
 module KangaRuby
   # Acceptable list of arrow directions.
   DIRECTIONS = [:left, :right]
