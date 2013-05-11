@@ -3,9 +3,9 @@
 #
 
 describe Arrow do
-  let(:arrow) { Arrow.new(:right) }
-  let(:left_arrow) { Arrow.new(:left) }
-  let(:right_arrow) { Arrow.new(:right) }
+  let(:arrow) { Arrow.new(1, 2) }
+  let(:left_arrow) { Arrow.new(2, 1) }
+  let(:right_arrow) { Arrow.new(1, 2) }
   let(:doc) { Nokogiri::XML::Document.new }
   let(:rect) { Rect.new [100] * 4 }
 
@@ -33,38 +33,40 @@ describe Arrow do
     expect(arrow.style).to eq(:solid)
   end
 
-  it 'has a direction' do
-    expect(arrow.direction).to eq(:right)
+  it 'has a from index' do
+    expect(arrow.from).to eq(1)
   end
 
-  it 'raises an error if direction is something other than left or right' do
-    expect { Arrow.new :foo }.to raise_error(ArgumentError)
+  it 'has a to index' do
+    expect(arrow.to).to eq(2)
   end
 
   it 'raises an error if style is something other than solid or dotted' do
-    expect { Arrow.new :left, :foo }.to raise_error(ArgumentError)
+    expect { Arrow.new 1, 2, :foo }.to raise_error(ArgumentError)
   end
 
   it 'can have a line style assigned on creation' do
-    arrow = Arrow.new :right, :dotted
+    arrow = Arrow.new 1, 2, :dotted
 
     expect(arrow.style).to eq(:dotted)
   end
 
-  it 'can describe its minimum size' do
+  it 'describes its minimum size' do
     expect(arrow.minimum_size).to be_an_instance_of(Size)
     expect(arrow.minimum_size).to eq([10, 10])
   end
 
-  it 'can draw itself to the left' do
+  it 'draws itself to the left' do
     node = left_arrow.draw(rect, doc)
 
     expect(node).to be_equivalent_to(drawn_node_left)
   end
 
-  it 'can draw itself to the right' do
+  it 'draws itself to the right' do
     node = arrow.draw(rect, doc)
 
     expect(node).to be_equivalent_to(drawn_node_right)
   end
+
+  it 'draws itself pointing to the same lifeline that it starts from'
 end
