@@ -3,17 +3,15 @@
 #
 
 describe Diagram do
-  let(:diagram) { Diagram.new }
+  let(:blank_diagram) { Diagram.new }
 
   it 'has a collection of lifelines' do
-    expect(diagram.lifelines).to eq([])
+    expect(blank_diagram.lifelines).to eq([])
   end
 
   it 'has a collection of arrows' do
-    expect(diagram.arrows).to eq([])
+    expect(blank_diagram.arrows).to eq([])
   end
-
-  it 'can describe its minimum size'
 
   it 'can draw itself'
 end
