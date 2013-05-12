@@ -3,9 +3,6 @@
 #
 
 module KangaRuby
-  # Acceptable list of line styles.
-  STYLES = [:solid, :dotted]
-
   # Represents one action in the sequence of actions.
   class Action
     # Name of the participant the action is coming from.

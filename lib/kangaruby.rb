@@ -23,3 +23,8 @@ require 'kangaruby/rect'
 require 'kangaruby/size'
 require 'kangaruby/version'
 require 'kangaruby/xml_utilities'
+
+module KangaRuby
+  # Acceptable list of line styles.
+  STYLES = [:solid, :dotted]
+end
