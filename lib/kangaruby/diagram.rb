@@ -3,7 +3,16 @@
 #
 
 module KangaRuby
-  # Creates a diagram and writes it out to an `SVG` file.  A diagram is represented by a collection of objects.
+  # Creates a diagram by constructing an `SVG` document and returning it as a string.
+  #
+  # @example Basic flow
+  #   diagram = Diagram.new
+  #
+  #   diagram.lifelines << Lifeline.new('Alice')
+  #   diagram.lifelines << Lifeline.new('Bob')
+  #   diagram.arrows << Arrow.new(1, 2)
+  #
+  #   diagram.draw
   class Diagram
     # Set of arrows in the diagram, from top to bottom.
     attr_reader :arrows
