@@ -24,19 +24,16 @@ module KangaRuby
 
     # Returns a node containing the instructions to draw the lifeline.
     #
+    # @param [Nokogiri::XML::Node] node Node within which to insert the drawing instructions.
     # @param [Rect] rect Area within which to draw the lifeline.
-    # @param [Nokogiri::XML::Document] doc XML document object from which to create elements.
-    # @return [Nokogiri::XML::Node] Node containing the instructions.
-    def draw(rect, doc)
-      g = create_group(doc)
+    # @return [nil]
+    def draw(node, rect)
+      g = node.document.create_element('g')
+      node << g
 
-      line, head, tail = create_symbols(rect, doc)
+      create_symbols(g, rect)
 
-      g.add_child(line)
-      g.add_child(head)
-      g.add_child(tail)
-
-      g
+      nil
     end
 
     # Gets the minimum size of the lifeline in pixels.
@@ -58,48 +55,38 @@ module KangaRuby
 
     private
 
-    # Creates a group element.
-    #
-    # @param [Nokogiri::XML::Document] doc Document object to use to create elements.
-    # @return [Nokogiri::XML::Element] SVG `g` element.
-    def create_group(doc)
-      doc.create_element('g')
-    end
-
     # rubocop:disable ParameterLists
 
     # Creates a line element between the two points.
     #
-    # @param [Nokogiri::XML::Document] doc Document object to use to create elements.
+    # @param [Nokogiri::XML::Node] node Node to use to create elements.
     # @param [Integer] x1 `x` coordinate of the first point.
     # @param [Integer] y1 `y` coordinate of the first point.
     # @param [Integer] x2 `x` coordinate of the second point.
     # @param [Integer] y2 `y` coordinate of the second point.
     # @return [Nokogiri::XML::Element] SVG `line` element.
-    def create_line(doc, x1, y1, x2, y2)
-      doc.create_element('line', x1: x1, y1: y1, x2: x2, y2: y2, stroke: 'black', 'stroke-width' => '1')
+    def create_line(node, x1, y1, x2, y2)
+      node.document.create_element('line', x1: x1, y1: y1, x2: x2, y2: y2, stroke: 'black', 'stroke-width' => '1')
     end
     # rubocop:enable ParameterLists
 
     # Create the symbols to be drawn.
     #
+    # @param [Nokogiri::XML::Document] node Node within which to insert the drawing instructions.
     # @param [Rect] rect Area in which to draw the symbols.
-    # @param [Nokogiri::XML::Document] doc Document object with which to create elements.
     # @return [Array<(Nokogiri::XML::Element, Nokogiri::XML::Element, Nokogiri::XML::Element)>]
     #     The `line`, `head` and `tail` symbols.
-    def create_symbols(rect, doc)
+    def create_symbols(node, rect)
       head_rect = head_pos(rect)
       tail_rect = tail_pos(rect)
-
-      head = @head.draw(head_rect, doc)
-      tail = @tail.draw(tail_rect, doc)
 
       x1, y1 = center_point(head_rect)
       x2, y2 = center_point(tail_rect)
 
-      line = create_line(doc, x1, y1, x2, y2)
+      node << create_line(node, x1, y1, x2, y2)
 
-      [line, head, tail]
+      @head.draw(node, head_rect)
+      @tail.draw(node, tail_rect)
     end
 
     # Determines the area within which to draw the head symbol.

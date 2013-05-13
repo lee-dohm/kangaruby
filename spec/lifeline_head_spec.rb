@@ -14,12 +14,14 @@ describe LifelineHead do
   let(:rect) { Rect.new [100] * 4 }
 
   let(:drawn_node) do
-    create_node <<-EOS
-      <g stroke='black'>
-        <rect x='#{rect.x}' y='#{rect.y}' width='#{rect.width}' height='#{rect.height}' fill='white' />
-        <text x='140' y='156' font-family='Abscissa' font-size='12'>#{name}</text>
-      </g>
-EOS
+    create_doc <<-EOS
+      <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='1000' height='1000'>
+        <g stroke='black'>
+          <rect x='#{rect.x}' y='#{rect.y}' width='#{rect.width}' height='#{rect.height}' fill='white' />
+          <text x='140' y='156' font-family='Abscissa' font-size='12'>#{name}</text>
+        </g>
+      </svg>
+    EOS
   end
 
   it 'has a name' do
@@ -61,8 +63,8 @@ EOS
   end
 
   it 'can draw itself' do
-    node = head.draw(rect, doc)
+    head.draw(doc.root, rect)
 
-    expect(node).to be_equivalent_to(drawn_node)
+    expect(doc).to be_equivalent_to(drawn_node)
   end
 end

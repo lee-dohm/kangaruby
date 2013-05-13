@@ -3,26 +3,28 @@
 #
 
 describe Lifeline do
-  let(:doc)      { Nokogiri::XML::Document.new }
+  let(:doc)      { svg }
   let(:font)     { Font.new('fonts/Abscissa.ttf') }
   let(:lifeline) { Lifeline.new(name, font) }
   let(:name)     { 'Alice' }
   let(:rect)     { Rect.new [100] * 4 }
 
   let(:drawn_node) do
-    create_node <<-EOS
-      <g>
-        <line x1='150' y1='109' x2='150' y2='195' stroke='black' stroke-width='1' />
-        <g stroke='black'>
-          <rect x='139' y='100' width='22' height='18' fill='white' />
-          <text x='140' y='115' font-family='Abscissa' font-size='12'>#{name}</text>
+    create_doc <<-EOS
+      <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='1000' height='1000'>
+        <g>
+          <line x1='150' y1='109' x2='150' y2='195' stroke='black' stroke-width='1' />
+          <g stroke='black'>
+            <rect x='139' y='100' width='22' height='18' fill='white' />
+            <text x='140' y='115' font-family='Abscissa' font-size='12'>#{name}</text>
+          </g>
+          <g stroke='black' stroke-width='1'>
+            <line x1='145' y1='190' x2='155' y2='200' />
+            <line x1='155' y1='190' x2='145' y2='200' />
+          </g>
         </g>
-        <g stroke='black' stroke-width='1'>
-          <line x1='145' y1='190' x2='155' y2='200' />
-          <line x1='155' y1='190' x2='145' y2='200' />
-        </g>
-      </g>
-EOS
+      </svg>
+    EOS
   end
 
   it 'has a name' do
@@ -52,8 +54,8 @@ EOS
   end
 
   it 'draws itself' do
-    node = lifeline.draw(rect, doc)
+    lifeline.draw(doc.root, rect)
 
-    expect(node).to be_equivalent_to(drawn_node)
+    expect(doc).to be_equivalent_to(drawn_node)
   end
 end

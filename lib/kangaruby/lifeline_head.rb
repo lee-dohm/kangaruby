@@ -57,20 +57,17 @@ module KangaRuby
       @padding = opts[:padding]
     end
 
-    # Draws the symbol centered in `rect`.
+    # Draws the lifeline head in the area described by `rect` and inserts itself into `node`.
     #
+    # @param [Nokogiri::XML::Document] node Document to use to generate elements.
     # @param [Rect] rect Bounding box to draw within.
-    # @param [Nokogiri::XML::Document] doc Document to use to generate elements.
-    # @return [Nokogiri::XML::Element] SVG group element containing the drawing instructions for the symbol.
-    def draw(rect, doc)
+    def draw(node, rect)
       text_pos = center_text(rect, text_width, @font_size)
 
-      g = doc.create_element 'g', stroke: 'black'
+      g = add_child(node, 'g', stroke: 'black')
 
       add_child(g, 'rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
       add_child(g, 'text', @name, x: text_pos[0], y: text_pos[1], 'font-family' => @font.name, 'font-size' => @font_size)
-
-      g
     end
 
     # Gets the minimum size that the element can be drawn with the given parameters.

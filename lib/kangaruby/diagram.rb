@@ -25,5 +25,21 @@ module KangaRuby
       @arrows = []
       @lifelines = []
     end
+
+    # Draws the diagram.
+    #
+    # @return [String] Text of the `SVG` document.
+    def draw
+      determine_sizes
+      draw_diagram.to_s
+    end
+
+    private
+
+    def determine_sizes
+    end
+
+    def draw_diagram
+    end
   end
 end

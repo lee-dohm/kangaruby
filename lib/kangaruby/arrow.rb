@@ -38,21 +38,18 @@ module KangaRuby
       Size.new 10, 10
     end
 
-    # Draws the arrow.
+    # Draws the arrow inside the area given by `rect` and adds it to `node`.
     #
+    # @param [Nokogiri::XML::Node] node Node within which to place the drawing instructions.
     # @param [Rect] rect Area within which to draw the arrow.
-    # @param [Nokogiri::XML::Document] doc Document used to create elements.
-    # @return [Nokogiri::XML::Node] Instructions for drawing the arrow.
-    def draw(rect, doc)
-      g = doc.create_element 'g', stroke: 'black', 'stroke-width' => '1'
+    def draw(node, rect)
+      g = add_child(node, 'g', stroke: 'black', 'stroke-width' => '1')
 
       if @from < @to
         draw_right(g, rect)
       else
         draw_left(g, rect)
       end
-
-      g
     end
 
     private

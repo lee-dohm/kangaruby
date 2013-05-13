@@ -43,10 +43,18 @@ def actions(*params)
   end
 end
 
+# Creates an XML document object from the given text.
+#
+# @param [String] text XML document description.
+# @return [Nokogiri::XML::Document] XML document reperesentation of the text.
+def create_doc(text)
+  Nokogiri::XML.parse(text)
+end
+
 # Creates a `Nokogiri::XML::Node` from the given text.
 #
-# @param [String] text Text representation to convert.
-# @return [Nokogiri::XML::Node] Nokogiri representation of the text.
+# @param [String] text XML node description.
+# @return [Nokogiri::XML::Node] XML node representation of the text.
 def create_node(text)
   Nokogiri::XML.parse(text).children.first
 end
@@ -57,8 +65,7 @@ end
 def svg
   doc = Nokogiri::XML::Document.new
 
-  node = doc.create_element 'svg', xmlns: 'http://www.w3.org/2000/svg', version: '1.1', width: '1000', height: '1000'
-  doc.add_child node
+  doc.root = doc.create_element 'svg', xmlns: 'http://www.w3.org/2000/svg', version: '1.1', width: '1000', height: '1000'
 
   doc
 end
