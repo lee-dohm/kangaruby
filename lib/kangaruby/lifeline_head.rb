@@ -59,15 +59,23 @@ module KangaRuby
 
     # Draws the lifeline head in the area described by `rect` and inserts itself into `node`.
     #
-    # @param [Nokogiri::XML::Document] node Document to use to generate elements.
-    # @param [Rect] rect Bounding box to draw within.
+    # @param [Nokogiri::XML::Document] node Node within which to insert the drawing instructions.
+    # @param [Rect] rect Area within which to draw the head.
+    # @return [nil]
     def draw(node, rect)
       text_pos = center_text(rect, text_width, @font_size)
 
-      g = add_child(node, 'g', stroke: 'black')
+      g = node.add_child(node.document.create_element('g', stroke: 'black'))
 
-      add_child(g, 'rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
-      add_child(g, 'text', @name, x: text_pos[0], y: text_pos[1], 'font-family' => @font.name, 'font-size' => @font_size)
+      g << g.document.create_element('rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
+      g << g.document.create_element('text',
+                                     @name,
+                                     x: text_pos[0],
+                                     y: text_pos[1],
+                                     'font-family' => @font.name,
+                                     'font-size' => @font_size)
+
+      nil
     end
 
     # Gets the minimum size that the element can be drawn with the given parameters.

@@ -22,7 +22,7 @@ module KangaRuby
       @tail = LifelineTail.new
     end
 
-    # Returns a node containing the instructions to draw the lifeline.
+    # Draws the lifeline within the area defined by `rect` and inserts it into `node`.
     #
     # @param [Nokogiri::XML::Node] node Node within which to insert the drawing instructions.
     # @param [Rect] rect Area within which to draw the lifeline.
@@ -31,7 +31,7 @@ module KangaRuby
       g = node.document.create_element('g')
       node << g
 
-      create_symbols(g, rect)
+      draw_lifeline(g, rect)
 
       nil
     end
@@ -55,38 +55,24 @@ module KangaRuby
 
     private
 
-    # rubocop:disable ParameterLists
-
-    # Creates a line element between the two points.
-    #
-    # @param [Nokogiri::XML::Node] node Node to use to create elements.
-    # @param [Integer] x1 `x` coordinate of the first point.
-    # @param [Integer] y1 `y` coordinate of the first point.
-    # @param [Integer] x2 `x` coordinate of the second point.
-    # @param [Integer] y2 `y` coordinate of the second point.
-    # @return [Nokogiri::XML::Element] SVG `line` element.
-    def create_line(node, x1, y1, x2, y2)
-      node.document.create_element('line', x1: x1, y1: y1, x2: x2, y2: y2, stroke: 'black', 'stroke-width' => '1')
-    end
-    # rubocop:enable ParameterLists
-
-    # Create the symbols to be drawn.
+    # Draws the head, lifeline and tail within the area given by `rect` and inserts the instructions into `node`.
     #
     # @param [Nokogiri::XML::Document] node Node within which to insert the drawing instructions.
     # @param [Rect] rect Area in which to draw the symbols.
-    # @return [Array<(Nokogiri::XML::Element, Nokogiri::XML::Element, Nokogiri::XML::Element)>]
-    #     The `line`, `head` and `tail` symbols.
-    def create_symbols(node, rect)
+    # @return [nil]
+    def draw_lifeline(node, rect)
       head_rect = head_pos(rect)
       tail_rect = tail_pos(rect)
 
       x1, y1 = center_point(head_rect)
       x2, y2 = center_point(tail_rect)
 
-      node << create_line(node, x1, y1, x2, y2)
+      node << node.document.create_element('line', x1: x1, y1: y1, x2: x2, y2: y2, stroke: 'black', 'stroke-width' => '1')
 
       @head.draw(node, head_rect)
       @tail.draw(node, tail_rect)
+
+      nil
     end
 
     # Determines the area within which to draw the head symbol.

@@ -10,7 +10,7 @@ module KangaRuby
     include GraphicsUtilities
     include XmlUtilities
 
-    # Draws the tail symbol centered in the given rectangle and inserts the drawing instructions into `node`.
+    # Draws the lifeline tail in the area described by `rect` and inserts the drawing instructions into `node`.
     #
     # @param [Nokogiri::XML::Node] node Node within which to place the drawing instructions.
     # @param [Rect] rect Bounding box within which to draw.
