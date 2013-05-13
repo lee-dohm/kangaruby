@@ -7,7 +7,6 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-rubocop'
-  gem 'guard-yard'
   gem 'redcarpet'
 
   # For users of OS X, include the proper requirements for file system events and notifications
