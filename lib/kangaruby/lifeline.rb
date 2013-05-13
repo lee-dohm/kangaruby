@@ -57,7 +57,7 @@ module KangaRuby
 
     # Draws the head, lifeline and tail within the area given by `rect` and inserts the instructions into `node`.
     #
-    # @param [Nokogiri::XML::Document] node Node within which to insert the drawing instructions.
+    # @param [Nokogiri::XML::Node] node Node within which to insert the drawing instructions.
     # @param [Rect] rect Area in which to draw the symbols.
     # @return [nil]
     def draw_lifeline(node, rect)
