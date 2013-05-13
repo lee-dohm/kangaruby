@@ -59,7 +59,11 @@ namespace 'doc' do
     Dir['*.md', 'documentation/**/*'].reject { |f| f == 'README.md' }
   end
 
-  YARD::Rake::YardocTask.new
+  YARD::Rake::YardocTask.new do |yard|
+    # This option isn't in the .yardopts file because we only want private methods in the locally-generated
+    # documentation.
+    yard.options = ['--private']
+  end
   task :yard => '.yardopts'
 
 
