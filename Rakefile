@@ -14,7 +14,7 @@ require 'kangaruby/version'
 
 include Term::ANSIColor
 
-CLEAN.include('.yardoc')
+CLEAN.include('.yardoc', '*.log')
 CLOBBER.include('doc', 'pkg')
 
 # Standard tasks
