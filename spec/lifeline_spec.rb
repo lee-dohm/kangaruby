@@ -53,6 +53,10 @@ describe Lifeline do
     expect(lifeline.minimum_size).to eq([expected_width, expected_height])
   end
 
+  it 'expects return value from #minimum_size to be a Size object' do
+    expect(lifeline.minimum_size).to be_an_instance_of(Size)
+  end
+
   it 'draws itself' do
     lifeline.draw(doc.root, rect)
 

@@ -43,7 +43,7 @@ module KangaRuby
       w = [@head.minimum_size[0], @tail.minimum_size[0]].max
       h = @head.minimum_size[1] + @tail.minimum_size[1]
 
-      [w, h]
+      Size.new(w, h)
     end
 
     # Gets the name for the lifeline.
