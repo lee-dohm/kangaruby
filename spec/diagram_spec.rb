@@ -29,13 +29,11 @@ describe Diagram do
     expect(diagram.arrows).to eq([])
   end
 
-  it 'can draw itself'
+  it 'can draw itself' do
+    diagram.lifelines << Lifeline.new('Alice', font)
+    diagram.lifelines << Lifeline.new('Bob', font)
+    diagram.arrows << Arrow.new(0, 1)
 
-  # it 'can draw itself' do
-  #   diagram.lifelines << Lifeline.new('Alice', font)
-  #   diagram.lifelines << Lifeline.new('Bob', font)
-  #   diagram.arrows << Arrow.new(0, 1)
-
-  #   expect(diagram.draw).to be_equivalent_to(drawn_diagram)
-  # end
+    expect(diagram.draw).to be_equivalent_to(drawn_diagram)
+  end
 end

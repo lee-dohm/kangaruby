@@ -36,10 +36,28 @@ module KangaRuby
 
     private
 
+    # rubocop:disable ReduceArguments
+    # In this case, `sum` and `size` are more clear.
+
+    # Determines the sizes of all the components of the diagram.
     def determine_sizes
+      @lifeline_sizes = @lifelines.map { |line| line.minimum_size }
+      @arrow_sizes = @arrows.map { |arrow| arrow.minimum_size }
+
+      @width = @lifeline_sizes.reduce(0) { |sum, size| sum += size.width }
+      @height = @lifeline_sizes.map { |size| size.height }.max + @arrow_sizes.reduce(0) { |sum, size| sum += size.width }
     end
 
+    # rubocop:enable ReduceArguments
+
+    # Uses the sizes of the various components to draw the diagram.
     def draw_diagram
+      doc = Nokogiri::XML::Document.new
+      doc.root = doc.create_element('svg',
+                                    xmlns: 'http://www.w3.org/2000/svg',
+                                    version: '1.1',
+                                    width: @width.to_s,
+                                    height: @height.to_s)
     end
   end
 end
