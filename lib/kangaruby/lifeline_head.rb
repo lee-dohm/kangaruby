@@ -93,10 +93,12 @@ module KangaRuby
 
     private
 
+    # @return Height of a single line of text in pixels.
     def text_height
       @font.text_height(@font_size)
     end
 
+    # @return Width of the text in pixels.
     def text_width
       @font.text_width(@name, @font_size)
     end
