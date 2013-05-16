@@ -11,7 +11,12 @@ group :development do
 
   # For users of OS X, include the proper requirements for file system events and notifications
   if RUBY_PLATFORM.downcase.include?('darwin')
-    gem 'growl'
+    if `sw_vers -productVersion` =~ /^10\.8/
+      gem 'terminal-notifier-guard'
+    else
+      gem 'growl'
+    end
+
     gem 'rb-fsevent'
   end
 end
