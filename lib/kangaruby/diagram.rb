@@ -10,7 +10,7 @@ module KangaRuby
   #
   #   diagram.lifelines << Lifeline.new('Alice')
   #   diagram.lifelines << Lifeline.new('Bob')
-  #   diagram.arrows << Arrow.new(1, 2)
+  #   diagram.arrows << Arrow.new(0, 1)
   #
   #   diagram.draw
   class Diagram
