@@ -4,7 +4,7 @@
 
 describe Diagram do
   let(:diagram) { Diagram.new }
-  let(:font) { Font.new('fonts/Abscissa.ttf') }
+  let(:font) { Font.new('Abscissa') }
 
   let(:drawn_diagram) do
     create_doc <<-EOS
