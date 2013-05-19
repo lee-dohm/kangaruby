@@ -69,6 +69,6 @@ To see what has changed in recent versions of KangaRuby, see the [CHANGELOG](CHA
 
 ## Copyright
 
-The "Abscissa" font family is Copyright (c) 1998-2013 [1001 Free Fonts](http://www.1001freefonts.com). All Rights Reserved.
+The "Abscissa" font family is Copyright &copy; 1998-2013 [1001 Free Fonts](http://www.1001freefonts.com). All Rights Reserved.
 
 All else is Copyright &copy; 2013 [Lee Dohm](https://github.com/lee-dohm), [Lifted Studios](https://github.com/lifted-studios).  See [LICENSE](LICENSE.md) for details.
