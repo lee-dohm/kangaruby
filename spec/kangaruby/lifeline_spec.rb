@@ -57,6 +57,14 @@ describe Lifeline do
     expect(lifeline.minimum_size).to be_an_instance_of(Size)
   end
 
+  it 'gives the height of its head' do
+    expect(lifeline.head_height).to eq(lifeline.head.minimum_size.height)
+  end
+
+  it 'gives the height of its tail' do
+    expect(lifeline.tail_height).to eq(lifeline.tail.minimum_size.height)
+  end
+
   it 'draws itself' do
     lifeline.draw(doc.root, rect)
 

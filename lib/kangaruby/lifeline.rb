@@ -36,6 +36,11 @@ module KangaRuby
       nil
     end
 
+    # @return Height of the head symbol.
+    def head_height
+      @head.minimum_size.height
+    end
+
     # Gets the minimum size of the lifeline in pixels.
     #
     # @return [Array] Minimum size width and height in pixels.
@@ -51,6 +56,11 @@ module KangaRuby
     # @return [String] Name of the lifeline.
     def name
       @head.name
+    end
+
+    # @return Height of the tail symbol.
+    def tail_height
+      @tail.minimum_size.height
     end
 
     private
