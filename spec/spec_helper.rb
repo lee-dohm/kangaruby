@@ -13,7 +13,7 @@ if ENV['TRAVIS'] || ENV['COVERAGE']
 
   SimpleCov.start do
     add_filter 'grammar/'
-    add_filter 'spec/support/'
+    add_filter 'spec/'
   end
 end
 
