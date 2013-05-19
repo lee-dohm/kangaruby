@@ -31,8 +31,6 @@ module KangaRuby
       else
         @font = TTFunk::File.open(File.join(KangaRuby::FONTS_DIR, name_or_path + '.ttf'))
       end
-
-      @char_widths = []
     end
 
     # Determines if `other` is equivalent to this font.
@@ -51,7 +49,7 @@ module KangaRuby
       @name ||= @font.name.postscript_name
     end
 
-    # Visual height of one line of text.
+    # Visual height of one line of text at a certain size.
     #
     # @param [Integer] size Size of the text in points.
     # @return [Integer] Height of a line of text in pixels.
@@ -59,7 +57,7 @@ module KangaRuby
       ((ascender - descender + line_gap) * size / ppem).to_i
     end
 
-    # Gets the width of the given string of text.
+    # Visual width of a string of text at a certain size.
     #
     # @param [String] text Text to get the width for.
     # @param [Integer] size Size of the text in points.
@@ -92,6 +90,7 @@ module KangaRuby
       # Work around these by always returning a zero width.
       return 0 if code == 10
 
+      @char_widths = [] if @char_widths.nil?
       @char_widths[code] ||= hmtx.widths[cmap[code]]
     end
 
