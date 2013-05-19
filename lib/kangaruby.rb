@@ -33,12 +33,20 @@ module KangaRuby
 
   # Converts `KangaRuby` text into an `SVG` graphic.
   #
-  # @param [String] path Path to the text.
+  # @example Basic usage
+  #   svg = KangaRuby.convert('Alice->Bob')
+  #
+  # @param [IO, String] input KangaRuby language description of the image.
   # @return [String] `SVG` description of the image.
-  def convert(path)
-    parser = Parser.new
-    model = parser.parse(IO.readlines(path))
+  def convert(input)
+    draw(parse(input))
+  end
 
+  # Draws the model.
+  #
+  # @param [Model] model Model describing the diagram.
+  # @return [String] `SVG` description of the diagram.
+  def draw(model)
     diagram = Diagram.new
 
     model.participants.each { |p| diagram.lifelines << Lifeline.new(p.name) }
@@ -49,5 +57,15 @@ module KangaRuby
     end
 
     diagram.draw
+  end
+
+  # Parses the input into the model describing the input.
+  #
+  # @param [IO, String] input KangaRuby language description of the model.
+  # @return [Model] Object representing the model.
+  def parse(input)
+    text = input.kind_of?(IO) ? input.readlines : input
+
+    Parser.new.parse(text)
   end
 end
