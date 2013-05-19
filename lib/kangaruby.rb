@@ -30,4 +30,24 @@ module KangaRuby
 
   # Acceptable list of line styles.
   STYLES = [:solid, :dotted]
+
+  # Converts `KangaRuby` text into an `SVG` graphic.
+  #
+  # @param [String] path Path to the text.
+  # @return [String] `SVG` description of the image.
+  def convert(path)
+    parser = Parser.new
+    model = parser.parse(IO.readlines(path))
+
+    diagram = Diagram.new
+
+    model.participants.each { |p| diagram.lifelines << Lifeline.new(p.name) }
+    model.actions.each do |a|
+      from_index = diagram.lifelines.find_index { |line| line.name == a.from }
+      to_index = diagram.lifelines.find_index { |line| line.name == a.to }
+      diagram.arrows << Arrow.new(from_index, to_index)
+    end
+
+    diagram.draw
+  end
 end
