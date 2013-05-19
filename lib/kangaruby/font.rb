@@ -24,9 +24,14 @@ module KangaRuby
   class Font
     # Opens the given font.
     #
-    # @param [String] path Path to the font.
-    def initialize(path)
-      @font = TTFunk::File.open(path)
+    # @param [String] name_or_path Name of the font or the path to it.
+    def initialize(name_or_path)
+      if name_or_path =~ /\.ttf$/
+        @font = TTFunk::File.open(name_or_path)
+      else
+        @font = TTFunk::File.open(File.join(KangaRuby::FONTS_DIR, name_or_path + '.ttf'))
+      end
+
       @char_widths = []
     end
 

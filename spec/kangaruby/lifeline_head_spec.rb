@@ -8,7 +8,7 @@ describe LifelineHead do
   let(:default_padding) { 0 }
   let(:default_point_size) { 12 }
   let(:doc) { svg }
-  let(:font) { Font.new('./fonts/Abscissa.ttf') }
+  let(:font) { Font.new('Abscissa') }
   let(:head) { LifelineHead.new(name, font) }
   let(:name) { 'Alice' }
   let(:rect) { Rect.new [100] * 4 }

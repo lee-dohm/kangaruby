@@ -4,7 +4,7 @@
 
 describe Lifeline do
   let(:doc)      { svg }
-  let(:font)     { Font.new('fonts/Abscissa.ttf') }
+  let(:font)     { Font.new('Abscissa') }
   let(:lifeline) { Lifeline.new(name, font) }
   let(:name)     { 'Alice' }
   let(:rect)     { Rect.new [100] * 4 }
