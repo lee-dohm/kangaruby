@@ -3,6 +3,9 @@ AllCops:
   Excludes:
     - grammar/**
 
+AmpersandsPipesVsAndOr:
+  Enabled: false
+
 Encoding:
   Enabled: false
 
