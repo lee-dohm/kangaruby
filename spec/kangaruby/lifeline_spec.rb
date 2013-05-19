@@ -5,7 +5,7 @@
 describe Lifeline do
   let(:doc)      { svg }
   let(:font)     { Font.new('Abscissa') }
-  let(:lifeline) { Lifeline.new(name, font) }
+  let(:lifeline) { Lifeline.new(name) }
   let(:name)     { 'Alice' }
   let(:rect)     { Rect.new [100] * 4 }
 
@@ -34,7 +34,7 @@ describe Lifeline do
   it 'has a head' do
     expect(lifeline.head).to_not be_nil
     expect(lifeline.head.name).to eq('Alice')
-    expect(lifeline.head.font).to be(font)
+    expect(lifeline.head.font).to eq(font)
   end
 
   it 'has a tail' do

@@ -17,8 +17,8 @@ module KangaRuby
     #
     # @param [String] name Name for the lifeline.
     # @param [Font] font Font object to use to draw the name.
-    def initialize(name, font)
-      @head = LifelineHead.new(name, font)
+    def initialize(name, font = nil)
+      @head = font ? LifelineHead.new(name, font) : LifelineHead.new(name)
       @tail = LifelineTail.new
     end
 
