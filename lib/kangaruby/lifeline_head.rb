@@ -45,7 +45,7 @@ module KangaRuby
     # @option opts [Integer] :font_size Font size for the name.
     # @option opts [Integer] :margin Border outside the box in pixels.
     # @option opts [Integer] :padding Inside border between the box and the name in pixels.
-    def initialize(name, font, opts = {})
+    def initialize(name, font = Font.new('Abscissa'), opts = {})
       @name = name
       @font = font
 

@@ -12,7 +12,7 @@ describe Font do
   end
 
   it 'can be constructed using a path to a font' do
-    font = Font.new './fonts/Abscissa.ttf'
+    font = Font.new 'fonts/Abscissa.ttf'
 
     expect(font).to_not be_nil
   end
@@ -27,5 +27,9 @@ describe Font do
 
   it 'can calculate the height of a line of text in pixels' do
     expect(font.text_height(points)).to eq(24)
+  end
+
+  it 'is equal to another font of the same name' do
+    expect(font).to eq(Font.new('fonts/Abscissa.ttf'))
   end
 end

@@ -9,7 +9,7 @@ describe LifelineHead do
   let(:default_point_size) { 12 }
   let(:doc) { svg }
   let(:font) { Font.new('Abscissa') }
-  let(:head) { LifelineHead.new(name, font) }
+  let(:head) { LifelineHead.new(name) }
   let(:name) { 'Alice' }
   let(:rect) { Rect.new [100] * 4 }
 
@@ -29,7 +29,7 @@ describe LifelineHead do
   end
 
   it 'has a font' do
-    expect(head.font).to be(font)
+    expect(head.font).to eq(font)
   end
 
   it 'has a margin value' do

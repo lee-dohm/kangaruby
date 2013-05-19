@@ -35,6 +35,15 @@ module KangaRuby
       @char_widths = []
     end
 
+    # Determines if `other` is equivalent to this font.
+    #
+    # @param [Font] other `Font` to be compared to.
+    # @return [true] if `other` is a `Font` and has the same name as this font.
+    # @return [false] if either is not true.
+    def ==(other)
+      other.kind_of?(Font) && name == other.name
+    end
+
     # Gets the name of the font.
     #
     # @return [String] Name of the font.
