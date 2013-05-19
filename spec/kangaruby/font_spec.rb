@@ -32,4 +32,8 @@ describe Font do
   it 'is equal to another font of the same name' do
     expect(font).to eq(Font.new('fonts/Abscissa.ttf'))
   end
+
+  it 'is not equal to a font of a different name' do
+    expect(font).to_not eq(Font.new('fonts/AbscissaBold.ttf'))
+  end
 end
