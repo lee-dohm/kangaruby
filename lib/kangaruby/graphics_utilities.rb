@@ -11,7 +11,7 @@ module KangaRuby
     # @param width Width of the new rectangle.
     # @param height Height of the new rectangle.
     # @return [Rect] New bounding box.
-    # @raise [ArgumentError] if `rect`, `width` or `height` is nil.
+    # @raise [ArgumentError] if `rect`, `width` or `height` is `nil`.
     def center(rect, width, height)
       raise ArgumentError, 'rect cannot be nil' if rect.nil?
       raise ArgumentError, 'width cannot be nil' if width.nil?
@@ -27,7 +27,7 @@ module KangaRuby
     # @param [Rect] rect Area within which to center the object.
     # @param width Width of the object to center.
     # @param height Height of the object to center.
-    # @return [Array<(Integer, Integer)>] `x` and `y` coordinates to use for the object.
+    # @return [Array(Integer, Integer)] `x` and `y` coordinates to use for the object.
     def center_point(rect, width = 0, height = 0)
       x = center_x(rect, width)
       y = center_y(rect, height)
@@ -44,8 +44,8 @@ module KangaRuby
     # @param [Rect] rect Space within which to center the text.
     # @param text_width Width of the text in pixels.
     # @param font_size Size of the font in pixels.
-    # @return [Array<(Integer, Integer)>] `x` and `y` coordinates to use for the `text` element.
-    # @raise [ArgumentError] if `rect`, `text_width` or `font_size` are `nil`.
+    # @return [Array(Integer, Integer)] `x` and `y` coordinates to use for the `text` element.
+    # @raise [ArgumentError] if `rect`, `text_width` or `font_size` is `nil`.
     def center_text(rect, text_width, font_size)
       raise ArgumentError, 'rect cannot be nil' if rect.nil?
       raise ArgumentError, 'text_width cannot be nil' if text_width.nil?

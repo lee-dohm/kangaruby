@@ -38,6 +38,7 @@ module KangaRuby
   #
   # @param [IO, String] input KangaRuby language description of the image.
   # @return [String] `SVG` description of the image.
+  # @raise [ParseError] When there is an error parsing `input`.
   def convert(input)
     draw(parse(input))
   end
@@ -63,6 +64,7 @@ module KangaRuby
   #
   # @param [IO, String] input KangaRuby language description of the model.
   # @return [Model] Object representing the model.
+  # @raise [ParseError] When there is an error parsing `input`.
   def parse(input)
     text = input.kind_of?(IO) ? input.readlines : input
 

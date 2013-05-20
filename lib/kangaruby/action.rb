@@ -3,7 +3,7 @@
 #
 
 module KangaRuby
-  # Represents one action in the sequence of actions.
+  # Represents an action in the diagram.
   class Action
     # Name of the participant the action is coming from.
     attr_reader :from
