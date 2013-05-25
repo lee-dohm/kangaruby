@@ -45,7 +45,9 @@ namespace 'test' do
     Rake::Task['test:spec'].execute
   end
 
-  RSpec::Core::RakeTask.new
+  RSpec::Core::RakeTask.new do |spec|
+    spec.verbose = false
+  end
 end
 
 namespace 'doc' do
