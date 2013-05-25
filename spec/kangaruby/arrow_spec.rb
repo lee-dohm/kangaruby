@@ -3,6 +3,9 @@
 #
 
 describe Arrow do
+  let(:default_arrow_head_height) { 10 }
+  let(:default_arrow_head_width) { 5 }
+
   let(:arrow) { Arrow.new(1, 2) }
   let(:left_arrow) { Arrow.new(2, 1) }
   let(:right_arrow) { Arrow.new(1, 2) }
@@ -45,6 +48,11 @@ describe Arrow do
     expect(arrow.to).to eq(2)
   end
 
+  it 'has arrow head dimensions' do
+    expect(arrow.head_height).to eq(default_arrow_head_height)
+    expect(arrow.head_width).to eq(default_arrow_head_width)
+  end
+
   it 'raises an error if style is something other than solid or dotted' do
     expect { Arrow.new 1, 2, :foo }.to raise_error(ArgumentError)
   end
@@ -57,7 +65,7 @@ describe Arrow do
 
   it 'describes its minimum size' do
     expect(arrow.minimum_size).to be_an_instance_of(Size)
-    expect(arrow.minimum_size).to eq([10, 10])
+    expect(arrow.minimum_size).to eq([default_arrow_head_width * 2, default_arrow_head_height])
   end
 
   it 'draws itself to the left' do
