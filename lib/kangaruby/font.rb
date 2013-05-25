@@ -31,6 +31,8 @@ module KangaRuby
       else
         @font = TTFunk::File.open(File.join(KangaRuby::FONTS_DIR, name_or_path + '.ttf'))
       end
+
+      @char_widths = nil
     end
 
     # Determines if `other` is equivalent to this font.
