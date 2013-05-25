@@ -1,5 +1,5 @@
 
-guard 'rspec' do
+guard 'rspec', all_after_pass: true do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^spec/support/.+\.rb$}) { "spec" }
   watch(%r{^lib/(.+/)?(.+)\.rb$})  { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
