@@ -98,7 +98,8 @@ module KangaRuby
     #
     # @return [Array] Unicode character map.
     def cmap
-      @cmap ||= @font.cmap.unicode.first or raise MissingUnicodeMapError
+      raise MissingUnicodeMapError unless @cmap ||= @font.cmap.unicode.first
+      @cmap
     end
 
     # Gets the distance from the baseline to the bottomost point of the em-box.  This
