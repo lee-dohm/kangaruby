@@ -11,6 +11,13 @@ module KangaRuby
     include GraphicsUtilities
     include XmlUtilities
 
+    # Default visual styling.
+    DEFAULTS = {
+      height: 10,
+      style: :solid,
+      width: 5
+    }
+
     # @return [Integer] Index of the lifeline from which the arrow starts.
     attr_reader :from
 
@@ -28,15 +35,21 @@ module KangaRuby
 
     # @param [Integer] from Index of the lifeline from which the arrow starts.
     # @param [Integer] to Index of the lifeline to which the arrow points.
-    # @param [Symbol] style Line style to use.
-    def initialize(from, to, style = :solid)
-      raise ArgumentError, 'Style must be either :solid or :dotted' unless STYLES.include? style
+    # @param [Hash] opts Optional arguments.
+    # @option opts [Integer] :height Height of the arrow head.
+    # @option opts [:solid, :dotted] :style Style of line for the arrow.
+    # @option opts [Integer] :width Width of the arrow head.
+    # @raise [ArgumentError] When the line style is not valid.
+    def initialize(from, to, opts = {})
+      opts = DEFAULTS.merge(opts)
+      raise ArgumentError, 'Style must be either :solid or :dotted' unless STYLES.include?(opts[:style])
 
-      @head_height = 10
-      @head_width = 5
       @from = from
-      @style = style
       @to = to
+
+      @head_height = opts[:height]
+      @style = opts[:style]
+      @head_width = opts[:width]
     end
 
     # Returns the minimum size of the arrow.

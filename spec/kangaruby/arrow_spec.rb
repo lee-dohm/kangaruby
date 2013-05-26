@@ -53,12 +53,19 @@ describe Arrow do
     expect(arrow.head_width).to eq(default_arrow_head_width)
   end
 
+  it 'allows head height and width to be set at creation' do
+    arrow = Arrow.new(1, 2, height: 50, width: 50)
+
+    expect(arrow.head_width).to eq(50)
+    expect(arrow.head_height).to eq(50)
+  end
+
   it 'raises an error if style is something other than solid or dotted' do
-    expect { Arrow.new 1, 2, :foo }.to raise_error(ArgumentError)
+    expect { Arrow.new(1, 2, style: :foo) }.to raise_error(ArgumentError)
   end
 
   it 'can have a line style assigned on creation' do
-    arrow = Arrow.new 1, 2, :dotted
+    arrow = Arrow.new(1, 2, style: :dotted)
 
     expect(arrow.style).to eq(:dotted)
   end
