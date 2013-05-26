@@ -69,4 +69,30 @@ describe GraphicsUtilities do
       expect(pos[1]).to eq(156)
     end
   end
+
+  context '#validate_color' do
+    it 'returns true with a valid color name' do
+      expect(test.valid_color?('black')).to be_true
+    end
+
+    it 'returns false with an invalid color name' do
+      expect(test.valid_color?('foo')).to be_false
+    end
+
+    it 'returns true with a valid three-digit color code' do
+      expect(test.valid_color?('#000')).to be_true
+    end
+
+    it 'returns false with an invalid three-digit color code' do
+      expect(test.valid_color?('#GGG')).to be_false
+    end
+
+    it 'returns true with a valid six-digit color code' do
+      expect(test.valid_color?('#000000')).to be_true
+    end
+
+    it 'returns false with an invalid six-digit color code' do
+      expect(test.valid_color?('#GGGGGG')).to be_false
+    end
+  end
 end

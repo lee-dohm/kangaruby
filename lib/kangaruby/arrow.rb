@@ -13,10 +13,15 @@ module KangaRuby
 
     # Default visual styling.
     DEFAULTS = {
+      color: 'black',
       height: 10,
       style: :solid,
+      thickness: 1,
       width: 5
     }
+
+    # @return [String] Color of the arrow.
+    attr_reader :color
 
     # @return [Integer] Index of the lifeline from which the arrow starts.
     attr_reader :from
@@ -29,6 +34,9 @@ module KangaRuby
 
     # @return [Symbol] Line style to use for drawing the arrow.
     attr_reader :style
+
+    # @return [Integer] Thickness of the lines of the arrow in pixels.
+    attr_reader :thickness
 
     # @return [Integer] Index of the lifeline to which the arrow points.
     attr_reader :to
@@ -43,12 +51,15 @@ module KangaRuby
     def initialize(from, to, opts = {})
       opts = DEFAULTS.merge(opts)
       raise ArgumentError, 'Style must be either :solid or :dotted' unless STYLES.include?(opts[:style])
+      raise ArgumentError, 'Color must be a valid SVG color string' unless valid_color?(opts[:color])
 
       @from = from
       @to = to
 
+      @color = opts[:color]
       @head_height = opts[:height]
       @style = opts[:style]
+      @thickness = opts[:thickness]
       @head_width = opts[:width]
     end
 
@@ -64,7 +75,7 @@ module KangaRuby
     # @param [Nokogiri::XML::Node] node Node within which to place the drawing instructions.
     # @param [Rect] rect Area within which to draw the arrow.
     def draw(node, rect)
-      g = add_child(node, 'g', stroke: 'black', 'stroke-width' => '1')
+      g = add_child(node, 'g', stroke: @color, 'stroke-width' => @thickness.to_s)
 
       if @from < @to
         draw_right(g, rect)

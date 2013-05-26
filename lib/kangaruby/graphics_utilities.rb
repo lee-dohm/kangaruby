@@ -3,6 +3,22 @@
 #
 
 module KangaRuby
+  # SVG recognized color names
+  COLOR_NAMES = %w(aliceblue aqua aquamarine azure beige bisque black blanchedalmond blue blueviolet brown burlywood cadetblue
+                   chartreuse chocolate coral cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldenrod darkgray
+                   darkgreen darkgrey darkkhaki darkmagenta darkolivegreen darkorange darkorchid darkred darksalmon darkseagreen
+                   darkslateblue darkslategray darkslategrey darkturquoise darkviolet deeppink deepskyblue dimgray dimgrey
+                   dodgerblue firebrick floralwhite forestgreen fuchsia gainsboro ghostwhite gold goldenrod gray grey green
+                   greenyellow honeydew hotpink indianred indigo ivory khaki lavender lavenderblush lawngreen lemonchiffon lightblue
+                   lightcoral lightcyan lightgoldenrodyellow lightgray lightgreen lightgrey lightpink lightsalmon lightseagreen
+                   lightskyblue lightslategray lightslategrey lightsteelblue lightyellow lime limegreen linen magenta maroon
+                   mediumaquamarine mediumblue mediumorchid mediumpurple mediumseagreen mediumslateblue mediumspringgreen
+                   mediumturquoise mediumvioletred midnightblue mintcream mistyrose moccasin navajowhite navy oldlace olive
+                   olivedrab orange orangered orchid palegoldenrod palegreen paleturquoise palevioletred papayawhip peachpuff peru
+                   pink plum powderblue purple red rosybrown royalblue saddlebrown salmon sandybrown seagreen seashell sienna silver
+                   skyblue slateblue slategray slategrey snow springgreen steelblue tan teal thistle tomato turquoise violet wheat
+                   white whitesmoke yellow yellowgreen)
+
   # A mixin of utility methods useful to all graphical objects.
   module GraphicsUtilities
     # Creates a new rectangle of the given `width` and `height` centered within `rect`.
@@ -73,6 +89,19 @@ module KangaRuby
     # @return [Integer] `y` coordinate to use.
     def center_y(rect, height = 0)
       (rect.bottom - rect.top - height) / 2 + rect.top
+    end
+
+    # Indicates whether `color` is a valid SVG color string.
+    #
+    # @param [String] color Color value to validate.
+    # @return [Boolean] Flag indicating if `color` is a valid SVG color value.
+    def valid_color?(color)
+      if color[0] == '#'
+        return false if color.length != 4 && color.length != 7
+        return color =~ /#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?/
+      end
+
+      COLOR_NAMES.include?(color)
     end
   end
 end
