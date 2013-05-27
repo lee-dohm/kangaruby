@@ -73,40 +73,29 @@ module KangaRuby
     # @param [Nokogiri::XML::Node] node Node within which to place the drawing instructions.
     # @param [Rect] rect Area within which to draw the arrow.
     def draw(node, rect)
-      g = node.document.create_element('g', stroke: @color, 'stroke-width' => @thickness.to_s)
-      node << g
-
-      if @from < @to
-        draw_right(g, rect)
-      else
-        draw_left(g, rect)
+      Nokogiri::XML::Builder.with(node) do |xml|
+        xml.g(stroke: @color, 'stroke-width' => @thickness.to_s) do
+          if @from < @to
+            draw_right(xml, rect)
+          else
+            draw_left(xml, rect)
+          end
+        end
       end
     end
 
     private
 
-    # Draws the arrow pointing to the left.
-    #
-    # @param [Nokogiri::XML::Node] g Node that will contain the arrow draw instructions.
-    # @param [Rect] rect Area within which to draw the arrow.
-    def draw_left(g, rect)
-      Nokogiri::XML::Builder.with(g) do |xml|
-        xml.line(x1: rect.left + @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.left, y2: center_y(rect))
-        xml.line(x1: rect.left + @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.left, y2: center_y(rect))
-        xml.line(x1: rect.right, y1: center_y(rect), x2: rect.left, y2: center_y(rect))
-      end
+    def draw_left(xml, rect)
+      xml.line(x1: rect.left + @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.left, y2: center_y(rect))
+      xml.line(x1: rect.left + @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.left, y2: center_y(rect))
+      xml.line(x1: rect.right, y1: center_y(rect), x2: rect.left, y2: center_y(rect))
     end
 
-    # Draws the arrow pointing to the right.
-    #
-    # @param [Nokogiri::XML::Node] g Node that will contain the arrow draw instructions.
-    # @param [Rect] rect Area within which to draw the arrow.
-    def draw_right(g, rect)
-      Nokogiri::XML::Builder.with(g) do |xml|
-        xml.line(x1: rect.right - @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.right, y2: center_y(rect))
-        xml.line(x1: rect.right - @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.right, y2: center_y(rect))
-        xml.line(x1: rect.left, y1: center_y(rect), x2: rect.right, y2: center_y(rect))
-      end
+    def draw_right(xml, rect)
+      xml.line(x1: rect.right - @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.right, y2: center_y(rect))
+      xml.line(x1: rect.right - @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.right, y2: center_y(rect))
+      xml.line(x1: rect.left, y1: center_y(rect), x2: rect.right, y2: center_y(rect))
     end
   end
 end
