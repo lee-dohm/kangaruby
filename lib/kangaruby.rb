@@ -22,7 +22,6 @@ require 'kangaruby/participant'
 require 'kangaruby/rect'
 require 'kangaruby/size'
 require 'kangaruby/version'
-require 'kangaruby/xml_utilities'
 
 module KangaRuby
   # Directory containing the fonts for the gem.

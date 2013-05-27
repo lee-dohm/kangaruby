@@ -38,7 +38,7 @@ module KangaRuby
       Rect.new x, y, width, height
     end
 
-    # Determines the `x` and `y` coordinates to use to center something of the given width and height.
+    # Determines the `x` and `y` coordinates to use to center something of the given `width` and `height`.
     #
     # @param [Rect] rect Area within which to center the object.
     # @param width Width of the object to center.
@@ -96,10 +96,7 @@ module KangaRuby
     # @param [String] color Color value to validate.
     # @return [Boolean] Flag indicating if `color` is a valid SVG color value.
     def valid_color?(color)
-      if color[0] == '#'
-        return false if color.length != 4 && color.length != 7
-        return color =~ /#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?/
-      end
+      return color =~ /#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?/ if color[0] == '#'
 
       COLOR_NAMES.include?(color)
     end

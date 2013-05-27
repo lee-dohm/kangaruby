@@ -2,13 +2,10 @@
 # Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
 #
 
-require 'kangaruby/xml_utilities'
-
 module KangaRuby
   # Represents the symbol ending a lifeline.
   class LifelineTail
     include GraphicsUtilities
-    include XmlUtilities
 
     # Draws the lifeline tail in the area described by `rect` and inserts the drawing instructions into `node`.
     #
@@ -38,8 +35,10 @@ module KangaRuby
     def draw_symbol(g, rect)
       rect = center(rect, minimum_size.width, minimum_size.height)
 
-      g << g.document.create_element('line', x1: rect.left, y1: rect.top, x2: rect.right, y2: rect.bottom)
-      g << g.document.create_element('line', x1: rect.right, y1: rect.top, x2: rect.left, y2: rect.bottom)
+      Nokogiri::XML::Builder.with(g) do |xml|
+        xml.line(x1: rect.left, y1: rect.top, x2: rect.right, y2: rect.bottom)
+        xml.line(x1: rect.right, y1: rect.top, x2: rect.left, y2: rect.bottom)
+      end
 
       nil
     end

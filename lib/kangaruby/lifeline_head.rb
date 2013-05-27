@@ -2,13 +2,10 @@
 # Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
 #
 
-require 'kangaruby/xml_utilities'
-
 module KangaRuby
   # Represents the symbol at the start of the lifeline.
   class LifelineHead
     include GraphicsUtilities
-    include XmlUtilities
 
     # Defaults for various values.
     DEFAULTS = {
@@ -65,15 +62,12 @@ module KangaRuby
     def draw(node, rect)
       text_pos = center_text(rect, text_width, @font_size)
 
-      g = node.add_child(node.document.create_element('g', stroke: 'black'))
-
-      g << g.document.create_element('rect', x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
-      g << g.document.create_element('text',
-                                     @name,
-                                     x: text_pos[0],
-                                     y: text_pos[1],
-                                     'font-family' => @font.name,
-                                     'font-size' => @font_size)
+      Nokogiri::XML::Builder.with(node) do |xml|
+        xml.g(stroke: 'black') do
+          xml.rect(x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
+          xml.text_(@name, x: text_pos[0], y: text_pos[1], 'font-family' => @font.name, 'font-size' => @font_size)
+        end
+      end
 
       nil
     end

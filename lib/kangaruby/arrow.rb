@@ -3,13 +3,11 @@
 #
 
 require 'kangaruby/graphics_utilities'
-require 'kangaruby/xml_utilities'
 
 module KangaRuby
   # Represents an action in the diagram.
   class Arrow
     include GraphicsUtilities
-    include XmlUtilities
 
     # Default visual styling.
     DEFAULTS = {
@@ -75,7 +73,8 @@ module KangaRuby
     # @param [Nokogiri::XML::Node] node Node within which to place the drawing instructions.
     # @param [Rect] rect Area within which to draw the arrow.
     def draw(node, rect)
-      g = add_child(node, 'g', stroke: @color, 'stroke-width' => @thickness.to_s)
+      g = node.document.create_element('g', stroke: @color, 'stroke-width' => @thickness.to_s)
+      node << g
 
       if @from < @to
         draw_right(g, rect)
@@ -91,9 +90,11 @@ module KangaRuby
     # @param [Nokogiri::XML::Node] g Node that will contain the arrow draw instructions.
     # @param [Rect] rect Area within which to draw the arrow.
     def draw_left(g, rect)
-      add_child(g, 'line', x1: rect.left + @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.left, y2: center_y(rect))
-      add_child(g, 'line', x1: rect.left + @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.left, y2: center_y(rect))
-      add_child(g, 'line', x1: rect.right, y1: center_y(rect), x2: rect.left, y2: center_y(rect))
+      Nokogiri::XML::Builder.with(g) do |xml|
+        xml.line(x1: rect.left + @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.left, y2: center_y(rect))
+        xml.line(x1: rect.left + @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.left, y2: center_y(rect))
+        xml.line(x1: rect.right, y1: center_y(rect), x2: rect.left, y2: center_y(rect))
+      end
     end
 
     # Draws the arrow pointing to the right.
@@ -101,9 +102,11 @@ module KangaRuby
     # @param [Nokogiri::XML::Node] g Node that will contain the arrow draw instructions.
     # @param [Rect] rect Area within which to draw the arrow.
     def draw_right(g, rect)
-      add_child(g, 'line', x1: rect.right - @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.right, y2: center_y(rect))
-      add_child(g, 'line', x1: rect.right - @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.right, y2: center_y(rect))
-      add_child(g, 'line', x1: rect.left, y1: center_y(rect), x2: rect.right, y2: center_y(rect))
+      Nokogiri::XML::Builder.with(g) do |xml|
+        xml.line(x1: rect.right - @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.right, y2: center_y(rect))
+        xml.line(x1: rect.right - @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.right, y2: center_y(rect))
+        xml.line(x1: rect.left, y1: center_y(rect), x2: rect.right, y2: center_y(rect))
+      end
     end
   end
 end

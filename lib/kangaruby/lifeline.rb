@@ -77,7 +77,9 @@ module KangaRuby
       x1, y1 = center_point(head_rect)
       x2, y2 = center_point(tail_rect)
 
-      node << node.document.create_element('line', x1: x1, y1: y1, x2: x2, y2: y2, stroke: 'black', 'stroke-width' => '1')
+      Nokogiri::XML::Builder.with(node) do |xml|
+        xml.line(x1: x1, y1: y1, x2: x2, y2: y2, stroke: 'black', 'stroke-width' => '1')
+      end
 
       @head.draw(node, head_rect)
       @tail.draw(node, tail_rect)
