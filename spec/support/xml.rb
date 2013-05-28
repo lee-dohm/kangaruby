@@ -22,9 +22,9 @@ end
 #
 # @return [Nokogiri::XML::Document] New SVG document.
 def svg
-  doc = Nokogiri::XML::Document.new
+  builder = Nokogiri::XML::Builder.new do |xml|
+    xml.svg(xmlns: 'http://www.w3.org/2000/svg', version: '1.1', width: '1000', height: '1000')
+  end
 
-  doc.root = doc.create_element 'svg', xmlns: 'http://www.w3.org/2000/svg', version: '1.1', width: '1000', height: '1000'
-
-  doc
+  builder.doc
 end
