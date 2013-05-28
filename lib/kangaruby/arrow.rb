@@ -86,12 +86,20 @@ module KangaRuby
 
     private
 
+    # Draws the arrow pointing to the left.
+    #
+    # @param [Nokogiri::XML::Builder] xml Object to use to create new nodes.
+    # @param [Rect] rect Area within which to draw the arrow.
     def draw_left(xml, rect)
       xml.line(x1: rect.left + @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.left, y2: center_y(rect))
       xml.line(x1: rect.left + @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.left, y2: center_y(rect))
       xml.line(x1: rect.right, y1: center_y(rect), x2: rect.left, y2: center_y(rect))
     end
 
+    # Draws the arrow pointing to the right.
+    #
+    # @param [Nokogiri::XML::Builder] xml Object to use to create new nodes.
+    # @param [Rect] rect Area within which to draw the arrow.
     def draw_right(xml, rect)
       xml.line(x1: rect.right - @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.right, y2: center_y(rect))
       xml.line(x1: rect.right - @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.right, y2: center_y(rect))
