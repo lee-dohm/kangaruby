@@ -36,7 +36,7 @@ module KangaRuby
     # @raise [ArgumentError] if too few or too many arguments are supplied.
     def initialize(*args)
       args.flatten!
-      raise ArgumentError, 'Must supply between zero and four arguments' unless args.count >= 0 && args.count <= 4
+      raise ArgumentError, 'Must supply zero or four arguments' unless args.count == 0 || args.count == 4
 
       @x = args[0] || 0
       @y = args[1] || 0
