@@ -98,6 +98,8 @@ module KangaRuby
     # * RGB values
     #     * `#rgb`
     #     * `#rrggbb`
+    #     * `rgb(255, 0, 0)` - *not currently supported by KangaRuby*
+    #     * `rgb(100%, 0%, 0%)` - *not currently supported by KangaRuby*
     # * Color names
     #
     # @param [String] color Color value to validate.

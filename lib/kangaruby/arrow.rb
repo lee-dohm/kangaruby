@@ -39,6 +39,10 @@ module KangaRuby
     # @return [Integer] Index of the lifeline to which the arrow points.
     attr_reader :to
 
+    # Creates a new `Arrow` pointing from one lifeline to another.
+    #
+    # The `from` and `to` parameters *can* be equal for an arrow that ends on the same lifeline from which it originated.
+    #
     # @param [Integer] from Index of the lifeline from which the arrow starts.
     # @param [Integer] to Index of the lifeline to which the arrow points.
     # @param [Hash] opts Optional arguments.
@@ -50,6 +54,8 @@ module KangaRuby
     # @raise [ArgumentError] When the line style is not valid.
     # @raise [ArgumentError] When the color is not a valid SVG color string.
     # @raise [ArgumentError] When `from` or `to` is negative.
+    #
+    # @see GraphicsUtilities#valid_color?
     def initialize(from, to, opts = {})
       opts = DEFAULTS.merge(opts)
       raise ArgumentError, 'From and To must be non-negative' unless from >= 0 && to >= 0
@@ -73,6 +79,7 @@ module KangaRuby
     #
     # @param [Nokogiri::XML::Node] node Node within which to place the drawing instructions.
     # @param [Rect] rect Area within which to draw the arrow.
+    # @return [void]
     def draw(node, rect)
       Nokogiri::XML::Builder.with(node) do |xml|
         xml.g(stroke: @color, 'stroke-width' => @thickness.to_s) do
@@ -91,6 +98,7 @@ module KangaRuby
     #
     # @param [Nokogiri::XML::Builder] xml Object to use to create new nodes.
     # @param [Rect] rect Area within which to draw the arrow.
+    # @return [void]
     def draw_left(xml, rect)
       xml.line(x1: rect.left + @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.left, y2: center_y(rect))
       xml.line(x1: rect.left + @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.left, y2: center_y(rect))
@@ -101,6 +109,7 @@ module KangaRuby
     #
     # @param [Nokogiri::XML::Builder] xml Object to use to create new nodes.
     # @param [Rect] rect Area within which to draw the arrow.
+    # @return [void]
     def draw_right(xml, rect)
       xml.line(x1: rect.right - @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.right, y2: center_y(rect))
       xml.line(x1: rect.right - @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.right, y2: center_y(rect))
@@ -110,6 +119,7 @@ module KangaRuby
     # Sets the properties based on the values of the options.
     #
     # @param [Hash] opts Options from `#initialize`.
+    # @return [void]
     def set_options(opts)
       @color = opts[:color]
       @head_height = opts[:height]
