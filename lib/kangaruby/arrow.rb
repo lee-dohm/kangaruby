@@ -40,13 +40,13 @@ module KangaRuby
     attr_reader :to
 
     # @param [Integer] from Index of the lifeline from which the arrow starts.
-    # @param [Integer] to   Index of the lifeline to which the arrow points.
-    # @param [Hash]    opts Optional arguments.
-    # @option opts [String]          :color An SVG color.
-    # @option opts [Integer]         :height Height of the arrow head.
+    # @param [Integer] to Index of the lifeline to which the arrow points.
+    # @param [Hash] opts Optional arguments.
+    # @option opts [String] :color An SVG color.
+    # @option opts [Integer] :height Height of the arrow head.
     # @option opts [:solid, :dotted] :style Style of line for the arrow.
-    # @option opts [Integer]         :thickness Thickness of the lines used to draw the arrow.
-    # @option opts [Integer]         :width Width of the arrow head.
+    # @option opts [Integer] :thickness Thickness of the lines used to draw the arrow.
+    # @option opts [Integer] :width Width of the arrow head.
     # @raise [ArgumentError] When the line style is not valid.
     # @raise [ArgumentError] When the color is not a valid SVG color string.
     # @raise [ArgumentError] When `from` or `to` is negative.
