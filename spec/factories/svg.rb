@@ -18,15 +18,6 @@ FactoryGirl.define do
       end
 
       builder.doc
-      create_doc <<-EOS
-        <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='1000' height='1000'>
-          <g stroke='black' stroke-width='1'>
-            <line x1='105' y1='145' x2='100' y2='150' />
-            <line x1='105' y1='155' x2='100' y2='150' />
-            <line x1='200' y1='150' x2='100' y2='150' />
-          </g>
-        </svg>
-      EOS
     end
   end
 
