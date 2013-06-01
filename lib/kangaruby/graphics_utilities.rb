@@ -93,6 +93,13 @@ module KangaRuby
 
     # Indicates whether `color` is a valid SVG color string.
     #
+    # [SVG color descriptions](http://www.w3.org/TR/SVG/types.html#DataTypeColor) are one of the following:
+    #
+    # * RGB values
+    #     * `#rgb`
+    #     * `#rrggbb`
+    # * Color names
+    #
     # @param [String] color Color value to validate.
     # @return [Boolean] Flag indicating if `color` is a valid SVG color value.
     def valid_color?(color)

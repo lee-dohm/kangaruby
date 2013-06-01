@@ -70,7 +70,7 @@ describe GraphicsUtilities do
     end
   end
 
-  context '#validate_color' do
+  context '#valid_color?' do
     it 'returns true with a valid color name' do
       expect(test.valid_color?('black')).to be_true
     end
@@ -94,5 +94,13 @@ describe GraphicsUtilities do
     it 'returns false with an invalid six-digit color code' do
       expect(test.valid_color?('#GGGGGG')).to be_false
     end
+
+    it 'returns true with a valid integer RGB value'
+
+    it 'returns false with an invalid integer RGB value'
+
+    it 'returns true with a valid float RGB value'
+
+    it 'returns false with an invalid float RGB value'
   end
 end
