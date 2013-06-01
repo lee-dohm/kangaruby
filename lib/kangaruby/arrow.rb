@@ -40,25 +40,26 @@ module KangaRuby
     attr_reader :to
 
     # @param [Integer] from Index of the lifeline from which the arrow starts.
-    # @param [Integer] to Index of the lifeline to which the arrow points.
-    # @param [Hash] opts Optional arguments.
-    # @option opts [Integer] :height Height of the arrow head.
+    # @param [Integer] to   Index of the lifeline to which the arrow points.
+    # @param [Hash]    opts Optional arguments.
+    # @option opts [String]          :color An SVG color.
+    # @option opts [Integer]         :height Height of the arrow head.
     # @option opts [:solid, :dotted] :style Style of line for the arrow.
-    # @option opts [Integer] :width Width of the arrow head.
+    # @option opts [Integer]         :thickness Thickness of the lines used to draw the arrow.
+    # @option opts [Integer]         :width Width of the arrow head.
     # @raise [ArgumentError] When the line style is not valid.
+    # @raise [ArgumentError] When the color is not a valid SVG color string.
+    # @raise [ArgumentError] When `from` or `to` is negative.
     def initialize(from, to, opts = {})
       opts = DEFAULTS.merge(opts)
+      raise ArgumentError, 'From and To must be non-negative' unless from >= 0 && to >= 0
       raise ArgumentError, 'Style must be either :solid or :dotted' unless STYLES.include?(opts[:style])
       raise ArgumentError, 'Color must be a valid SVG color string' unless valid_color?(opts[:color])
 
       @from = from
       @to = to
 
-      @color = opts[:color]
-      @head_height = opts[:height]
-      @style = opts[:style]
-      @thickness = opts[:thickness]
-      @head_width = opts[:width]
+      set_options(opts)
     end
 
     # Returns the minimum size of the arrow.
@@ -104,6 +105,17 @@ module KangaRuby
       xml.line(x1: rect.right - @head_width, y1: center_y(rect) - @head_height / 2, x2: rect.right, y2: center_y(rect))
       xml.line(x1: rect.right - @head_width, y1: center_y(rect) + @head_height / 2, x2: rect.right, y2: center_y(rect))
       xml.line(x1: rect.left, y1: center_y(rect), x2: rect.right, y2: center_y(rect))
+    end
+
+    # Sets the properties based on the values of the options.
+    #
+    # @param [Hash] opts Options from `#initialize`.
+    def set_options(opts)
+      @color = opts[:color]
+      @head_height = opts[:height]
+      @style = opts[:style]
+      @thickness = opts[:thickness]
+      @head_width = opts[:width]
     end
   end
 end

@@ -37,6 +37,11 @@ describe Arrow do
     expect(arrow.thickness).to eq(50)
   end
 
+  it 'raises an error if either index is negative' do
+    expect { Arrow.new(-1, 2) }.to raise_error(ArgumentError)
+    expect { Arrow.new(1, -2) }.to raise_error(ArgumentError)
+  end
+
   it 'raises an error if style is something other than solid or dotted' do
     expect { Arrow.new(1, 2, style: :foo) }.to raise_error(ArgumentError)
   end
