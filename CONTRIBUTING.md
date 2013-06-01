@@ -22,13 +22,19 @@ When adding new features it is important for you to follow the standard Github c
 
 For more detailed instructions, read [this article on Github Help](https://help.github.com/articles/creating-a-pull-request).
 
-### Coding Style
+## Coding Style
 
 * We use [rubocop](http://batsov.com/rubocop/) to enforce style.  Follow the guidelines it prescribes.
 * Include tests with your code!
 * Maintain the documentation along with your code.
 
 Don’t get discouraged! We estimate that the response time from the maintainers is around: one week.
+
+## Documentation Checklist
+
+1. All methods **must** have documentation.
+1. All classes **must** have documentation.
+1. Any monkey patches must use the `@api monkeypatch` tag.
 
 ## Bug triage
 
