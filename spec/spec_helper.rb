@@ -16,9 +16,10 @@ if ENV['TRAVIS'] || ENV['COVERAGE']
   end
 end
 
+require 'equivalent-xml'
+require 'factory_girl'
 require 'rspec'
 
-require 'equivalent-xml'
 require 'kangaruby'
 
 include KangaRuby
@@ -31,3 +32,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+FactoryGirl.find_definitions
