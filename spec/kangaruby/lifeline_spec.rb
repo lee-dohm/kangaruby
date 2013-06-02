@@ -3,29 +3,12 @@
 #
 
 describe Lifeline do
-  let(:doc)      { svg }
-  let(:font)     { Font.new('Abscissa') }
-  let(:lifeline) { Lifeline.new(name) }
-  let(:name)     { 'Alice' }
-  let(:rect)     { Rect.new [100] * 4 }
-
-  let(:drawn_node) do
-    create_doc <<-EOS
-      <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='1000' height='1000'>
-        <g>
-          <line x1='150' y1='109' x2='150' y2='195' stroke='black' stroke-width='1' />
-          <g stroke='black'>
-            <rect x='139' y='100' width='22' height='18' fill='white' />
-            <text x='140' y='115' font-family='Abscissa' font-size='12'>#{name}</text>
-          </g>
-          <g stroke='black' stroke-width='1'>
-            <line x1='145' y1='190' x2='155' y2='200' />
-            <line x1='155' y1='190' x2='145' y2='200' />
-          </g>
-        </g>
-      </svg>
-    EOS
-  end
+  let(:doc)        { svg }
+  let(:font)       { Font.new('Abscissa') }
+  let(:lifeline)   { Lifeline.new(name) }
+  let(:name)       { 'Alice' }
+  let(:rect)       { Rect.new [100] * 4 }
+  let(:drawn_node) { FactoryGirl.create(:lifeline_doc) }
 
   it 'has a name' do
     expect(lifeline.name).to eq('Alice')
