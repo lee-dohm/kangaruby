@@ -52,4 +52,13 @@ describe LifelineHead do
 
     expect(doc).to be_equivalent_to(drawn_node)
   end
+
+  it 'will set the contents of the text node to the name value' do
+    head = LifelineHead.new('foo')
+
+    head.draw(doc.root, rect)
+    text_node = doc.search('//svg:text', svg: 'http://www.w3.org/2000/svg').first
+
+    expect(text_node.content).to eq('foo')
+  end
 end
