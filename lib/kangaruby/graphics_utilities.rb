@@ -100,10 +100,11 @@ module KangaRuby
     #     * `#rrggbb`
     #     * `rgb(255, 0, 0)` - *not currently supported by KangaRuby*
     #     * `rgb(100%, 0%, 0%)` - *not currently supported by KangaRuby*
-    # * Color names
+    # * [Color names](http://www.w3.org/TR/SVG/types.html#ColorKeywords)
     #
     # @param [String] color Color value to validate.
     # @return [Boolean] Flag indicating if `color` is a valid SVG color value.
+    # @see KangaRuby::COLOR_NAMES
     def valid_color?(color)
       return color =~ /#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?/ if color[0] == '#'
 
