@@ -10,7 +10,7 @@ describe Diagram do
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="40" height="38">
        <g>
          <line x1="11" y1="9" x2="11" y2="33" stroke="black" stroke-width="1"/>
-         <g stroke="black">
+         <g stroke="black" stroke-width="1">
            <rect x="0" y="0" width="22" height="18" fill="white"/>
            <text x="1" y="15" font-family="Abscissa" font-size="12">Alice</text>
          </g>
@@ -21,7 +21,7 @@ describe Diagram do
        </g>
        <g>
          <line x1="31" y1="9" x2="31" y2="33" stroke="black" stroke-width="1"/>
-         <g stroke="black">
+         <g stroke="black" stroke-width="1">
            <rect x="22" y="0" width="18" height="18" fill="white"/>
            <text x="23" y="15" font-family="Abscissa" font-size="12">Bob</text>
          </g>

@@ -3,7 +3,7 @@
 #
 
 describe LifelineHead do
-  let(:default_border_thickness) { 1 }
+  let(:default_thickness) { 1 }
   let(:default_margin) { 0 }
   let(:default_padding) { 0 }
   let(:default_point_size) { 12 }
@@ -20,7 +20,7 @@ describe LifelineHead do
     expect(head.font).to eq(font)
     expect(head.margin).to eq(default_margin)
     expect(head.padding).to eq(default_padding)
-    expect(head.border).to eq(default_border_thickness)
+    expect(head.border).to eq(default_thickness)
     expect(head.font_size).to eq(default_point_size)
   end
 
@@ -37,8 +37,8 @@ describe LifelineHead do
     text_width = font.text_width(name, default_point_size)
     text_height = font.text_height(default_point_size)
 
-    expected_width = text_width + 2 * default_margin + 2 * default_padding + 2 * default_border_thickness
-    expected_height = text_height + 2 * default_margin + 2 * default_padding + 2 * default_border_thickness
+    expected_width = text_width + 2 * default_margin + 2 * default_padding + 2 * default_thickness
+    expected_height = text_height + 2 * default_margin + 2 * default_padding + 2 * default_thickness
 
     expect(head.minimum_size).to eq([expected_width, expected_height])
   end
@@ -60,5 +60,14 @@ describe LifelineHead do
     text_node = doc.search('//svg:text', svg: 'http://www.w3.org/2000/svg').first
 
     expect(text_node.content).to eq('foo')
+  end
+
+  it 'will set the stroke-width to the border thickness' do
+    head = LifelineHead.new(name, border: 10)
+
+    head.draw(doc.root, rect)
+    node = doc.search('//svg:g', svg: 'http://www.w3.org/2000/svg').first
+
+    expect(node['stroke-width']).to eq('10')
   end
 end

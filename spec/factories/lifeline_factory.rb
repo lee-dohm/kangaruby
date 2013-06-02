@@ -16,7 +16,7 @@ FactoryGirl.define do
           xml.g do
             xml.line(x1: 150, y1: 109, x2: 150, y2: 195, stroke: 'black', 'stroke-width' => 1)
 
-            xml.g(stroke: 'black') do
+            xml.g(stroke: 'black', 'stroke-width' => 1) do
               xml.rect(x: 139, y: 100, width: 22, height: 18, fill: 'white')
               xml.text_(name, x: 140, y: 115, 'font-family' => 'Abscissa', 'font-size' => 12)
             end

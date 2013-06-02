@@ -63,7 +63,7 @@ module KangaRuby
       text_pos = center_text(rect, text_width, @font_size)
 
       Nokogiri::XML::Builder.with(node) do |xml|
-        xml.g(stroke: 'black') do
+        xml.g(stroke: 'black', 'stroke-width' => @border) do
           xml.rect(x: rect.x, y: rect.y, width: rect.width, height: rect.height, fill: 'white')
           xml.text_(@name, x: text_pos[0], y: text_pos[1], 'font-family' => @font.name, 'font-size' => @font_size)
         end
