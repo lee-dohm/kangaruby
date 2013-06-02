@@ -40,6 +40,7 @@ module KangaRuby
     # In this case, `sum` and `size` are more clear.
 
     # Determines the sizes of all the components of the diagram.
+    # @return [void]
     def determine_sizes
       @lifeline_sizes = @lifelines.map { |line| line.minimum_size }
       @arrow_sizes = @arrows.map { |arrow| arrow.minimum_size }
@@ -51,6 +52,7 @@ module KangaRuby
     # rubocop:enable ReduceArguments
 
     # Uses the sizes of the various components to draw the diagram.
+    # @return [void]
     def draw_diagram
       doc = Nokogiri::XML::Document.new
       doc.root = doc.create_element('svg',
@@ -68,6 +70,7 @@ module KangaRuby
     # Draw the lifelines in the diagram.
     #
     # @param [Nokogiri::XML::Node] node Node into which to draw the lifelines.
+    # @return [void]
     def draw_lines(node)
       left = 0
 
@@ -84,6 +87,7 @@ module KangaRuby
     # Draw the arrows in the diagram.
     #
     # @param [Nokogiri::XML::Node] node Node into which to draw the arrows.
+    # @return [void]
     def draw_arrows(node)
       top = 0
 

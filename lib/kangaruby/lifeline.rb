@@ -26,14 +26,12 @@ module KangaRuby
     #
     # @param [Nokogiri::XML::Node] node Node within which to insert the drawing instructions.
     # @param [Rect] rect Area within which to draw the lifeline.
-    # @return [nil]
+    # @return [void]
     def draw(node, rect)
       g = node.document.create_element('g')
       node << g
 
       draw_lifeline(g, rect)
-
-      nil
     end
 
     # @return Height of the head symbol.
@@ -69,7 +67,7 @@ module KangaRuby
     #
     # @param [Nokogiri::XML::Node] node Node within which to insert the drawing instructions.
     # @param [Rect] rect Area in which to draw the symbols.
-    # @return [nil]
+    # @return [void]
     def draw_lifeline(node, rect)
       head_rect = head_pos(rect)
       tail_rect = tail_pos(rect)
@@ -83,8 +81,6 @@ module KangaRuby
 
       @head.draw(node, head_rect)
       @tail.draw(node, tail_rect)
-
-      nil
     end
 
     # Determines the area within which to draw the head symbol.

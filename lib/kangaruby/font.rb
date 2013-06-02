@@ -38,8 +38,7 @@ module KangaRuby
     # Determines if `other` is equivalent to this font.
     #
     # @param [Font] other `Font` to be compared to.
-    # @return [true] if `other` is a `Font` and has the same name as this font.
-    # @return [false] if either is not true.
+    # @return [Boolean] Flag indicating if `other` is a `Font` and has the same name as this font.
     def ==(other)
       other.kind_of?(Font) && name == other.name
     end

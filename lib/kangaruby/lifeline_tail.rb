@@ -11,7 +11,7 @@ module KangaRuby
     #
     # @param [Nokogiri::XML::Node] node Node within which to place the drawing instructions.
     # @param [Rect] rect Bounding box within which to draw.
-    # @return [nil]
+    # @return [void]
     def draw(node, rect)
       g = node.add_child(node.document.create_element('g', stroke: 'black', 'stroke-width' => '1'))
 
@@ -31,7 +31,7 @@ module KangaRuby
     #
     # @param [Nokogiri::XML::Element] g Group element within which to insert the symbol.
     # @param [Rect] rect Bounding box within which to draw.
-    # @return [nil]
+    # @return [void]
     def draw_symbol(g, rect)
       rect = center(rect, minimum_size.width, minimum_size.height)
 
@@ -39,8 +39,6 @@ module KangaRuby
         xml.line(x1: rect.left, y1: rect.top, x2: rect.right, y2: rect.bottom)
         xml.line(x1: rect.right, y1: rect.top, x2: rect.left, y2: rect.bottom)
       end
-
-      nil
     end
   end
 end

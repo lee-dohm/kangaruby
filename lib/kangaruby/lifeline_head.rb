@@ -15,22 +15,22 @@ module KangaRuby
       padding:    0
     }
 
-    # Box border width in pixels.
+    # @return [Integer] Box border width in pixels.
     attr_reader :border
 
-    # Font to use to draw the name.
+    # @return [Font] Font to use to draw the name.
     attr_reader :font
 
-    # Size of the font to use to draw the name.
+    # @return [Integer] Size of the font to use to draw the name.
     attr_reader :font_size
 
-    # Name to show in the box.
+    # @return [String] Name to show in the box.
     attr_reader :name
 
-    # Whitespace border outside the box in pixels.
+    # @return [Integer] Whitespace border outside the box in pixels.
     attr_reader :margin
 
-    # Whitespace between the box and the name in pixels.
+    # @return [Integer] Whitespace between the box and the name in pixels.
     attr_reader :padding
 
     # Initializes the start box for the lifeline.
@@ -58,7 +58,7 @@ module KangaRuby
     #
     # @param [Nokogiri::XML::Document] node Node within which to insert the drawing instructions.
     # @param [Rect] rect Area within which to draw the head.
-    # @return [nil]
+    # @return [void]
     def draw(node, rect)
       text_pos = center_text(rect, text_width, @font_size)
 
@@ -68,8 +68,6 @@ module KangaRuby
           xml.text_(@name, x: text_pos[0], y: text_pos[1], 'font-family' => @font.name, 'font-size' => @font_size)
         end
       end
-
-      nil
     end
 
     # Gets the minimum size that the element can be drawn with the given parameters.
@@ -87,12 +85,12 @@ module KangaRuby
 
     private
 
-    # @return Height of a single line of text in pixels.
+    # @return [Integer] Height of a single line of text in pixels.
     def text_height
       @font.text_height(@font_size)
     end
 
-    # @return Width of the text in pixels.
+    # @return [Integer] Width of the text in pixels.
     def text_width
       @font.text_width(@name, @font_size)
     end

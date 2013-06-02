@@ -9,6 +9,7 @@ class Module
   #
   # @param new_attr New name for the attribute.
   # @param original Original name for the attribute.
+  # @return [void]
   def attr_alias(new_attr, original)
     alias_method(new_attr, original) if method_defined? original
     new_writer = "#{new_attr}="
