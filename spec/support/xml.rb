@@ -10,14 +10,6 @@ def create_doc(text)
   Nokogiri::XML.parse(text)
 end
 
-# Creates a `Nokogiri::XML::Node` from the given text.
-#
-# @param [String] text XML node description.
-# @return [Nokogiri::XML::Node] XML node representation of the text.
-def create_node(text)
-  Nokogiri::XML.parse(text).children.first
-end
-
 # Creates a blank SVG document.
 #
 # @return [Nokogiri::XML::Document] New SVG document.
