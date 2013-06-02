@@ -61,6 +61,18 @@ namespace 'doc' do
     Dir['*.md', 'documentation/**/*'].reject { |f| f == 'README.md' }
   end
 
+  # @param [:local, nil] where Where to get the options for.
+  # @return [Array<String>] Options to write to the .yardopts files.
+  def opts(where = nil)
+    opts = []
+    opts << '--markup markdown'
+    opts << "--title 'KangaRuby #{KangaRuby::VERSION} Documentation'"
+    opts << (where == :local ? '--private' : '--no-private')
+    opts << '-'
+    opts << docs
+    opts.flatten
+  end
+
   YARD::Rake::YardocTask.new do |yard|
     yard.options = %w(--yardopts .yardopts-local)
   end
@@ -70,32 +82,12 @@ namespace 'doc' do
   file '.yardopts' => docs + deps do
     puts yellow('Rewriting .yardopts')
 
-    opts = []
-    opts << '--markup markdown'
-    opts << "--title 'KangaRuby #{KangaRuby::VERSION} Documentation'"
-    opts << '--no-private'
-    opts << '-'
-    opts << docs
-    opts.flatten!
-
-    File.open('.yardopts', 'w') do |file|
-      file.puts opts
-    end
+    File.open('.yardopts', 'w') { |f| f.puts opts }
   end
 
   file '.yardopts-local' => docs + deps do
     puts yellow('Rewriting .yardopts-local')
 
-    opts = []
-    opts << '--markup markdown'
-    opts << "--title 'KangaRuby #{KangaRuby::VERSION} Documentation'"
-    opts << '--private'
-    opts << '-'
-    opts << docs
-    opts.flatten!
-
-    File.open('.yardopts-local', 'w') do |file|
-      file.puts opts
-    end
+    File.open('.yardopts-local', 'w') { |f| f.puts opts(:local) }
   end
 end
