@@ -30,11 +30,18 @@ For more detailed instructions, read [this article on Github Help](https://help.
 
 Don’t get discouraged! We estimate that the response time from the maintainers is around: one week.
 
-## Documentation Checklist
+## Documentation
+
+We use [YARD][yard] to generate our documentation. We use [Markdown][markdown] for the markup of our documentation. One of the benefits to using YARD over many other documentation tools is that it bends over backwards to make minimal documentation look good. For example, with attributes often just a `@return` tag is sufficient. This does reduce the amount of typing necessary to produce documentation, but we still need to write it. These are our guidelines:
 
 1. All methods **must** have documentation.
 1. All classes **must** have documentation.
 1. Any monkey patches must use the `@api monkeypatch` tag.
+1. All methods must have at least a `@return` tag.
+    1. Methods that return a value that is intended to be consumed must have at least a description of what is returned.
+    1. Methods that return a value that is not intended to be consumed must have a `@return [void]` tag.
+1. All method parameters must be documented.
+1. All exceptions raised by a method must be documented with a `@raise` tag. *Exceptions raised by methods called by the method do not have to be documented.*
 
 ## Bug triage
 
@@ -88,3 +95,6 @@ This section should help a person get started with their very first bug fix and 
 ## Other questions?
 
 * If you have further questions, contact: [Lee Dohm](https://github.com/lee-dohm)
+
+[markdown]: http://daringfireball.net/projects/markdown/syntax
+[yard]: http://www.yardoc.org
