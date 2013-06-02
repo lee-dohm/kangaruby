@@ -6,13 +6,16 @@ require 'data/parser_data'
 
 describe Parser do
   let(:parser) { Parser.new }
+  let(:one_action) { FactoryGirl.create(:one_action) }
+  let(:two_actions) { FactoryGirl.create(:two_actions) }
+  let(:syntax_error) { FactoryGirl.create(:syntax_error) }
 
   it 'raises on empty input' do
     expect { parser.parse(nil) }.to raise_error(ArgumentError)
   end
 
   it 'creates a model with two participants and one action' do
-    model = parser.parse(TestData::ONE_ACTION)
+    model = parser.parse(one_action)
 
     expect(model.participants.all? { |p| p.instance_of? Participant }).to be_true
     expect(model.participants).to eq(participants('Alice', 'Bob'))
@@ -20,7 +23,7 @@ describe Parser do
   end
 
   it 'creates a model with two participants and two actions' do
-    model = parser.parse(TestData::TWO_ACTIONS)
+    model = parser.parse(two_actions)
 
     expect(model.participants.all? { |p| p.instance_of? Participant }).to be_true
     expect(model.participants).to eq(participants('Alice', 'Bob'))
@@ -28,6 +31,6 @@ describe Parser do
   end
 
   it 'raises an exception on syntax errors' do
-    expect { parser.parse(TestData::SYNTAX_ERROR) }.to raise_error(KangaRuby::ParseError)
+    expect { parser.parse(syntax_error) }.to raise_error(KangaRuby::ParseError)
   end
 end
