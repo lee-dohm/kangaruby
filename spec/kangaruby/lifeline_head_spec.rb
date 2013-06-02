@@ -13,32 +13,24 @@ describe LifelineHead do
   let(:name) { 'Alice' }
   let(:rect) { Rect.new [100] * 4 }
 
-  let(:drawn_node) do
-    FactoryGirl.create(:lifeline_head_doc)
-  end
+  let(:drawn_node) { FactoryGirl.create(:lifeline_head_doc) }
 
-  it 'has a name' do
+  it 'has defaults' do
     expect(head.name).to eq('Alice')
-  end
-
-  it 'has a font' do
     expect(head.font).to eq(font)
-  end
-
-  it 'has a margin value' do
     expect(head.margin).to eq(default_margin)
-  end
-
-  it 'has a padding value' do
     expect(head.padding).to eq(default_padding)
-  end
-
-  it 'has a border thickness' do
     expect(head.border).to eq(default_border_thickness)
+    expect(head.font_size).to eq(default_point_size)
   end
 
-  it 'has a font size' do
-    expect(head.font_size).to eq(default_point_size)
+  it 'can have its visual style customized' do
+    head = LifelineHead.new(name, border: 50, font_size: 50, margin: 50, padding: 50)
+
+    expect(head.border).to eq(50)
+    expect(head.font_size).to eq(50)
+    expect(head.margin).to eq(50)
+    expect(head.padding).to eq(50)
   end
 
   it 'can describe its minimum size' do

@@ -8,6 +8,7 @@ require 'sequence_parser'
 
 require 'kangaruby/action'
 require 'kangaruby/arrow'
+require 'kangaruby/constants'
 require 'kangaruby/diagram'
 require 'kangaruby/font'
 require 'kangaruby/graphics_utilities'
@@ -24,12 +25,6 @@ require 'kangaruby/size'
 require 'kangaruby/version'
 
 module KangaRuby
-  # Directory containing the fonts for the gem.
-  FONTS_DIR = File.expand_path('../../fonts', __FILE__)
-
-  # Acceptable list of line styles.
-  STYLES = [:solid, :dotted]
-
   # Converts `KangaRuby` text into an `SVG` graphic.
   #
   # @example Basic usage

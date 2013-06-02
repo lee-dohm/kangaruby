@@ -3,6 +3,7 @@
 #
 
 require 'ttfunk'
+require 'kangaruby/constants'
 
 module KangaRuby
   # Represents error that occurs when a font does not contain a Unicode character map.

@@ -4,7 +4,6 @@
 
 describe Diagram do
   let(:diagram) { Diagram.new }
-  let(:font) { Font.new('Abscissa') }
 
   let(:drawn_diagram) do
     create_doc <<-EOS
@@ -49,8 +48,8 @@ describe Diagram do
   end
 
   it 'can draw itself' do
-    diagram.lifelines << Lifeline.new('Alice', font)
-    diagram.lifelines << Lifeline.new('Bob', font)
+    diagram.lifelines << Lifeline.new('Alice')
+    diagram.lifelines << Lifeline.new('Bob')
     diagram.arrows << Arrow.new(0, 1)
 
     expect(diagram.draw).to be_equivalent_to(drawn_diagram)

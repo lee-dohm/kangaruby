@@ -10,6 +10,7 @@ module KangaRuby
     # Defaults for various values.
     DEFAULTS = {
       border:     1,
+      font:      Font.new('Abscissa'),
       font_size: 12,
       margin:     0,
       padding:    0
@@ -36,19 +37,18 @@ module KangaRuby
     # Initializes the start box for the lifeline.
     #
     # @param [String] name Name for the lifeline.
-    # @param [Font] font Font to use for size calculations.
     # @param [Hash] opts Optional arguments.
     # @option opts [Integer] :border Box border width in pixels.
     # @option opts [Integer] :font_size Font size for the name.
     # @option opts [Integer] :margin Border outside the box in pixels.
     # @option opts [Integer] :padding Inside border between the box and the name in pixels.
-    def initialize(name, font = Font.new('Abscissa'), opts = {})
+    def initialize(name, opts = {})
       @name = name
-      @font = font
 
-      opts = DEFAULTS.merge opts
+      opts = DEFAULTS.merge(opts)
 
       @border = opts[:border]
+      @font = opts[:font]
       @font_size = opts[:font_size]
       @margin = opts[:margin]
       @padding = opts[:padding]
