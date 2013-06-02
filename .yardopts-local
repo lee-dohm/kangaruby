@@ -1,6 +1,6 @@
 --markup markdown
 --title 'KangaRuby 0.0.1 Documentation'
---no-private
+--private
 -
 CHANGELOG.md
 CONTRIBUTING.md

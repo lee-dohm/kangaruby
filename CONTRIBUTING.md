@@ -36,7 +36,7 @@ We use [YARD][yard] to generate our documentation. We use [Markdown][markdown] f
 
 1. All methods **must** have documentation.
 1. All classes **must** have documentation.
-1. Any monkey patches must use the `@api monkeypatch` tag.
+1. Any monkey patches must include the `@private` tag on the class being patched.
 1. All methods must have at least a `@return` tag.
     1. Methods that return a value that is intended to be consumed must have at least a description of what is returned.
     1. Methods that return a value that is not intended to be consumed must have a `@return [void]` tag.

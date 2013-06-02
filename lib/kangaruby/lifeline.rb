@@ -7,19 +7,22 @@ module KangaRuby
   class Lifeline
     include GraphicsUtilities
 
-    # @return [LifelineHead] Reference to the head symbol.
-    attr_reader :head
+    # @private
+    # Classes to use to instantiate `LifelineHead` and `LifelineTail`.
+    attr_writer :head_class, :tail_class
 
-    # @return [LifelineTail] Reference to the tail symbol.
-    attr_reader :tail
+    # @return [String] Name of the lifeline.
+    attr_reader :name
 
     # Creates a new lifeline.
     #
     # @param [String] name Name for the lifeline.
     # @param [Font] font Font object to use to draw the name.
     def initialize(name, font = nil)
-      @head = font ? LifelineHead.new(name, font) : LifelineHead.new(name)
-      @tail = LifelineTail.new
+      @head_class = LifelineHead
+      @tail_class = LifelineTail
+      @name = name
+      @font = font
     end
 
     # Draws the lifeline within the area defined by `rect` and inserts it into `node`.
@@ -34,31 +37,34 @@ module KangaRuby
       draw_lifeline(g, rect)
     end
 
+    # @return [LifelineHead] The head symbol for the lifeline.
+    def head
+      @head ||= @font ? @head_class.new(@name, @font) : @head_class.new(@name)
+    end
+
     # @return Height of the head symbol.
     def head_height
-      @head.minimum_size.height
+      head.minimum_size.height
     end
 
     # Gets the minimum size of the lifeline in pixels.
     #
     # @return [Array] Minimum size width and height in pixels.
     def minimum_size
-      w = [@head.minimum_size[0], @tail.minimum_size[0]].max
-      h = @head.minimum_size[1] + @tail.minimum_size[1]
+      w = [head.minimum_size[0], tail.minimum_size[0]].max
+      h = head.minimum_size[1] + tail.minimum_size[1]
 
       Size.new(w, h)
     end
 
-    # Gets the name for the lifeline.
-    #
-    # @return [String] Name of the lifeline.
-    def name
-      @head.name
+    # @return [LifelineTail] The tail symbol for the lifeline.
+    def tail
+      @tail ||= @tail_class.new
     end
 
     # @return Height of the tail symbol.
     def tail_height
-      @tail.minimum_size.height
+      tail.minimum_size.height
     end
 
     private
@@ -79,8 +85,8 @@ module KangaRuby
         xml.line(x1: x1, y1: y1, x2: x2, y2: y2, stroke: 'black', 'stroke-width' => '1')
       end
 
-      @head.draw(node, head_rect)
-      @tail.draw(node, tail_rect)
+      head.draw(node, head_rect)
+      tail.draw(node, tail_rect)
     end
 
     # Determines the area within which to draw the head symbol.
@@ -88,7 +94,7 @@ module KangaRuby
     # @param [Rect] rect Area within which the entire lifeline is given to draw.
     # @return [Rect] Area within which to draw the head symbol.
     def head_pos(rect)
-      head_size = @head.minimum_size
+      head_size = head.minimum_size
 
       x = center_x(rect, head_size.width)
 
@@ -100,7 +106,7 @@ module KangaRuby
     # @param [Rect] rect Area within which the entire lifeline is given to draw.
     # @return [Rect] Area within which to draw the tail symbol.
     def tail_pos(rect)
-      tail_size = @tail.minimum_size
+      tail_size = tail.minimum_size
 
       x = center_x(rect, tail_size.width)
       y = rect.bottom - tail_size.height

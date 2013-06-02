@@ -62,11 +62,9 @@ namespace 'doc' do
   end
 
   YARD::Rake::YardocTask.new do |yard|
-    # This option isn't in the .yardopts file because we only want private methods in the locally-generated
-    # documentation.
-    yard.options = ['--private']
+    yard.options = %w(--yardopts .yardopts-local)
   end
-  task :yard => '.yardopts'
+  task :yard => ['.yardopts', '.yardopts-local']
 
 
   file '.yardopts' => docs + deps do
@@ -74,13 +72,29 @@ namespace 'doc' do
 
     opts = []
     opts << '--markup markdown'
-    opts << %Q(--query '@api.text != "monkeypatch"')
     opts << "--title 'KangaRuby #{KangaRuby::VERSION} Documentation'"
+    opts << '--no-private'
     opts << '-'
     opts << docs
     opts.flatten!
 
     File.open('.yardopts', 'w') do |file|
+      file.puts opts
+    end
+  end
+
+  file '.yardopts-local' => docs + deps do
+    puts yellow('Rewriting .yardopts-local')
+
+    opts = []
+    opts << '--markup markdown'
+    opts << "--title 'KangaRuby #{KangaRuby::VERSION} Documentation'"
+    opts << '--private'
+    opts << '-'
+    opts << docs
+    opts.flatten!
+
+    File.open('.yardopts-local', 'w') do |file|
       file.puts opts
     end
   end

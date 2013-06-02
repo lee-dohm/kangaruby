@@ -2,9 +2,9 @@
 # Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
 #
 
+# @private
+# @see http://rubydoc.info/stdlib/core/Module Module
 class Module
-  # @api monkeypatch
-  #
   # Creates an alias for an attribute on a module or class.
   #
   # @param new_attr New name for the attribute.
