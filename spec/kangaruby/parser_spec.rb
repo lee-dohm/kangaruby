@@ -2,8 +2,6 @@
 # Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
 #
 
-require 'data/parser_data'
-
 describe Parser do
   let(:parser) { Parser.new }
   let(:one_action) { FactoryGirl.create(:one_action) }
