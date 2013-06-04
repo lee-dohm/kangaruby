@@ -7,22 +7,23 @@ module KangaRuby
   class Lifeline
     include GraphicsUtilities
 
-    # @private
-    # Classes to use to instantiate `LifelineHead` and `LifelineTail`.
-    attr_writer :head_class, :tail_class
+    # @return [LifelineHead] The head symbol for the lifeline.
+    attr_reader :head
 
     # @return [String] Name of the lifeline.
     attr_reader :name
+
+    # @return [LifelineTail] The tail symbol for the lifeline.
+    attr_reader :tail
 
     # Creates a new lifeline.
     #
     # @param [String] name Name for the lifeline.
     # @param [Font] font Font object to use to draw the name.
     def initialize(name, font = nil)
-      @head_class = LifelineHead
-      @tail_class = LifelineTail
       @name = name
-      @font = font
+      @head = font ? LifelineHead.new(@name, font) : LifelineHead.new(@name)
+      @tail = LifelineTail.new
     end
 
     # Draws the lifeline within the area defined by `rect` and inserts it into `node`.
@@ -35,11 +36,6 @@ module KangaRuby
       node << g
 
       draw_lifeline(g, rect)
-    end
-
-    # @return [LifelineHead] The head symbol for the lifeline.
-    def head
-      @head ||= @font ? @head_class.new(@name, @font) : @head_class.new(@name)
     end
 
     # @return Height of the head symbol.
@@ -55,11 +51,6 @@ module KangaRuby
       h = head.minimum_size[1] + tail.minimum_size[1]
 
       Size.new(w, h)
-    end
-
-    # @return [LifelineTail] The tail symbol for the lifeline.
-    def tail
-      @tail ||= @tail_class.new
     end
 
     # @return Height of the tail symbol.
