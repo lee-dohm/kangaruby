@@ -38,7 +38,7 @@ module KangaRuby
       draw_lifeline(g, rect)
     end
 
-    # @return Height of the head symbol.
+    # @return [Integer] Height of the head symbol in pixels.
     def head_height
       head.minimum_size.height
     end
@@ -53,7 +53,7 @@ module KangaRuby
       Size.new(w, h)
     end
 
-    # @return Height of the tail symbol.
+    # @return [Integer] Height of the tail symbol in pixels.
     def tail_height
       tail.minimum_size.height
     end
