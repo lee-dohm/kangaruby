@@ -105,6 +105,7 @@ module KangaRuby
     # @param [String] color Color value to validate.
     # @return [Boolean] Flag indicating if `color` is a valid SVG color value.
     # @see KangaRuby::COLOR_NAMES
+    # @todo Add support for decimal and float RGB values.
     def valid_color?(color)
       return color =~ /#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?/ if color[0] == '#'
 
