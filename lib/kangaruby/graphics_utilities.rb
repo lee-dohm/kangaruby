@@ -107,7 +107,7 @@ module KangaRuby
     # @see KangaRuby::COLOR_NAMES
     # @todo Add support for decimal and float RGB values.
     def valid_color?(color)
-      return color =~ /#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?/ if color[0] == '#'
+      return color =~ /^#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3})?$/ if color[0] == '#'
 
       COLOR_NAMES.include?(color)
     end

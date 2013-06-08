@@ -87,8 +87,16 @@ describe GraphicsUtilities do
       expect(test.valid_color?('#GGG')).to be_false
     end
 
+    it 'returns false with a four-digit color code' do
+      expect(test.valid_color?('#0000')).to be_false
+    end
+
     it 'returns true with a valid six-digit color code' do
       expect(test.valid_color?('#000000')).to be_true
+    end
+
+    it 'returns false with a seven-digit color code' do
+      expect(test.valid_color?('#0000000')).to be_false
     end
 
     it 'returns false with an invalid six-digit color code' do
