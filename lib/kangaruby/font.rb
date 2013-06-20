@@ -25,6 +25,12 @@ module KangaRuby
   class Font
     # Opens the given font.
     #
+    # If the name of the font is given, it is loaded from the default font directory. The name is assumed to be the base name of the
+    # file, i.e. the name of the file without path or extension.
+    #
+    # If a path is given, the font is loaded from that location. Relative paths are loaded relative to the current working
+    # directory.
+    #
     # @param [String] name_or_path Name of the font or the path to it.
     def initialize(name_or_path)
       if name_or_path =~ /\.ttf$/
@@ -38,8 +44,10 @@ module KangaRuby
 
     # Determines if `other` is equivalent to this font.
     #
+    # An object is considered to be equivalent if it is a `Font` and has the same `name` as this object.
+    #
     # @param [Font] other `Font` to be compared to.
-    # @return [Boolean] Flag indicating if `other` is a `Font` and has the same name as this font.
+    # @return [Boolean] Flag indicating if `other` is equivalent to this object.
     def ==(other)
       other.kind_of?(Font) && name == other.name
     end
