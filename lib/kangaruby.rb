@@ -26,13 +26,13 @@ require 'kangaruby/version'
 
 # Defines methods for converting text files written in the KangaRuby language into SVG image files.
 module KangaRuby
-  # Converts `KangaRuby` text into an `SVG` graphic.
+  # Converts KangaRuby text into an SVG graphic.
   #
   # @example Basic usage
   #   svg = KangaRuby.convert('Alice->Bob')
   #
   # @param [IO, String] input KangaRuby language description of the image.
-  # @return [String] `SVG` description of the image.
+  # @return [String] SVG description of the image.
   # @raise [ParseError] When there is an error parsing `input`.
   def convert(input)
     draw(parse(input))
