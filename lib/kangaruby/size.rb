@@ -27,11 +27,13 @@ module KangaRuby
 
     # Gets the width or height as an index.
     #
-    # @param [Integer] index `0` for width or `1` for height.  Any other index returns `nil`.
-    # @return [Integer] Requested value.
+    # @param [Integer] index `0` or `-2` for width; `1` or `-1` for height.  Any other index returns `nil`.
+    # @return [Integer] If the index is valid, whether positive, negative or zero.
     # @return [nil] If the index is out of range.
     def [](index)
       case index
+      when -2 then @width
+      when -1 then @height
       when 0 then @width
       when 1 then @height
       else nil

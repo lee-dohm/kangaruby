@@ -23,6 +23,9 @@ describe Size do
   end
 
   it 'returns width and height via the index operator' do
+    expect(size[-3]).to be_nil
+    expect(size[-2]).to eq(10)
+    expect(size[-1]).to eq(20)
     expect(size[0]).to eq(10)
     expect(size[1]).to eq(20)
     expect(size[2]).to be_nil
