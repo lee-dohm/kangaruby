@@ -24,6 +24,7 @@ require 'kangaruby/rect'
 require 'kangaruby/size'
 require 'kangaruby/version'
 
+# Defines methods for converting text files written in the KangaRuby language into SVG image files.
 module KangaRuby
   # Converts `KangaRuby` text into an `SVG` graphic.
   #
