@@ -7,7 +7,7 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-rubocop'
-  gem 'redcarpet'
+  gem 'redcarpet'      # Not needed in test because CI environment doesn't generate documentation
 
   # For users of OS X, include the proper requirements for file system events and notifications
   if RUBY_PLATFORM.downcase.include?('darwin')
