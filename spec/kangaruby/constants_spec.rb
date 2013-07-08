@@ -1,7 +1,7 @@
 
 describe 'Constants' do
   it 'has a pointer to the fonts directory' do
-    expect(KangaRuby::FONTS_DIR).to eq(File.expand_path('../../fonts', __FILE__))
+    expect(KangaRuby::FONTS_DIR).to eq(File.expand_path('../../../fonts', __FILE__))
   end
 
   it 'supplies acceptable line styles' do
