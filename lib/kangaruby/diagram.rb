@@ -46,7 +46,7 @@ module KangaRuby
       @arrow_sizes = @arrows.map { |arrow| arrow.minimum_size }
 
       @width = @lifeline_sizes.reduce(0) { |sum, size| sum += size.width }
-      @height = @lifeline_sizes.map { |size| size.height }.max + @arrow_sizes.reduce(0) { |sum, size| sum += size.width }
+      @height = (@lifeline_sizes.map { |size| size.height }).max + @arrow_sizes.reduce(0) { |sum, size| sum += size.height }
     end
 
     # rubocop:enable ReduceArguments
