@@ -28,7 +28,7 @@ module KangaRuby
 
     # Draws the diagram.
     #
-    # @return [String] Text of the `SVG` document.
+    # @return [String] Text of the SVG document.
     def draw
       determine_sizes
       draw_diagram.to_s
@@ -52,7 +52,7 @@ module KangaRuby
     # rubocop:enable ReduceArguments
 
     # Uses the sizes of the various components to draw the diagram.
-    # @return [void]
+    # @return [Nokogiri::XML::Document] XML containing the drawn diagram.
     def draw_diagram
       doc = Nokogiri::XML::Document.new
       doc.root = doc.create_element('svg',
