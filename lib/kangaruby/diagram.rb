@@ -41,7 +41,7 @@ module KangaRuby
     # In this case, `sum` and `size` are more clear.
 
     # Determines the sizes of all the components of the diagram.
-    # @return [void]
+    # @return [nil]
     def determine_sizes
       unless @lifelines.empty?
         @lifeline_sizes = @lifelines.map { |line| line.minimum_size }
@@ -50,6 +50,8 @@ module KangaRuby
         @width = @lifeline_sizes.reduce(0) { |sum, size| sum += size.width }
         @height = (@lifeline_sizes.map { |size| size.height }).max + @arrow_sizes.reduce(0) { |sum, size| sum += size.height }
       end
+
+      nil
     end
 
     # rubocop:enable ReduceArguments
@@ -73,7 +75,7 @@ module KangaRuby
     # Draw the lifelines in the diagram.
     #
     # @param [Nokogiri::XML::Node] node Node into which to draw the lifelines.
-    # @return [void]
+    # @return [nil]
     def draw_lines(node)
       left = 0
 
@@ -85,19 +87,19 @@ module KangaRuby
         line.draw(node, rect)
         left += size.width
       end
+
+      nil
     end
 
     # Draw the arrows in the diagram.
     #
     # @param [Nokogiri::XML::Node] node Node into which to draw the arrows.
-    # @return [void]
+    # @return [nil]
     def draw_arrows(node)
-      top = 0
-
       @arrows.each_with_index do |arrow, i|
         left_rect, right_rect = rects_for_arrow(arrow)
 
-        top += @lifelines.map { |line| line.head_height }.max if i == 0
+        top = @lifelines.map { |line| line.head_height }.max if i == 0
 
         left = left_rect.left + left_rect.width / 2
         width = (right_rect.left + right_rect.width / 2) - left
@@ -107,6 +109,8 @@ module KangaRuby
 
         top += height
       end
+
+      nil
     end
 
     # Get the left and right `Rects` of the lifelines for the given `Arrow`.
