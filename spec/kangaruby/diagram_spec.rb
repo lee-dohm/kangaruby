@@ -47,6 +47,10 @@ describe Diagram do
     expect(diagram.arrows).to eq([])
   end
 
+  it 'does not fail when told to draw with no lifelines or arrows' do
+    diagram.draw
+  end
+
   it 'can draw itself' do
     diagram.lifelines << Lifeline.new('Alice')
     diagram.lifelines << Lifeline.new('Bob')

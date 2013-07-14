@@ -24,6 +24,7 @@ module KangaRuby
     def initialize
       @arrows = []
       @lifelines = []
+      @width = @height = 0
     end
 
     # Draws the diagram.
@@ -42,11 +43,13 @@ module KangaRuby
     # Determines the sizes of all the components of the diagram.
     # @return [void]
     def determine_sizes
-      @lifeline_sizes = @lifelines.map { |line| line.minimum_size }
-      @arrow_sizes = @arrows.map { |arrow| arrow.minimum_size }
+      unless @lifelines.empty?
+        @lifeline_sizes = @lifelines.map { |line| line.minimum_size }
+        @arrow_sizes = @arrows.map { |arrow| arrow.minimum_size }
 
-      @width = @lifeline_sizes.reduce(0) { |sum, size| sum += size.width }
-      @height = (@lifeline_sizes.map { |size| size.height }).max + @arrow_sizes.reduce(0) { |sum, size| sum += size.height }
+        @width = @lifeline_sizes.reduce(0) { |sum, size| sum += size.width }
+        @height = (@lifeline_sizes.map { |size| size.height }).max + @arrow_sizes.reduce(0) { |sum, size| sum += size.height }
+      end
     end
 
     # rubocop:enable ReduceArguments
