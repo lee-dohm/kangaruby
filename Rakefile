@@ -5,6 +5,7 @@
 require 'bundler/gem_tasks'
 require 'rake/clean'
 require 'rspec/core/rake_task'
+require 'rubocop/rake_task'
 require 'term/ansicolor'
 require 'yard'
 
@@ -34,10 +35,7 @@ file 'grammar/sequence_parser.rb' => 'grammar/sequence.treetop' do
 end
 
 namespace 'test' do
-  desc 'Run style checks'
-  task :rubocop do
-    sh 'rubocop'
-  end
+  Rubocop::RakeTask.new
 
   desc 'Execute specs with code coverage'
   task :coverage do
